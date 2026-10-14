@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>転職年表 — 年収3000万円を目指せるか</title>
+<title>転職シミュレーター — 年収3000万円を目指せるか</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
@@ -252,7 +252,7 @@ button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 <body>
 <div class="wrap">
   <header class="top">
-    <h1>転職年表</h1>
+    <h1>転職シミュレーター</h1>
     <span class="dim small">年収3000万円を目指せるか</span>
     <div class="step" id="steps"><span class="on">1 ガチャ</span><span>2 就活</span><span>3 人生</span><span>4 結果</span></div>
   </header>
@@ -271,10 +271,10 @@ button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
     <div class="gacha card">
       <h2 style="justify-content:center">出身ガチャ <small>大学と属性は選べません。引くだけです</small></h2>
       <div class="gslot" id="gslot"><div class="gname" id="gname">？？？大学</div><div class="grar" id="grar"></div></div>
-      <div class="gdesc" id="gdesc">難関大学ほど出にくい。東大京大は2%、早慶は7%、MARCHは12%。</div>
+      <div class="gdesc" id="gdesc">難関大学ほど出にくい。東大京大は4%、早慶は10%、MARCHは12%。</div>
       <div class="gattrs" id="gattrs"></div>
       <div class="gbtn"><button class="big" id="gpull">ガチャを回す</button></div>
-      <div class="rates xs dim">排出率　東大京大 2%・旧帝一工 5%・海外大 1%・早慶 7%・上智ICU理科大 5%・MARCH 12%・関関同立 8%・日東駒専 20%・その他 40%</div>
+      <div class="rates xs dim">排出率　東大京大 4%・旧帝一工 5%・海外大 3%・早慶 10%・上智ICU理科大 5%・MARCH 12%・関関同立 8%・日東駒専 18%・その他 35%</div>
     </div>
     <div class="grid2" id="gresult" style="margin-top:16px;display:none">
       <div class="card">
@@ -368,15 +368,15 @@ const $=id=>document.getElementById(id);
 
 // ============ データ ============
 const UNIS=[
- {n:"東京大学・京都大学",d:"最上位。どの企業にもフィルターで落とされない",edu:100,head:18,w:2,rar:"ssr"},
+ {n:"東京大学・京都大学",d:"最上位。どの企業にもフィルターで落とされない",edu:100,head:18,w:4,rar:"ssr"},
  {n:"一橋・東工大・旧帝大",d:"地頭の評価が高く、理系就職にも強い",edu:92,head:14,w:5,rar:"sr"},
- {n:"海外大学（Ivy League等）",d:"英語とガクチカが強い。外資に圧倒的",edu:94,head:12,eng:40,w:1,rar:"ssr"},
- {n:"早稲田・慶應",d:"就活最強層。OB/OGネットワークが太い",edu:88,head:10,net:10,w:7,rar:"sr"},
+ {n:"海外大学（Ivy League等）",d:"英語とガクチカが強い。外資に圧倒的",edu:94,head:12,eng:40,w:3,rar:"ssr"},
+ {n:"早稲田・慶應",d:"就活最強層。OB/OGネットワークが太い",edu:88,head:10,net:10,w:10,rar:"sr"},
  {n:"上智・ICU・東京理科大",d:"英語か理系で勝負",edu:78,head:8,eng:10,w:5,rar:"r"},
  {n:"MARCH",d:"大手の入口に立てる。ただし学歴フィルターの境目",edu:70,head:5,w:12,rar:"r"},
  {n:"関関同立",d:"関西の雄。関西本社の企業に強い",edu:68,head:5,w:8,rar:"r"},
- {n:"日東駒専・産近甲龍",d:"フィルターにかかることがある。属性で押し切る",edu:52,head:0,w:20,rar:"n"},
- {n:"その他私大・地方大学",d:"就活は厳しいが、積み上げ次第",edu:40,head:-3,w:40,rar:"n"},
+ {n:"日東駒専・産近甲龍",d:"フィルターにかかることがある。属性で押し切る",edu:52,head:0,w:18,rar:"n"},
+ {n:"その他私大・地方大学",d:"就活は厳しいが、積み上げ次第",edu:40,head:-3,w:35,rar:"n"},
 ];
 const RAR={ssr:"SSR ★★★★★",sr:"SR ★★★★",r:"R ★★★",n:"N ★★"};
 const ATTRS=[
@@ -501,7 +501,7 @@ function startJob(){
   const s=baseStats(); const age=UI.attrs.some(i=>ATTRS[i].age)?24:22;
   P={name:UI.name,uni:UNIS[UI.uni].n,attrs:UI.attrs.map(i=>ATTRS[i].n),akeys:UI.attrs.map(i=>ATTRS[i].k),...s,age,year:2026+(age-22),skill:20+s.spec*0.2,health:ri(75,95),happy:UI.attrs.some(i=>ATTRS[i].k==="normal")?68:58,
      savings:ri(0,60),idx:0,crypto:0,home:null,debt:0,coVal:0,income:0,side:0,sideY:0,
-     job:null,tenure:0,role:0,history:[],incomes:[],log:[],moves:0,fails:0,nextD:0,spouse:null,kids:0,peakPr:0,ronin:0,mba:false,divorces:0,flags:{}};
+     job:null,tenure:0,role:0,history:[],incomes:[],log:[],moves:0,fails:0,nextD:0,spouse:null,kids:0,peakPr:0,ronin:0,mba:false,divorces:0,flags:{},leave:0};
   UI.picked=[];UI.applied=[];UI.round=1;UI.filter="all";renderBoard();go("board");
 }
 $("toJob").onclick=startJob;
@@ -602,11 +602,27 @@ function netWorth(){return P.savings+P.idx+P.crypto+(P.home?P.home.val-P.home.lo
 function stepYear(){
   if(ended)return;
   P.age++;P.year++;P.tenure++;const c=P.job;
+  if(P.leave>0){
+    // 休職中：年収ゼロ。貯金を取り崩す
+    P.leave--;P.income=0;P.health=clamp(P.health+12,0,100);P.happy=clamp(P.happy-4+r(-4,4),0,100);P.skill=clamp(P.skill-2,0,100);P.net=clamp(P.net-3,0,100);
+    P.savings-=(120+(P.spouse?40:0)+P.kids*90+(P.home?P.home.cost:100))-(P.spouse?P.spouse.inc*0.4:0);
+    if(P.debt>0){const pay=Math.min(P.debt,150);P.debt-=pay;P.savings-=pay}
+    P.incomes.push(0);
+    addLog(pick(["休職中。年収はゼロ。昼過ぎに起きて、夕方に散歩するだけの日々。","休職中。傷病手当金では家賃と食費で消える。貯金が減っていく。","休職中。元同僚のSNSを見て閉じる。","休職中。病院と図書館と家の三角形。"]),"dim");
+    P.years.push({age:P.age,year:P.year,co:`休職中（${c.n}）`,g:c.g,role:"",jt:P.jt,inc:0,nw:Math.round(netWorth())});
+    if(P.leave===0){
+      const back=P.flags.noReturn?false:Math.random()<(P.health>=60?0.55:0.35);
+      if(back){P.role=Math.max(0,P.role-1);P.chg=0.85;P.income=calcIncome();P.happy+=6;addLog(`復職。${c.n}に戻ったが、役職は一つ下がり、周りの目が気になる。年収は${fmt(P.income)}万円。`,"move")}
+      else{setJob(JOBLESS,0,P.jt);P.income=0;P.nextD=P.age+1;P.happy-=8;P.coVal=0;addLog(`復職できず、${c.n}を退職。無職からの再出発になった。`,"bad")}
+      P.flags.noReturn=false;
+    }
+    renderCareer();if(P.age>=END_AGE)return finish();schedule();return;
+  }
   const agef=P.age<32?1:P.age<40?.7:.45;
   P.skill=clamp(P.skill+(c.gr*2.2+r(0,2))*agef*(c.g==="neet"?-0.6:1),0,100);
   P.net=clamp(P.net+r(1,3)+c.pr*0.6-(c.g==="neet"?3:0),0,100);
   if(["gaigin","gaishi_it","cons_s","shosha","pe"].includes(c.g))P.eng=clamp(P.eng+2,0,100);
-  P.health=clamp(P.health-c.st*r(0.8,2.4)+(c.st<=2?1.5:0)+(P.age>40?-1.5:0)+(P.happy>65?1:0),0,100);
+  P.health=clamp(P.health-c.st*r(0.5,1.8)+(c.st<=2?1.5:0)+(P.age>40?-1.2:0)+(P.happy>65?1.5:0),0,100);
   const tH=46+c.pr*5-(c.st-2.5)*8+P.role*3+(P.spouse?6:0)+(P.kids?4:0)-(c.g==="neet"?20:0)-(P.debt>0?12:0)+(P.home?3:0);
   P.happy=clamp(P.happy+(tH-P.happy)*0.35+r(-6,6),0,100);
   // 収入と支出
@@ -646,9 +662,13 @@ function stepYear(){
   // イベント（選択を伴うものは "wait" で止まる）
   lifeEvent();
   let forced=false; if(Math.random()<0.32)forced=careerEvent();
-  if(P.health<=10&&!forced){addLog(c.g==="indie"?"体を壊して倒れ、会社は畳むしかなくなった。":c.g==="free"?"体を壊して仕事を受けられなくなった。":"体を壊して休職。この会社には戻れそうにありません。","bad");P.health=50;P.happy-=12;forced="burnout"}
+  if(P.health<=10&&!forced){
+    if(c.g==="indie"||c.g==="free"||c.g==="neet"){addLog(c.g==="neet"?"体を壊して寝込んだ。":c.g==="indie"?"体を壊して倒れ、会社は畳むしかなくなった。":"体を壊して仕事を受けられなくなった。","bad");P.health=50;P.happy-=12;forced="burnout"}
+    else{P.leave=ri(1,2);P.flags.sick=(P.flags.sick||0)+1;P.happy-=12;P.nextD=Math.max(P.nextD,P.age+P.leave+1);addLog(`体を壊して休職。この先${P.leave}年、年収はゼロ。`,"bad");forced="leave"}
+  }
   P.happy=clamp(P.happy,0,100);P.health=clamp(P.health,0,100);
   renderCareer();
+  if(forced==="leave"){schedule();return}
   if(c.g==="indie"&&P.coVal>=3000&&P.age>=P.nextD){indieDecision();return}
   if(forced||P.age>=P.nextD){openDecision(forced);return}
   schedule();
@@ -661,12 +681,12 @@ function careerEvent(){
   if(e<.22&&["shosha","maker","infra"].includes(g)){P.eng=clamp(P.eng+15,0,100);P.net=clamp(P.net+8,0,100);P.savings+=P.income*0.4;addLog(pick(["シンガポール駐在。手当で貯金が増え、英語が伸びました。","米国駐在。現地法人を回す経験を積みました。"]),"gold");return false}
   if(e<.30&&["cons","cons_s","sier","gaigin"].includes(g)){P.health-=12;P.skill=clamp(P.skill+7,0,100);addLog(pick(["炎上案件に投入され、3か月タクシー帰り。腕は上がりました。","深夜2時のスライド修正が日常に。","パートナーのレビューで資料を5回作り直した。"]),"bad");return false}
   // 働きすぎて病む（健康が低いほど起きやすい）
-  if(c.st>=4&&Math.random()<(P.health<40?0.22:P.health<60?0.1:0.03)){
+  if(c.st>=4&&Math.random()<(P.health<35?0.16:P.health<55?0.07:0.02)){
     const x=Math.random();
-    if(x<0.45){P.health-=20;P.happy-=18;P.income=Math.round(P.income*0.7);P.skill=clamp(P.skill-3,0,100);addLog(pick(["朝、起き上がれなくなった。適応障害の診断で3か月休職。","電車に乗れなくなり、心療内科へ。うつ病と診断され休職。","会議中に涙が止まらなくなり、産業医に止められた。半年休職。"]),"bad");P.flags.sick=(P.flags.sick||0)+1;if(P.health<=15)return "burnout";return false}
+    if(x<0.45){P.health-=20;P.happy-=18;P.skill=clamp(P.skill-3,0,100);P.leave=ri(1,2);P.flags.sick=(P.flags.sick||0)+1;P.nextD=Math.max(P.nextD,P.age+P.leave+1);addLog(pick(["朝、起き上がれなくなった。適応障害の診断で休職。","電車に乗れなくなり、心療内科へ。うつ病と診断され休職。","会議中に涙が止まらなくなり、産業医に止められた。休職。"])+`この先${P.leave}年、年収はゼロになる。`,"bad");return "leave"}
     if(x<0.75){P.health-=15;P.savings-=150;addLog(pick(["過労で倒れ、救急搬送。点滴を打ちながら資料を直した。","胃潰瘍で入院。病室でもSlackを見ていた。","円形脱毛症になった。鏡を見るのが怖い。"]),"bad");return false}
     if(x<0.9){P.happy-=12;addLog(pick(["睡眠薬なしで眠れなくなった。","週末も頭が仕事から離れない。友人からの連絡を無視するようになった。","体重が10kg減った。心配した母親が上京してきた。"]),"bad");return false}
-    P.health-=30;P.happy-=25;P.income=Math.round(P.income*0.5);addLog("過労で倒れ、医師に『このまま働けば命に関わる』と言われた。1年間の療養。","bad");P.flags.sick=(P.flags.sick||0)+1;return "burnout";
+    P.health-=30;P.happy-=25;P.leave=2;P.flags.noReturn=true;P.flags.sick=(P.flags.sick||0)+1;P.nextD=Math.max(P.nextD,P.age+3);addLog("過労で倒れ、医師に『このまま働けば命に関わる』と言われた。2年間の療養。会社には戻れない。","bad");return "leave";
   }
   if(e<.36&&g==="startup"&&c.pr>=3&&Math.random()<.5){const b=ri(500,8000);P.savings+=b;addLog(`会社が上場。ストックオプションが${oku(b)}になりました。`,"big");return false}
   if(e<.36&&P.skill>=65&&P.job.pr>=3&&P.age-P.lastD>=3&&P.age<=42){addLog("ヘッドハンターから連絡がありました。","move");return "headhunt"}
@@ -851,7 +871,7 @@ function renderCareer(){
   const st=[["スキル",P.skill,""],["人脈",P.net,""],["健康",P.health,P.health<30?"rose":""],["幸福",P.happy,"g"]];
   $("cstats").innerHTML=st.map(([n,v,k])=>`<div class="stat"><span>${n}</span><span class="b"><i class="${k}" style="width:${v}%${k==="rose"?";background:var(--rose)":""}"></i></span><b class="num" style="text-align:right">${Math.round(v)}</b></div>`).join("");
   $("jlg").textContent=mono(c.n);$("jlg").style.background=G[c.g].c;$("jn").textContent=c.n;
-  $("jr").textContent=`${G[c.g].n}${["neet","indie"].includes(c.g)?"":"・"+JTN[P.jt]+(c.g==="free"?"":"・"+ROLES[P.role])}・${c.g==="neet"?"既卒":c.g==="indie"?"創業":c.g==="free"?"独立":"勤続"}${P.tenure}年目`;
+  $("jr").textContent=(P.leave>0?"休職中・":"")+`${G[c.g].n}${["neet","indie"].includes(c.g)?"":"・"+JTN[P.jt]+(c.g==="free"?"":"・"+ROLES[P.role])}・${c.g==="neet"?"既卒":c.g==="indie"?"創業":c.g==="free"?"独立":"勤続"}${P.tenure}年目`;
   $("jfacts").innerHTML=`<span>年収<b class="num">${fmt(P.income)}</b></span><span>格<b>${"★".repeat(c.pr)}${"☆".repeat(5-c.pr)}</b></span><span>激務<b>${"●".repeat(c.st)}${"○".repeat(5-c.st)}</b></span><span>転職<b class="num">${P.moves}回</b></span><span>次の機会<b class="num">${P.nextD>P.age?P.nextD+"歳":"今年"}</b></span>`;
   const tl=$("tl");tl.innerHTML="";for(let a=22;a<=END_AGE;a++){const i=document.createElement("i");const h=[...P.history].reverse().find(h=>h.age<=a);if(h&&a<=P.age){i.style.background=G[h.c.g].c;i.title=`${a}歳 ${h.c.n}`}if(a===P.age)i.className="now";if(a%4===2)i.innerHTML=`<em>${a}</em>`;tl.appendChild(i)}
   $("log").innerHTML=P.log.map(l=>`<div class="ev ${l.cls}"><span class="y num">${l.age}歳</span><span></span></div>`).join("");
@@ -880,7 +900,7 @@ function story(){
   p.push(`${P.uni}を出て、${h[0].age}歳で${h[0].c.n}に入った。${h[0].c.st>=4?"最初の数年は終電とタクシーの記憶ばかりだ。":h[0].c.st<=2?"穏やかな職場で、定時に帰る日も多かった。":"仕事は普通に忙しく、普通に楽しかった。"}`);
   if(h.length>1){const moves=h.slice(1).map(x=>`${x.age}歳で${x.c.n}`).join("、");p.push(`その後、${moves}へ。${P.fails?`落ちた選考は${P.fails}回。`:"応募した会社には、すべて受かった。"}いちばん長くいたのは${longest.c.n}の${longest.len}年。`)}
   else p.push(`転職は一度もしなかった。${h[0].c.n}一筋、${END_AGE-h[0].age}年。${P.fails?`応募して落ちたことは${P.fails}回ある。`:""}`);
-  p.push(`年収のピークは${mxAge}歳の${fmt(mx)}万円。${mx>=GOAL?"3000万円の壁は越えた。":mx>=2000?"3000万円には届かなかったが、十分に高い。":mx>=1000?"1000万円は越えた。":"派手な数字ではないが、働き続けた。"}${P.flags.sick?`働きすぎて${P.flags.sick}回、体か心を壊した。`:""}${hard>=6?"記録には、辛い年がやけに多い。":hard>=3?"辛い年もあったが、乗り越えた。":"仕事で潰れそうになった記憶は、あまりない。"}`);
+  p.push(`年収のピークは${mxAge}歳の${fmt(mx)}万円。${mx>=GOAL?"3000万円の壁は越えた。":mx>=2000?"3000万円には届かなかったが、十分に高い。":mx>=1000?"1000万円は越えた。":"派手な数字ではないが、働き続けた。"}${P.flags.sick?`働きすぎて${P.flags.sick}回、体か心を壊した。年収ゼロの年が${P.incomes.filter(v=>v===0).length}年ある。`:""}${hard>=6?"記録には、辛い年がやけに多い。":hard>=3?"辛い年もあったが、乗り越えた。":"仕事で潰れそうになった記憶は、あまりない。"}`);
   const fam=P.spouse?(P.spouse.type==="rich"?"相手の実家は不動産オーナーで、お金の心配はほとんど消えた。":P.spouse.type==="power"?"共働きで、世帯年収はずっと高かった。":"結婚して、帰る理由ができた。"):"結婚はしなかった。";
   p.push(`${fam}${P.kids?`子どもは${P.kids}人。`:""}${P.divorces?`離婚を${P.divorces}回経験し、そのたびに資産は半分になった。`:""}${P.home?(P.home.type==="tower"?"湾岸のタワマンに住んでいる。":"郊外の戸建てに住んでいる。"):"ずっと賃貸だった。"}${P.crypto>0?"仮想通貨に手を出したのは、良くも悪くも人生の分岐点だった。":P.idx>0?"積立投資は地味に効いた。":""}`);
   p.push(`50歳。年収${fmt(P.income)}万円、総資産${oku(nw)}。${nw<0?"借金はまだ残っている。":nw>=30000?"もう働かなくてもいい。":nw>=10000?"老後の心配は、たぶんない。":"老後のことは、これから考える。"}${bad>=8?"波乱の多い人生だった。":bad>=4?"それなりに波はあった。":"思ったより、平穏な人生だった。"}`);
