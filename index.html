@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>転職年表 — 資産1億を目指す人生ゲーム</title>
+<title>転職年表 — 年収3000万円を目指せるか</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
@@ -114,14 +114,14 @@ button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .log{max-height:360px;overflow-y:auto;display:grid;gap:2px}
 .ev{display:grid;grid-template-columns:40px 1fr;gap:10px;padding:7px 0;border-bottom:1px solid var(--line);font-size:13.5px}
 .ev .y{color:var(--ink3);font-size:11.5px;padding-top:3px}
-.ev.move{color:var(--teal)}.ev.bad{color:var(--rose)}.ev.gold{color:var(--gold2)}.ev.big{color:var(--purple);font-weight:700}
+.ev.dim{color:var(--ink3)}.ev.move{color:var(--teal)}.ev.bad{color:var(--rose)}.ev.gold{color:var(--gold2)}.ev.big{color:var(--purple);font-weight:700}
 .ev:first-child{font-weight:700}
 .ctrl{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
 .ctrl button{padding:8px 12px;border-radius:10px;background:var(--bg2);border:1px solid var(--line);font-size:13px}
 .ctrl button.on{background:var(--gold);color:#1A1200;border-color:var(--gold);font-weight:700}
 .chart{width:100%;height:100px}
 .asset{font-family:"Zen Old Mincho";font-size:40px;line-height:1;color:var(--gold2);transition:.3s}
-.asset.neg{color:var(--rose)}
+.asset.neg{color:var(--rose)}.asset.ok{color:var(--green);text-shadow:0 0 24px rgba(76,212,138,.5)}
 .ab{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;font-size:12.5px;margin-top:10px;color:var(--ink2)}
 .ab b{text-align:right;font-family:"Zen Old Mincho";color:var(--ink)}
 .goal{height:8px;background:#0B1016;border-radius:99px;overflow:hidden;border:1px solid var(--line);margin-top:10px}
@@ -157,6 +157,17 @@ button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .path span{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;padding:5px 10px;border-radius:99px;border:1px solid var(--line);background:var(--bg2)}
 .path i{width:10px;height:10px;border-radius:3px;display:inline-block}
 .hl{text-align:left;max-width:560px;margin:0 auto 18px;font-size:13.5px;color:var(--ink2);display:grid;gap:4px}
+.story{text-align:left;max-width:640px;margin:16px auto;font-size:14.5px;line-height:1.9;color:var(--ink);border-left:3px solid var(--gold);padding-left:16px}
+.story p{margin:0 0 10px}
+.tbl{text-align:left;margin:16px 0 20px}
+.tbl summary{cursor:pointer;font-family:"Zen Old Mincho";font-size:16px;color:var(--gold2);margin-bottom:8px}
+.tbl table{width:100%;border-collapse:collapse;font-size:12.5px}
+.tbl th{text-align:left;color:var(--ink3);font-weight:400;font-size:11px;padding:4px 6px;border-bottom:1px solid var(--line2)}
+.tbl td{padding:6px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl td i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:6px;vertical-align:middle}
+.tbl td small{display:block;color:var(--ink3);font-size:10.5px}
+.tbl .ev2{color:var(--ink2);line-height:1.5}.tbl .ev2 .bad{color:var(--rose)}.tbl .ev2 .gold{color:var(--gold2)}.tbl .ev2 .big{color:var(--purple);font-weight:700}.tbl .ev2 .move{color:var(--teal)}.tbl .ev2 .dim{color:var(--ink3)}
+@media (max-width:980px){.tbl th:nth-child(2),.tbl td:nth-child(2),.tbl th:nth-child(5),.tbl td:nth-child(5){display:none}}
 .cta{margin:28px auto 0;max-width:560px;background:linear-gradient(135deg,#17323A,#1B2A44);border:1px solid var(--teal);border-radius:16px;padding:24px 22px}
 .cta h3{font-size:22px;margin:0 0 6px;color:#fff}
 .cta p{margin:0 0 14px;color:var(--ink2);font-size:14px}
@@ -189,11 +200,32 @@ button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .toast .ok{color:var(--green)}.toast .ng{color:var(--rose)}
 .toast small{display:block;font-family:"Noto Sans JP";font-size:14px;letter-spacing:0;font-weight:400;color:var(--ink2)}
 @keyframes fadeout{to{opacity:0;transform:rotate(-6deg) scale(1.1)}}
+/* ガチャ */
+.gacha{text-align:center;max-width:720px;margin:0 auto;padding:28px 20px}
+.gslot{margin:18px auto 10px;max-width:520px;min-height:120px;border:2px solid var(--line2);border-radius:16px;background:#0B1016;display:grid;place-items:center;padding:18px;position:relative;overflow:hidden}
+.gslot.spin{border-color:var(--gold)}
+.gslot.ssr{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold),0 0 60px rgba(227,184,77,.5);animation:glow 1.2s ease-in-out infinite alternate}
+.gslot.sr{border-color:var(--purple);box-shadow:0 0 40px rgba(185,138,224,.4)}
+.gslot.r{border-color:var(--teal)}
+@keyframes glow{from{box-shadow:0 0 0 2px var(--gold),0 0 30px rgba(227,184,77,.3)}to{box-shadow:0 0 0 2px var(--gold),0 0 80px rgba(227,184,77,.7)}}
+.gname{font-family:"Zen Old Mincho";font-size:30px;font-weight:900;line-height:1.2}
+.gslot.spin .gname{filter:blur(.6px);color:var(--ink2)}
+.grar{font-size:12px;letter-spacing:.3em;margin-top:6px;color:var(--ink3);font-weight:700}
+.grar.ssr{color:var(--gold2)}.grar.sr{color:var(--purple)}.grar.r{color:var(--teal)}
+.gdesc{color:var(--ink2);font-size:13.5px;min-height:24px}
+.gattrs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:14px 0 6px;min-height:40px}
+.gattrs span{padding:8px 16px;border-radius:99px;border:1px solid var(--line2);background:var(--bg2);font-weight:700;animation:pop .35s}
+.gattrs span.hot{border-color:var(--gold);color:var(--gold2)}
+.gbtn{margin:14px 0 10px}
+.rates{line-height:1.7}
+.flash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:50;animation:flash2 .5s ease-out}
+@keyframes flash2{0%{opacity:.9}100%{opacity:0}}
 /* スマホ */
 .mbar{display:none}
 @media (max-width:980px){
   .career,.board,.grid2{grid-template-columns:1fr}.sticky{position:static}.hero h2{font-size:30px}.hero{padding:30px 8px 20px}.sum{grid-template-columns:1fr 1fr}
   .wrap{padding:12px 12px 90px}.card{padding:14px 14px;border-radius:12px}
+  .gname{font-size:22px}.gacha{padding:18px 12px}
   .top .step{margin-left:0;width:100%}
   .career .col:nth-child(1){order:2}.career .col:nth-child(2){order:1}.career .col:nth-child(3){order:3}
   .board .col.sticky{display:none}
@@ -221,36 +253,41 @@ button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 <div class="wrap">
   <header class="top">
     <h1>転職年表</h1>
-    <span class="dim small">資産1億を目指す人生ゲーム</span>
-    <div class="step" id="steps"><span class="on">1 大学</span><span>2 就活</span><span>3 人生</span><span>4 結果</span></div>
+    <span class="dim small">年収3000万円を目指せるか</span>
+    <div class="step" id="steps"><span class="on">1 ガチャ</span><span>2 就活</span><span>3 人生</span><span>4 結果</span></div>
   </header>
 
   <section class="screen on" id="s-intro">
     <div class="hero">
-      <h2>50歳のとき、<br>いくら持っているか。</h2>
-      <p>大学と属性を選んで新卒就活から始めます。入社後は勝手に年月が進み、転職・結婚・家・投資・起業の決断がときどき降ってきます。迷ったら光っているカードを押すだけ。放っておいても自動で選ばれます。</p>
-      <p>起業は大成功すれば数十億、大失敗すれば借金。大富豪と結婚する人も、離婚で資産を半分失う人もいます。ゴールは50歳時点の総資産。</p>
+      <h2>年収3000万円に、<br>たどり着けるか。</h2>
+      <p>大学と属性はガチャで決まります。難関大は低確率。そこから新卒就活を始めます。入社後は勝手に年月が進み、4〜6年に一度「人生の決断」が来ます。転職・起業・独立・留学・家・投資。決断のときだけ時間が止まり、あなたが選びます。</p>
+      <p>年収3000万円に届くのは、外銀・PE・戦コンのパートナー・起業の成功者・大化けした営業など、ごく一部。大失敗すれば借金、離婚で資産半減もあります。</p>
       <p class="dim small">企業名は実在のものですが、合格率・年収・出来事はすべてゲーム上の演出で、実際の選考や企業とは無関係です。</p>
-      <br><button class="big" onclick="go('setup')">大学を選ぶ</button> <button class="big ghost" onclick="randomStart()">全部おまかせで始める</button>
+      <br><button class="big" onclick="go('setup')">出身ガチャを引く</button>
     </div>
   </section>
 
   <section class="screen" id="s-setup">
-    <div class="grid2">
-      <div class="col">
-        <div class="card"><h2>大学 <small>1つ選ぶ</small></h2><div class="choice" id="unis"></div></div>
-        <div class="card"><h2>属性 <small>最大2つ</small></h2><div class="choice" id="attrs"></div></div>
+    <div class="gacha card">
+      <h2 style="justify-content:center">出身ガチャ <small>大学と属性は選べません。引くだけです</small></h2>
+      <div class="gslot" id="gslot"><div class="gname" id="gname">？？？大学</div><div class="grar" id="grar"></div></div>
+      <div class="gdesc" id="gdesc">難関大学ほど出にくい。東大京大は2%、早慶は7%、MARCHは12%。</div>
+      <div class="gattrs" id="gattrs"></div>
+      <div class="gbtn"><button class="big" id="gpull">ガチャを回す</button></div>
+      <div class="rates xs dim">排出率　東大京大 2%・旧帝一工 5%・海外大 1%・早慶 7%・上智ICU理科大 5%・MARCH 12%・関関同立 8%・日東駒専 20%・その他 40%</div>
+    </div>
+    <div class="grid2" id="gresult" style="margin-top:16px;display:none">
+      <div class="card">
+        <div class="profile"><div class="avatar" id="av">?</div><div><div class="serif" style="font-size:22px" id="pname">—</div><div class="dim small" id="pdesc"></div></div></div>
+        <div class="stats" id="pstats"></div>
       </div>
-      <div class="col sticky">
-        <div class="card">
-          <div class="profile"><div class="avatar" id="av">?</div><div><div class="serif" style="font-size:22px" id="pname">—</div><div class="dim small" id="pdesc">大学と属性を選んでください</div></div></div>
-          <div class="stats" id="pstats"></div>
-          <p class="note">6つのステータスで企業ごとの合格率が決まります。学歴フィルターのある企業は、大学によって合格率が大きく下がります。</p>
-          <button class="big" style="width:100%;text-align:center" id="toJob" disabled>就活を始める</button>
-          <button class="big ghost" style="width:100%;text-align:center;margin-top:8px" onclick="randomSetup()">ランダムに決める</button>
-        </div>
+      <div class="card">
+        <p class="note" style="margin-top:0">6つのステータスで企業ごとの合格率が決まります。学歴フィルターのある企業は、大学によって合格率が大きく下がります。</p>
+        <button class="big" style="width:100%;text-align:center" id="toJob">この人生で就活を始める</button>
+        <button class="big ghost" style="width:100%;text-align:center;margin-top:8px" onclick="location.reload()">生まれ直す</button>
       </div>
     </div>
+    <div id="unis" hidden></div><div id="attrs" hidden></div>
   </section>
 
   <section class="screen" id="s-board">
@@ -290,9 +327,10 @@ button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
     <div class="career">
       <div class="col">
         <div class="card">
-          <h2>総資産 <small>ゴール 1億円</small></h2>
-          <div class="asset num" id="asset">0</div><div class="xs dim">万円</div>
+          <h2>年収 <small>ゴール 3,000万円</small></h2>
+          <div class="asset num" id="incbig">0</div><div class="xs dim">万円（最高 <span id="incmax">0</span>万円）</div>
           <div class="goal"><i id="goalbar" style="width:0"></i></div>
+          <div class="ab" style="margin-top:14px"><span>総資産</span><b class="num" id="asset">0</b></div>
           <div class="ab" id="ab"></div>
         </div>
         <div class="card">
@@ -305,7 +343,7 @@ button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
           <div class="jobhead"><div class="lg" id="jlg"></div><div><h2 class="n" id="jn"></h2><div class="r" id="jr"></div></div></div>
           <div class="facts" id="jfacts"></div>
           <div class="tl" id="tl"></div><div style="height:16px"></div>
-          <div class="ctrl"><button id="pause">⏸ 一時停止</button><button class="spd on" data-s="1">1×</button><button class="spd" data-s="2">2×</button><button class="spd" data-s="4">4×</button><button id="auto">🤖 全部おまかせ</button></div>
+          <div class="ctrl"><button id="pause">⏸ 一時停止</button><button class="spd on" data-s="1">1×</button><button class="spd" data-s="2">2×</button><button class="spd" data-s="4">4×</button></div>
         </div>
         <div class="card"><h2>人生の記録 <small>新しい順</small></h2><div class="log" id="log"></div></div>
       </div>
@@ -330,16 +368,17 @@ const $=id=>document.getElementById(id);
 
 // ============ データ ============
 const UNIS=[
- {n:"東京大学・京都大学",d:"最上位。どの企業にもフィルターで落とされない",edu:100,head:18},
- {n:"一橋・東工大・旧帝大",d:"地頭の評価が高く、理系就職にも強い",edu:92,head:14},
- {n:"海外大学（Ivy League等）",d:"英語とガクチカが強い。外資に圧倒的",edu:94,head:12,eng:40},
- {n:"早稲田・慶應",d:"就活最強層。OB/OGネットワークが太い",edu:88,head:10,net:10},
- {n:"上智・ICU・東京理科大",d:"英語か理系で勝負",edu:78,head:8,eng:10},
- {n:"MARCH",d:"大手の入口に立てる。ただし学歴フィルターの境目",edu:70,head:5},
- {n:"関関同立",d:"関西の雄。関西本社の企業に強い",edu:68,head:5},
- {n:"日東駒専・産近甲龍",d:"フィルターにかかることがある。属性で押し切る",edu:52,head:0},
- {n:"その他私大・地方大学",d:"就活は厳しいが、積み上げ次第",edu:40,head:-3},
+ {n:"東京大学・京都大学",d:"最上位。どの企業にもフィルターで落とされない",edu:100,head:18,w:2,rar:"ssr"},
+ {n:"一橋・東工大・旧帝大",d:"地頭の評価が高く、理系就職にも強い",edu:92,head:14,w:5,rar:"sr"},
+ {n:"海外大学（Ivy League等）",d:"英語とガクチカが強い。外資に圧倒的",edu:94,head:12,eng:40,w:1,rar:"ssr"},
+ {n:"早稲田・慶應",d:"就活最強層。OB/OGネットワークが太い",edu:88,head:10,net:10,w:7,rar:"sr"},
+ {n:"上智・ICU・東京理科大",d:"英語か理系で勝負",edu:78,head:8,eng:10,w:5,rar:"r"},
+ {n:"MARCH",d:"大手の入口に立てる。ただし学歴フィルターの境目",edu:70,head:5,w:12,rar:"r"},
+ {n:"関関同立",d:"関西の雄。関西本社の企業に強い",edu:68,head:5,w:8,rar:"r"},
+ {n:"日東駒専・産近甲龍",d:"フィルターにかかることがある。属性で押し切る",edu:52,head:0,w:20,rar:"n"},
+ {n:"その他私大・地方大学",d:"就活は厳しいが、積み上げ次第",edu:40,head:-3,w:40,rar:"n"},
 ];
+const RAR={ssr:"SSR ★★★★★",sr:"SR ★★★★",r:"R ★★★",n:"N ★★"};
 const ATTRS=[
  {k:"taiiku",n:"体育会系",d:"コミュ力・体力・ガクチカ↑。商社・金融・広告に強い",m:{com:16,sta:25,gak:14,head:-4}},
  {k:"rikei",n:"理系院生",d:"専門性↑、24歳で就活。メーカー・IT・コンサルに強い",m:{spec:32,head:10,com:-5},age:24},
@@ -357,12 +396,12 @@ const G={
  cons_s:{n:"戦略コンサル",c:"#7C5CFF"},cons:{n:"総合コンサル",c:"#5B8DEF"},shosha:{n:"総合商社",c:"#E0A458"},gaigin:{n:"外資金融",c:"#D4AF37"},
  fin:{n:"日系金融",c:"#4FA3A5"},gaishi_it:{n:"外資IT",c:"#43B581"},web:{n:"日系Web",c:"#F06292"},sier:{n:"SIer",c:"#6D8FA8"},
  maker:{n:"メーカー",c:"#8FB3D9"},ad:{n:"広告",c:"#FF7F50"},dev:{n:"デベロッパー",c:"#B08968"},infra:{n:"インフラ",c:"#7A9E7E"},
- gov:{n:"官庁",c:"#9E9E9E"},startup:{n:"スタートアップ",c:"#E53935"},pe:{n:"PE・ファンド",c:"#C9A227"},other:{n:"中小・その他",c:"#6B7280"},neet:{n:"無職",c:"#3A3F47"},indie:{n:"起業",c:"#B98AE0"}
+ gov:{n:"官庁",c:"#9E9E9E"},startup:{n:"スタートアップ",c:"#E53935"},pe:{n:"PE・ファンド",c:"#C9A227"},other:{n:"中小・その他",c:"#6B7280"},neet:{n:"無職",c:"#3A3F47"},indie:{n:"起業",c:"#B98AE0"},free:{n:"フリーランス",c:"#8E7CC3"}
 };
 const ADJ={cons_s:["cons","gaigin","pe","startup","shosha"],cons:["cons_s","sier","gaishi_it","web","startup"],shosha:["cons","fin","dev","maker","pe"],gaigin:["pe","cons_s","fin","shosha"],
  fin:["shosha","cons","gaigin","dev","infra"],gaishi_it:["web","cons","startup","sier"],web:["startup","gaishi_it","ad","cons"],sier:["cons","gaishi_it","maker","infra"],
  maker:["sier","shosha","cons","infra"],ad:["web","startup","cons"],dev:["fin","shosha","infra"],infra:["maker","fin","gov","sier"],gov:["cons","fin","infra","dev"],
- startup:["web","gaishi_it","cons","indie"],pe:["gaigin","cons_s"],other:["sier","maker","web","startup","fin"],neet:["other","startup","sier"],indie:["startup","web","cons"]};
+ startup:["web","gaishi_it","cons","indie"],pe:["gaigin","cons_s"],other:["sier","maker","web","startup","fin"],neet:["other","startup","sier"],indie:["startup","web","cons"],free:["web","startup","cons","sier","ad"]};
 // [社名, 業界, 難易度, 学歴フィルター, 重み[地頭,コミュ,英語,専門,ガクチカ,体力], 年収[22,30,40歳], 格, 激務, 成長]
 const CO=[
  ["マッキンゼー","cons_s",96,88,[5,3,3,1,2,1],[700,1500,3500],5,5,5],["BCG","cons_s",94,88,[5,3,3,1,2,1],[650,1400,3200],5,5,5],["ベイン","cons_s",93,85,[5,3,2,1,2,1],[650,1400,3000],5,5,5],["A.T.カーニー","cons_s",88,78,[4,3,2,1,2,1],[600,1200,2500],4,5,5],
@@ -377,7 +416,26 @@ const CO=[
  ["電通","ad",88,70,[2,5,1,1,5,4],[450,950,1500],4,5,4],["博報堂","ad",86,68,[2,5,1,1,5,3],[450,950,1450],4,4,4],["ADK","ad",68,50,[2,4,1,1,3,3],[380,700,1000],3,4,3],
  ["三井不動産","dev",93,85,[3,5,2,1,4,2],[450,1100,1700],5,2,3],["三菱地所","dev",93,85,[3,5,2,1,4,2],[450,1100,1700],5,2,3],["住友不動産","dev",76,60,[2,5,1,1,3,3],[400,900,1300],3,4,3],
  ["JR東日本","infra",72,55,[3,3,1,2,2,3],[300,650,1000],3,2,2],["ANA","infra",76,55,[2,5,3,1,3,3],[300,600,900],3,3,2],["NTT東日本","infra",64,50,[3,3,1,2,2,2],[300,600,950],3,1,2],["東京電力","infra",62,50,[3,3,1,2,2,2],[300,620,950],3,2,2],
- ["財務省・経産省（国家総合職）","gov",93,85,[5,3,1,2,2,2],[280,600,1000],5,5,4],["都庁・県庁","gov",55,40,[3,3,1,1,2,2],[280,550,800],2,1,1],
+ ["財務省・経産省（国家総合職）","gov",93,85,[5,3,1,2,2,2],[280,600,1000],5,5,4],["外務省（国家総合職）","gov",92,85,[5,3,4,1,2,2],[280,650,1050],5,4,4],["日本銀行","gov",91,85,[5,3,2,2,2,1],[300,700,1200],5,3,3],["都庁・県庁","gov",55,40,[3,3,1,1,2,2],[280,550,800],2,1,1],["市役所","gov",48,0,[2,3,1,1,2,2],[260,500,720],2,1,1],
+ ["ローランド・ベルガー","cons_s",87,78,[4,3,3,1,2,1],[600,1200,2400],4,5,5],["アーサー・D・リトル","cons_s",85,75,[4,3,2,2,2,1],[580,1100,2200],4,4,4],["KPMGコンサルティング","cons",74,62,[4,3,2,2,2,1],[480,820,1300],3,4,4],["EYストラテジー","cons",74,62,[4,3,2,2,2,1],[480,820,1300],3,4,4],["ベイカレント","cons",70,50,[3,4,1,2,2,3],[500,900,1400],3,5,4],["シグマクシス","cons",72,55,[4,3,1,2,2,2],[500,850,1300],3,4,4],["船井総研","cons",58,40,[2,4,1,1,2,3],[400,650,900],2,4,3],
+ ["兼松","shosha",76,62,[3,4,2,1,3,3],[430,850,1200],3,3,3],["三菱UFJモルガン・スタンレー証券","fin",80,68,[4,4,2,2,2,3],[450,950,1500],4,4,3],["SMBC日興証券","fin",72,55,[3,4,1,1,3,3],[400,850,1300],3,4,3],["大和証券","fin",70,52,[3,4,1,1,3,3],[400,850,1250],3,4,3],["損保ジャパン","fin",72,55,[3,4,1,1,3,2],[380,800,1150],3,3,2],["第一生命","fin",66,50,[2,4,1,1,2,2],[300,700,1050],3,2,2],["農林中央金庫","fin",84,72,[4,3,1,2,2,1],[380,850,1300],4,2,2],["ゆうちょ銀行","fin",56,40,[2,3,1,1,2,2],[280,600,900],2,1,1],
+ ["Apple Japan","gaishi_it",90,65,[4,4,4,4,2,1],[800,1500,2500],5,3,4],["Meta","gaishi_it",92,65,[5,3,4,5,2,1],[900,1700,2800],5,3,5],["Oracle","gaishi_it",74,50,[3,4,3,3,2,2],[550,1000,1600],3,3,3],["SAPジャパン","gaishi_it",76,52,[3,4,3,3,2,2],[550,1000,1600],4,3,3],["AWS","gaishi_it",86,58,[4,3,3,5,2,2],[700,1300,2200],4,4,5],
+ ["freee","web",70,45,[3,3,1,4,3,2],[480,780,1100],3,3,4],["マネーフォワード","web",70,45,[3,3,1,4,3,2],[480,780,1100],3,3,4],["Sansan","web",66,40,[2,4,1,3,3,3],[450,750,1050],3,3,4],["GMOインターネット","web",60,40,[2,3,1,3,2,3],[400,650,950],3,3,3],["ZOZO","web",66,45,[3,3,1,3,4,2],[450,750,1050],3,2,3],["ミクシィ","web",64,45,[3,3,1,4,2,1],[450,750,1050],3,2,3],["グリー","web",60,40,[3,3,1,3,2,2],[420,700,1000],3,2,3],["エムスリー","web",80,60,[4,3,1,3,3,2],[500,900,1400],4,3,4],
+ ["NTTコミュニケーションズ","sier",66,52,[3,3,1,3,2,2],[320,650,1000],3,2,2],["伊藤忠テクノソリューションズ","sier",68,52,[3,3,1,3,2,2],[380,700,1050],3,3,3],["SCSK","sier",60,45,[3,3,1,3,2,2],[320,620,900],3,2,2],["TIS","sier",58,45,[3,3,1,3,2,2],[310,600,880],3,2,2],["野村総研（SE職）","sier",76,62,[4,2,1,4,1,1],[480,900,1300],4,3,3],
+ ["ホンダ","maker",74,55,[3,3,2,3,2,3],[340,750,1100],4,2,3],["日産自動車","maker",68,50,[3,3,2,3,2,2],[330,700,1000],3,3,2],["デンソー","maker",72,55,[3,2,1,4,2,2],[330,720,1050],4,2,3],["村田製作所","maker",76,58,[3,2,1,4,2,2],[340,760,1150],4,2,3],["信越化学","maker",80,60,[4,2,1,4,2,2],[380,850,1300],4,2,3],["富士フイルム","maker",74,55,[3,3,2,3,2,2],[340,740,1100],4,2,3],["武田薬品","maker",84,65,[4,3,3,4,2,1],[450,950,1500],4,3,3],["中外製薬","maker",84,65,[4,3,2,4,2,1],[450,950,1500],4,2,3],["サントリー","maker",84,65,[2,5,1,1,4,3],[380,800,1250],4,3,3],["味の素","maker",80,60,[3,4,2,2,3,2],[360,780,1150],4,2,3],["花王","maker",76,58,[3,3,1,3,3,2],[340,730,1050],4,2,3],["ユニ・チャーム","maker",72,55,[2,4,2,2,3,3],[340,720,1050],3,3,3],["コマツ","maker",72,55,[3,3,2,3,2,3],[340,740,1100],4,2,3],["ダイキン","maker",72,55,[3,3,2,3,2,3],[340,740,1100],4,2,3],["ファナック","maker",80,58,[4,1,1,5,1,2],[400,900,1400],4,3,2],["日本製鉄","maker",68,52,[3,3,1,3,2,3],[320,700,1050],3,3,2],["シャープ","maker",50,40,[3,3,1,3,2,2],[290,560,800],2,3,2],
+ ["NHK","ad",86,70,[4,4,1,1,4,3],[350,800,1200],4,4,3],["日本テレビ","ad",92,78,[3,5,1,1,5,4],[400,1000,1500],5,5,3],["フジテレビ","ad",88,72,[3,5,1,1,5,4],[400,950,1400],4,5,3],["日本経済新聞","ad",86,72,[4,4,2,1,4,3],[380,850,1250],4,4,3],["朝日新聞","ad",82,68,[4,4,1,1,4,3],[380,800,1150],4,4,3],["講談社","ad",90,70,[3,4,1,1,5,2],[420,1000,1400],4,3,3],["集英社","ad",90,70,[3,4,1,1,5,2],[420,1000,1400],4,3,3],["サイバーエージェント（広告）","ad",70,48,[2,5,1,2,4,4],[420,750,1200],3,5,4],
+ ["東急不動産","dev",80,65,[3,5,1,1,4,2],[420,900,1350],4,3,3],["野村不動産","dev",80,65,[3,5,1,1,4,2],[420,900,1350],4,3,3],["森ビル","dev",88,75,[3,5,2,1,4,2],[430,950,1450],4,3,3],["大和ハウス","dev",64,48,[2,4,1,1,3,4],[380,750,1050],3,4,2],["三井住友トラスト不動産","dev",60,45,[2,4,1,1,3,3],[350,650,950],3,3,2],
+ ["JR東海","infra",76,60,[3,3,1,2,2,3],[310,680,1050],4,2,2],["JAL","infra",76,55,[2,5,3,1,3,3],[300,620,950],3,3,2],["東京ガス","infra",68,52,[3,3,1,2,2,2],[300,650,1000],3,1,2],["関西電力","infra",64,50,[3,3,1,2,2,2],[300,640,980],3,2,2],["NTTドコモ","infra",72,55,[3,3,1,3,2,2],[320,700,1050],3,2,2],["KDDI","infra",72,55,[3,3,1,3,2,2],[330,720,1100],3,2,3],["ソフトバンク","infra",68,50,[3,4,1,3,2,3],[330,720,1100],3,3,3],["日本郵船","infra",84,68,[3,4,3,1,3,3],[380,900,1400],4,2,3],["商船三井","infra",82,66,[3,4,3,1,3,3],[380,880,1350],4,2,3],["JICA","infra",80,62,[3,4,4,1,4,2],[320,650,1000],3,2,3],
+ ["LayerX","startup",70,45,[4,3,1,4,4,2],[550,850,1300],3,4,5],["Ubie","startup",72,48,[4,3,1,4,4,2],[600,900,1300],3,4,5],["カケハシ","startup",66,42,[3,3,1,3,4,2],[500,800,1200],3,3,5],["ティアフォー","startup",68,45,[4,2,2,5,3,2],[500,800,1200],3,4,5],["ビズリーチ（ビジョナル）","startup",68,45,[3,4,1,2,4,3],[500,800,1200],3,4,4],["アンドパッド","startup",64,40,[3,4,1,3,3,3],[480,750,1100],3,4,5],["創業1年のスタートアップ","startup",40,0,[2,4,1,3,3,4],[350,550,900],1,5,5],
+ ["東芝","maker",60,48,[3,3,1,3,2,2],[300,620,900],3,3,2],["三菱電機","maker",70,55,[3,3,1,3,2,2],[320,700,1050],4,2,3],["川崎重工","maker",68,52,[3,2,1,4,2,3],[320,700,1000],3,3,2],["IHI","maker",66,50,[3,2,1,4,2,3],[320,690,980],3,3,2],["クボタ","maker",70,52,[3,3,1,3,2,3],[330,720,1050],4,2,2],["ブリヂストン","maker",72,55,[3,3,2,3,2,3],[330,730,1100],4,2,3],["旭化成","maker",76,58,[4,2,1,4,2,2],[350,760,1150],4,2,3],["東レ","maker",76,58,[4,2,1,4,2,2],[340,750,1100],4,2,3],["住友化学","maker",72,55,[4,2,1,4,2,2],[340,740,1080],4,2,2],["三井化学","maker",70,55,[4,2,1,4,2,2],[340,730,1060],3,2,2],["アサヒビール","maker",82,62,[2,5,1,1,4,3],[360,780,1200],4,3,3],["キリン","maker",82,62,[2,5,1,1,4,3],[360,780,1200],4,3,3],["明治","maker",76,58,[2,4,1,2,3,3],[340,720,1050],4,2,2],["日清食品","maker",78,60,[2,4,1,2,4,3],[350,750,1100],4,3,3],["カゴメ","maker",72,55,[2,4,1,2,3,3],[330,700,1000],3,2,2],["アステラス製薬","maker",84,65,[4,3,3,4,2,1],[450,950,1500],4,3,3],["第一三共","maker",84,65,[4,3,3,4,2,1],[450,950,1500],4,3,3],["エーザイ","maker",80,62,[4,3,2,4,2,1],[420,900,1400],4,2,3],["大塚製薬","maker",76,58,[3,4,2,3,3,2],[400,850,1300],4,3,3],["ヤクルト","maker",64,48,[2,4,1,2,3,3],[320,650,950],3,2,2],["良品計画","maker",68,50,[2,4,2,1,4,3],[320,650,950],3,3,3],
+ ["日本IBM","gaishi_it",80,58,[4,3,3,4,2,2],[550,1000,1600],4,3,3],["シスコシステムズ","gaishi_it",80,55,[3,4,3,3,2,2],[600,1100,1800],4,3,3],["アドビ","gaishi_it",82,58,[3,4,3,3,2,1],[600,1100,1800],4,2,3],["SAS Institute","gaishi_it",74,52,[4,3,3,4,2,1],[550,950,1500],3,2,3],
+ ["住友生命","fin",64,50,[2,4,1,1,2,2],[300,680,1020],3,2,2],["明治安田生命","fin",64,50,[2,4,1,1,2,2],[300,680,1020],3,2,2],["MS&AD","fin",72,55,[3,4,1,1,3,2],[380,800,1150],3,3,2],["オリックス","fin",78,60,[3,4,2,2,3,3],[400,850,1300],4,3,3],["SBI証券","fin",66,48,[3,4,1,2,2,3],[400,750,1150],3,4,3],["楽天証券","fin",62,45,[3,3,2,2,2,2],[380,700,1050],3,3,3],["マネックス","fin",60,45,[3,3,2,2,2,2],[380,680,1000],3,3,3],["三井住友信託銀行","fin",74,58,[3,4,1,2,2,2],[320,760,1150],4,3,2],["日本取引所グループ","fin",88,75,[4,3,2,2,2,1],[380,850,1300],5,2,2],
+ ["伊藤忠丸紅鉄鋼","shosha",74,60,[3,4,2,1,3,3],[420,850,1250],3,3,3],["メタルワン","shosha",72,58,[3,4,2,1,3,3],[420,830,1200],3,3,3],["日鉄物産","shosha",70,55,[3,4,2,1,3,3],[400,800,1150],3,3,3],["長瀬産業","shosha",72,58,[3,4,2,2,3,2],[400,800,1150],3,3,3],["稲畑産業","shosha",66,52,[3,4,2,2,3,2],[380,750,1050],3,3,3],
+ ["ヒューリック","dev",86,70,[3,5,1,1,4,2],[450,1000,1500],4,2,3],["東京建物","dev",80,65,[3,5,1,1,4,2],[420,900,1350],4,3,3],["NTT都市開発","dev",78,62,[3,4,1,1,3,2],[400,850,1250],4,2,2],["積水ハウス","dev",66,50,[2,4,1,1,3,4],[380,760,1080],3,4,2],
+ ["中部電力","infra",62,50,[3,3,1,2,2,2],[300,630,960],3,2,2],["東北電力","infra",58,45,[3,3,1,2,2,2],[290,600,900],3,2,2],["東急","infra",76,60,[3,4,1,1,3,2],[320,700,1050],4,2,2],["阪急阪神ホールディングス","infra",74,58,[3,4,1,1,3,2],[320,690,1020],4,2,2],["小田急電鉄","infra",70,55,[3,3,1,1,3,2],[310,650,980],3,2,2],["近鉄","infra",64,50,[3,3,1,1,2,2],[300,620,920],3,2,2],["西日本鉄道","infra",62,48,[3,3,1,1,2,2],[300,600,900],3,2,2],["日本航空（地上職）","infra",72,55,[2,5,3,1,3,3],[300,600,900],3,3,2],["大阪ガス","infra",68,52,[3,3,1,2,2,2],[300,650,1000],3,1,2],
+ ["読売新聞","ad",82,68,[4,4,1,1,4,3],[380,800,1150],4,4,3],["TBS","ad",90,75,[3,5,1,1,5,4],[400,980,1450],5,5,3],["テレビ朝日","ad",88,72,[3,5,1,1,5,4],[400,950,1400],4,5,3],["テレビ東京","ad",82,66,[3,5,1,1,5,3],[380,850,1250],4,4,3],["小学館","ad",86,68,[3,4,1,1,5,2],[400,950,1350],4,3,3],["KADOKAWA","ad",76,58,[3,4,1,2,4,2],[380,780,1150],3,3,3],["博報堂DYメディアパートナーズ","ad",80,65,[2,5,1,1,4,3],[420,880,1300],4,4,3],["オリエンタルランド","ad",84,65,[2,5,1,1,5,3],[350,750,1100],4,3,2],
+ ["パーソルキャリア","other",56,42,[2,4,1,1,3,3],[330,620,900],3,4,3],["エン・ジャパン","other",52,40,[2,4,1,1,3,3],[320,600,850],2,4,3],["マイナビ","other",54,40,[2,4,1,1,3,3],[320,600,850],3,4,3],["セコム","other",54,40,[2,3,1,2,2,3],[300,580,850],3,2,2],["星野リゾート","other",62,45,[2,5,2,1,4,4],[300,560,820],3,4,3],["帝国ホテル","other",58,42,[2,5,2,1,3,3],[280,520,760],3,3,2],["ドン・キホーテ（PPIH）","other",46,0,[2,4,1,1,2,4],[300,560,800],2,4,2],["しまむら","other",40,0,[2,3,1,1,2,3],[280,500,700],2,3,1],["コストコ","other",38,0,[1,3,2,1,1,4],[320,520,700],2,3,1],["IKEA","other",40,0,[1,4,2,1,2,3],[300,500,680],2,3,2],["スターバックス（店舗）","other",30,0,[1,4,1,1,2,4],[250,400,540],1,3,1],["保育園","other",18,0,[1,3,1,1,1,3],[230,350,460],1,3,1],["公立学校の教員","gov",50,0,[3,4,1,1,2,3],[280,560,800],2,4,1],["消防士・警察官","gov",44,0,[2,3,1,1,2,5],[290,560,800],2,3,1],["自衛官","gov",40,0,[2,3,1,1,2,5],[280,540,760],2,3,1],
+ ["楽天銀行","other",52,40,[3,3,1,2,2,2],[320,600,850],2,2,2],["セブン-イレブン本部","other",58,42,[2,4,1,1,3,3],[320,620,900],3,3,2],["イオン","other",46,0,[2,3,1,1,2,3],[280,520,750],2,3,1],["ヤマダデンキ","other",36,0,[1,3,1,1,1,3],[270,450,620],1,3,1],["すかいらーく","other",28,0,[1,3,1,1,1,4],[260,420,580],1,4,1],["ワタミ","other",22,0,[1,3,1,1,1,5],[250,400,540],1,5,1],["ビックカメラ","other",36,0,[1,3,1,1,1,3],[270,450,620],1,3,1],["明光義塾（塾講師）","other",30,0,[2,4,1,1,2,3],[260,420,560],1,3,2],["ベネッセ","other",62,45,[3,4,1,1,3,2],[330,640,920],3,2,2],["JTB","other",58,42,[2,5,2,1,3,3],[280,520,760],2,3,2],["HIS","other",46,0,[2,4,2,1,2,3],[270,480,700],2,4,2],["リゾートホテルのフロント","other",30,0,[1,4,2,1,2,3],[250,400,550],1,3,1],["介護施設の職員","other",18,0,[1,3,1,1,1,4],[240,360,480],1,4,1],["タクシー会社","other",14,0,[1,2,1,1,1,4],[280,400,500],1,3,1],["警備会社","other",14,0,[1,2,1,1,1,4],[250,380,480],1,3,1],["地方の信用組合","other",36,0,[2,3,1,1,2,2],[240,420,600],1,2,1],["中堅の建設会社","other",36,0,[2,3,1,2,1,4],[290,500,700],2,4,2],["町工場","other",20,0,[1,2,1,2,1,3],[240,380,500],1,3,1],["地方の中堅SIer","other",34,0,[2,2,1,3,1,2],[270,460,620],2,3,2],["ゲーム会社（中堅）","other",50,0,[3,2,1,4,3,2],[300,520,760],2,4,3],["医療機器の営業","other",48,0,[2,4,1,2,2,3],[320,620,880],2,3,2],["人材紹介のキャリアアドバイザー","other",40,0,[2,4,1,1,2,3],[300,520,700],2,4,2],["Web制作会社","other",36,0,[2,3,1,3,2,2],[280,450,620],1,3,3],["不動産デベロッパー（地方）","other",46,0,[2,4,1,1,2,3],[320,600,850],2,3,2],["食品卸","other",30,0,[1,3,1,1,1,3],[260,430,600],1,2,1],["アパレル店員","other",22,0,[1,3,1,1,2,3],[240,380,520],1,3,1],["ブライダル","other",34,0,[1,4,1,1,3,4],[260,430,600],1,4,2],["放課後デイサービス","other",20,0,[1,3,1,1,1,3],[240,360,480],1,3,1],
  ["SmartHR","startup",72,45,[3,4,1,4,4,2],[500,800,1200],3,3,5],["タイミー","startup",68,40,[3,4,1,3,4,2],[450,750,1100],3,4,5],["ベンチャー企業（創業3年）","startup",50,0,[2,4,1,3,3,3],[380,600,900],2,4,5],
  ["大手製薬のMR","other",62,45,[2,5,1,2,3,3],[350,700,950],3,3,2],["ニトリ","other",56,40,[2,4,1,1,3,3],[300,550,800],2,3,3],["ファーストリテイリング","other",60,40,[3,4,2,1,3,4],[320,600,900],3,4,3],["ヤマト運輸・佐川急便","other",45,0,[2,3,1,1,2,4],[290,500,700],2,3,1],["専門商社","other",52,40,[2,4,2,1,2,3],[300,550,800],2,3,2],["信用金庫","other",40,0,[2,3,1,1,2,2],[250,450,650],2,2,1],["オープンハウス","other",44,0,[1,5,1,1,2,5],[350,700,900],2,5,2],["大東建託","other",34,0,[1,4,1,1,1,4],[300,500,650],1,4,1],["不動産仲介の営業","other",42,0,[1,4,1,1,2,4],[300,550,750],2,4,2],["生命保険の営業職","other",36,0,[1,4,1,1,2,3],[280,500,650],1,4,1],["大手派遣会社の営業","other",40,0,[1,4,1,1,2,3],[290,480,620],1,4,2],["受託開発のIT企業","other",40,0,[2,2,1,4,1,2],[300,480,650],2,3,3],["中堅広告代理店","other",48,0,[2,4,1,1,3,3],[300,520,700],2,4,3],["地方テレビ局","other",64,45,[3,4,1,1,4,3],[350,650,900],3,3,2],["総合スーパー・小売","other",30,0,[1,3,1,1,1,3],[260,420,560],1,3,1],["地方の中堅メーカー","other",32,0,[2,2,1,2,1,2],[250,420,560],1,2,1],
  ["地方銀行","other",46,0,[2,3,1,1,2,2],[260,480,700],2,2,1],["中堅SIer","other",36,0,[2,2,1,3,1,2],[280,480,650],2,3,2],["ハウスメーカー営業","other",38,0,[1,4,1,1,2,4],[300,550,700],2,4,2],["人材会社の営業","other",34,0,[1,4,1,1,2,3],[300,500,650],1,4,2],["中小メーカー","other",28,0,[2,2,1,2,1,2],[260,420,580],1,2,1],["飲食チェーン","other",16,0,[1,3,1,1,1,4],[250,380,500],1,4,1],
@@ -389,32 +447,49 @@ const MID=[
 // 職種: sales 営業 / biz 企画・事業開発 / eng エンジニア / cons コンサル / fin 金融専門職 / sogo 総合職 / gov 公務員 / cre クリエイティブ
 const JTN={sales:"営業",biz:"企画・事業開発",eng:"エンジニア",cons:"コンサルタント",fin:"金融専門職",sogo:"総合職",gov:"公務員",cre:"クリエイティブ"};
 const JT_G={cons_s:["cons"],cons:["cons"],shosha:["sogo"],gaigin:["fin"],fin:["sogo","sales"],gaishi_it:["sales","eng"],web:["biz","sales","eng"],sier:["eng","sales"],maker:["sogo","eng"],ad:["sales","cre"],dev:["sogo"],infra:["sogo","eng"],gov:["gov"],startup:["biz","sales","eng"],pe:["fin"],other:["sales","sogo"]};
-const JT_CO={"キーエンス":["sales"],"リクルート":["sales","biz"],"メルカリ":["eng","biz"],"LINEヤフー":["eng","biz"],"DeNA":["eng","biz"],"Google":["eng","sales"],"Microsoft":["eng","sales"],"任天堂":["eng","cre"],"ソニー":["eng","sogo"],"野村総合研究所":["cons","eng"],"受託開発のIT企業":["eng"],"中堅SIer":["eng","sales"],"中堅広告代理店":["sales","cre"],"地方テレビ局":["sogo","cre"],"地方銀行":["sogo","sales"],"信用金庫":["sogo","sales"],"中小メーカー":["sogo","sales"],"地方の中堅メーカー":["sogo","sales"],"ユニコーン企業の経営幹部（CxO）":["biz"]};
+const JT_CO={"キーエンス":["sales"],"リクルート":["sales","biz"],"メルカリ":["eng","biz"],"LINEヤフー":["eng","biz"],"DeNA":["eng","biz"],"Google":["eng","sales"],"Microsoft":["eng","sales"],"任天堂":["eng","cre"],"ソニー":["eng","sogo"],"野村総合研究所":["cons","eng"],"受託開発のIT企業":["eng"],"中堅SIer":["eng","sales"],"中堅広告代理店":["sales","cre"],"地方テレビ局":["sogo","cre"],"地方銀行":["sogo","sales"],"信用金庫":["sogo","sales"],"中小メーカー":["sogo","sales"],"地方の中堅メーカー":["sogo","sales"],"ユニコーン企業の経営幹部（CxO）":["biz"],"野村総研（SE職）":["eng"],"ファナック":["eng"],"AWS":["eng","sales"],"Meta":["eng","sales"],"Apple Japan":["sales","eng"],"ティアフォー":["eng"],"Ubie":["eng","biz"],"LayerX":["eng","biz"],"freee":["eng","sales"],"マネーフォワード":["eng","sales"],"Sansan":["sales","eng"],"エムスリー":["biz","sales"],"NHK":["sogo","cre"],"日本テレビ":["sogo","cre"],"フジテレビ":["sogo","cre"],"講談社":["cre","sales"],"集英社":["cre","sales"],"日本経済新聞":["cre","sales"],"朝日新聞":["cre","sales"],"サイバーエージェント（広告）":["sales"],"ゲーム会社（中堅）":["eng","cre"],"Web制作会社":["cre","eng"],"地方の中堅SIer":["eng"],"明光義塾（塾講師）":["sales"],"人材紹介のキャリアアドバイザー":["sales"],"医療機器の営業":["sales"],"ベネッセ":["sogo","sales"],"JTB":["sales"],"HIS":["sales"],"日本銀行":["gov"],"外務省（国家総合職）":["gov"],"市役所":["gov"],"JICA":["sogo"],"船井総研":["cons","sales"],"ベイカレント":["cons"],"日本IBM":["eng","sales","cons"],"シスコシステムズ":["sales","eng"],"アドビ":["sales","eng"],"SAS Institute":["eng","sales"],"TBS":["sogo","cre"],"テレビ朝日":["sogo","cre"],"テレビ東京":["sogo","cre"],"読売新聞":["cre","sales"],"小学館":["cre","sales"],"KADOKAWA":["cre","biz"],"オリエンタルランド":["sogo"],"博報堂DYメディアパートナーズ":["sales"],"パーソルキャリア":["sales"],"エン・ジャパン":["sales"],"マイナビ":["sales"],"公立学校の教員":["gov"],"消防士・警察官":["gov"],"自衛官":["gov"],"スターバックス（店舗）":["sales"],"保育園":["sales"],"日本取引所グループ":["sogo"]};
 const jtOf=c=>JT_CO[c.n]||JT_G[c.g]||["sogo"];
 // 職種間の距離: 0 同じ / 1 隣接 / 2 遠い / 3 かなり遠い / 4 ほぼ不可能
 const JT_D={sales:{biz:1,sogo:1,cons:2,cre:2,fin:3,gov:3,eng:4},biz:{sales:1,sogo:1,cons:1,cre:2,fin:3,gov:3,eng:4},eng:{cons:1,biz:2,sales:2,sogo:2,cre:2,fin:3,gov:3},cons:{biz:1,sogo:1,sales:1,fin:2,cre:3,gov:3,eng:4},fin:{cons:1,sales:1,biz:2,sogo:2,cre:3,gov:3,eng:4},sogo:{sales:1,biz:1,cons:2,fin:2,cre:3,gov:2,eng:4},gov:{sogo:1,cons:2,biz:2,sales:2,fin:3,cre:3,eng:4},cre:{biz:2,sales:2,sogo:2,cons:3,fin:4,gov:4,eng:4}};
 function jtDist(from,to){if(from===to)return 0;let d=(JT_D[from]||{})[to];if(d===undefined)d=3;if(to==="eng"&&d>=4&&P.spec>=60)d=2;return d}
 function jtFor(c){let best=null,bd=9;jtOf(c).forEach(t=>{const d=jtDist(P.jt,t);if(d<bd){bd=d;best=t}});return {jt:best,d:bd}}
 const NEET={n:"無職",g:"neet",d:0,f:0,w:[1,1,1,1,1,1],s:[0,0,0],pr:0,st:1,gr:0};
+const JOBLESS={n:"無職（求職中）",g:"neet",d:0,f:0,w:[1,1,1,1,1,1],s:[0,0,0],pr:0,st:1,gr:0};
 const FAM=["佐藤","鈴木","高橋","田中","伊藤","渡辺","山本","中村","小林","加藤","吉田","山田","森","清水","岡田","長谷川","松本","井上","木村"];
 const GN=["大輝","翔太","健","拓也","悠斗","隼人","亮","直樹","美咲","彩","結衣","七海","真由","さくら","茉莉","葵","凛","陽菜"];
-const END_AGE=50, GOAL=10000;
+const END_AGE=50, GOAL=3000;
 
 // ============ 状態 ============
-let P=null, UI={uni:null,attrs:[],picked:[],applied:[],filter:"all",round:1,name:null}, tickT=null, cdT=null, speed=1, paused=false, autoMode=false, ended=false;
+let P=null, UI={uni:null,attrs:[],picked:[],applied:[],filter:"all",round:1,name:null}, tickT=null, cdT=null, speed=1, paused=false, ended=false;
 function go(s){document.querySelectorAll(".screen").forEach(x=>x.classList.remove("on"));$("s-"+s).classList.add("on");const st={intro:0,setup:0,board:1,result:1,career:2,end:3}[s];document.querySelectorAll("#steps span").forEach((x,i)=>x.classList.toggle("on",i===st));window.scrollTo({top:0})}
 function mono(n){const m=n.match(/^[A-Za-z.&\s]+/);if(m&&m[0].trim().length>=2){const w=m[0].trim().split(/[\s.]+/).filter(Boolean);return w.length>1?w[0][0]+w[1][0]:m[0].trim().slice(0,2)}return n.replace(/（.*?）/g,"").slice(0,2)}
 
 // ============ セットアップ ============
 function renderSetup(){
-  $("unis").innerHTML=UNIS.map((u,i)=>`<button class="opt ${UI.uni===i?"on":""}" onclick="pickUni(${i})"><b>${u.n}</b><span class="r">学歴 ${u.edu}</span><span class="d">${u.d}</span></button>`).join("");
-  const hasSolo=UI.attrs.some(j=>ATTRS[j].solo);
-  $("attrs").innerHTML=ATTRS.map((a,i)=>{const on=UI.attrs.includes(i);const off=!on&&(UI.attrs.length>=2||hasSolo||(a.solo&&UI.attrs.length>0));return `<button class="opt ${on?"on":""} ${off?"off":""}" onclick="pickAttr(${i})"><b>${a.n}</b><span class="r">${a.age?"24歳で就活":""}</span><span class="d">${a.d}</span></button>`}).join("");
+  if(UI.uni===null)return;
   const s=baseStats();
   $("pstats").innerHTML=STAT.map(([k,n])=>`<div class="stat"><span>${n}</span><span class="b"><i style="width:${s[k]}%"></i></span><b class="num" style="text-align:right">${Math.round(s[k])}</b></div>`).join("");
-  $("toJob").disabled=UI.uni===null;
-  if(UI.uni!==null){$("pname").textContent=UI.name;$("av").textContent=UI.name[0];$("pdesc").textContent=UNIS[UI.uni].n+(UI.attrs.length?"・"+UI.attrs.map(i=>ATTRS[i].n).join("・"):"")}
+  $("pname").textContent=UI.name;$("av").textContent=UI.name[0];$("pdesc").textContent=UNIS[UI.uni].n+(UI.attrs.length?"・"+UI.attrs.map(i=>ATTRS[i].n).join("・"):"");
+  $("gresult").style.display="grid";
 }
+function drawUni(){let x=Math.random()*UNIS.reduce((a,u)=>a+u.w,0);for(let i=0;i<UNIS.length;i++){x-=UNIS[i].w;if(x<=0)return i}return UNIS.length-1}
+function drawAttrs(){const n=Math.random()<0.75?2:1;const cand=ATTRS.map((a,i)=>i).filter(i=>!ATTRS[i].solo);const out=[];while(out.length<n){const i=pick(cand);if(!out.includes(i))out.push(i)}return out}
+$("gpull").onclick=()=>{
+  const btn=$("gpull");btn.disabled=true;btn.textContent="……";
+  const slot=$("gslot"),name=$("gname"),rar=$("grar"),desc=$("gdesc"),ga=$("gattrs");
+  slot.className="gslot spin";rar.textContent="";desc.textContent="";ga.innerHTML="";
+  const uni=drawUni(),attrs=drawAttrs();UI.uni=uni;UI.attrs=attrs;UI.name=UI.name||pick(FAM)+" "+pick(GN);
+  let t=0,iv=40;const total=UNIS[uni].rar==="ssr"?3600:UNIS[uni].rar==="sr"?2800:2000;
+  const tick=()=>{name.textContent=pick(UNIS).n;t+=iv;iv=Math.min(260,iv*1.08);if(t<total)setTimeout(tick,iv);else reveal()};
+  const reveal=()=>{
+    const u=UNIS[uni];if(u.rar!=="n"){const f=document.createElement("div");f.className="flash";document.body.appendChild(f);setTimeout(()=>f.remove(),600)}
+    slot.className="gslot "+u.rar;name.textContent=u.n;rar.textContent=RAR[u.rar];rar.className="grar "+u.rar;desc.textContent=u.d+`（学歴 ${u.edu}）`;
+    if(u.rar==="ssr")sparkle(slot);
+    attrs.forEach((i,k)=>setTimeout(()=>{const a=ATTRS[i];const sp=document.createElement("span");sp.textContent=a.n;if(["rikei","kikoku","kigyo","gpa"].includes(a.k))sp.className="hot";sp.title=a.d;ga.appendChild(sp)},500+k*500));
+    setTimeout(()=>{renderSetup();btn.textContent="引き直せません";$("gresult").scrollIntoView({behavior:"smooth",block:"start"})},600+attrs.length*500);
+  };
+  setTimeout(tick,200);
+};
 function baseStats(){
   const u=UI.uni===null?{edu:60,head:0,eng:0,net:0}:UNIS[UI.uni];
   const s={head:36+u.edu*0.3+u.head,com:48,eng:28+u.edu*0.15+(u.eng||0),spec:30,gak:36,sta:55,edu:u.edu,net:10+(u.net||0)};
@@ -422,10 +497,6 @@ function baseStats(){
   for(const k in s)s[k]=clamp(s[k],5,100);
   return s;
 }
-function pickUni(i){UI.uni=i;if(!UI.name)UI.name=pick(FAM)+" "+pick(GN);renderSetup()}
-function pickAttr(i){const j=UI.attrs.indexOf(i);if(j>=0)UI.attrs.splice(j,1);else if(UI.attrs.length<2)UI.attrs.push(i);renderSetup()}
-function randomSetup(){UI.uni=ri(0,UNIS.length-1);UI.name=UI.name||pick(FAM)+" "+pick(GN);UI.attrs=[];const n=ri(1,2);const cand=ATTRS.map((a,i)=>i).filter(i=>!ATTRS[i].solo);while(UI.attrs.length<n){const i=pick(cand);if(!UI.attrs.includes(i))UI.attrs.push(i)}renderSetup()}
-function randomStart(){randomSetup();go("setup");autoMode=true;setTimeout(()=>{startJob();autoPick();setTimeout(()=>$("submit").click(),700)},600)}
 function startJob(){
   const s=baseStats(); const age=UI.attrs.some(i=>ATTRS[i].age)?24:22;
   P={name:UI.name,uni:UNIS[UI.uni].n,attrs:UI.attrs.map(i=>ATTRS[i].n),akeys:UI.attrs.map(i=>ATTRS[i].k),...s,age,year:2026+(age-22),skill:20+s.spec*0.2,health:ri(75,95),happy:UI.attrs.some(i=>ATTRS[i].k==="normal")?68:58,
@@ -438,8 +509,9 @@ $("toJob").onclick=startJob;
 // ============ 合格率 ============
 function score(c,s){let t=0,w=0;const ks=["head","com","eng","spec","gak","sta"];c.w.forEach((wi,i)=>{t+=wi*s[ks[i]];w+=wi});return t/w}
 function probNew(c){
-  let p=sig((score(c,P)+(P.edu-60)*0.18-c.d)/9);
+  let p=sig((score(c,P)+(P.edu-60)*0.18-c.d)/8.5)-0.03;
   if(P.edu<c.f)p*=0.3;
+  if(c.pr===5&&P.edu<88)p=Math.min(p,0.3);
   if(UI.round===2)p+=0.08; if(P.ronin)p-=0.05*P.ronin;
   if(c.g==="other")p=Math.max(p,0.45);
   return clamp(p,0.02,0.96);
@@ -447,14 +519,14 @@ function probNew(c){
 function probMid(c,head){
   const cur=P.job; const prS=cur.pr*20;
   let sc=0.38*P.skill+0.22*prS+0.14*P.net+0.1*P.eng+0.1*P.head+0.06*P.com;
-  let p=sig((sc+(P.edu-60)*0.08-c.d)/10);
+  let p=sig((sc+(P.edu-60)*0.08-c.d)/10)-0.08;
   if(c.g===cur.g)p+=0.1; else if((ADJ[cur.g]||[]).includes(c.g))p+=0.04; else p-=0.08;
   if(c.pr>cur.pr+1)p-=0.12;
   if(P.age>32&&["cons_s","gaigin","pe"].includes(c.g))p-=0.15;
   if(P.age>38&&c.pr>cur.pr)p-=0.12; if(P.age>43&&c.pr>cur.pr)p-=0.1;
   if(P.edu<c.f)p*=0.6;
-  if(cur.g==="neet")p-=0.15+Math.min(0.2,P.tenure*0.05);
-  if(cur.g==="indie")p+=0.05;
+  if(cur.g==="neet")p-=0.12+Math.min(0.25,P.tenure*0.06)+(P.age>=40?0.1:0);
+  if(cur.g==="indie"||cur.g==="free")p+=0.03;
   if(head)p+=0.15;
   const jd=c._jd===undefined?jtFor(c).d:c._jd; p-=[0,0.08,0.2,0.32,1][jd];
   if(c.g==="other")p=Math.max(p,jd<=1?0.4:0.2);
@@ -491,43 +563,40 @@ $("submit").onclick=()=>{
   const res=UI.picked.map(i=>({c:CO[i],p:probNew(CO[i]),ok:null}));
   $("rtitle").textContent=UI.round===1?"選考結果":"二次募集の結果";$("offers").innerHTML="";
   $("res").innerHTML=res.map((x,k)=>`<div class="rrow" id="rr${k}"><span class="lg" style="background:${G[x.c.g].c}">${mono(x.c.n)}</span><span><b>${x.c.n}</b><div class="w">合格率 ${Math.round(x.p*100)}%</div></span><span class="v"><span class="dots">選考中</span></span><span class="stamp"></span></div>`).join("");
-  const gap=autoMode?350:1000;
+  const gap=1000;
   res.forEach((x,k)=>setTimeout(()=>{x.ok=Math.random()<x.p;const el=$("rr"+k);el.classList.add("show",x.ok?"ok":"ng");el.querySelector(".v").textContent=x.ok?pick(["最終面接通過","内々定の連絡"]):pick(["最終で落選","書類で落選","二次面接で落選","お祈りメール"]);const st=el.querySelector(".stamp");st.textContent=x.ok?"内定":"お祈り";st.className="stamp in "+(x.ok?"ok":"ng");if(x.ok)sparkle(el);
     if(k===res.length-1)setTimeout(()=>{const n=res.filter(y=>y.ok).length;$("res").insertAdjacentHTML("beforeend",`<div class="rsum ${n?"ok":"ng"}"><b>${n?`内定 ${n}社`:"全滅"}</b><span class="muted small">${n?pick(["おめでとうございます。","よく頑張りました。"]):"持ち駒がなくなりました。"}</span></div>`);showOffers(res)},700)},700+k*gap));
 };
 function sparkle(el){for(let i=0;i<14;i++){const s=document.createElement("i");s.className="spark";s.style.left=r(20,90)+"%";s.style.top="50%";s.style.setProperty("--dx",r(-80,80)+"px");s.style.setProperty("--dy",r(-70,70)+"px");s.style.animationDelay=r(0,.2)+"s";el.appendChild(s);setTimeout(()=>s.remove(),1200)}}
-function toast(ok,txt){if(autoMode)return;const t=document.createElement("div");t.className="toast";t.innerHTML=`<div class="${ok?"ok":"ng"}">${ok?"内定":"お祈り"}<small>${txt}</small></div>`;document.body.appendChild(t);setTimeout(()=>t.remove(),1900)}
+function toast(ok,txt){const t=document.createElement("div");t.className="toast";t.innerHTML=`<div class="${ok?"ok":"ng"}">${ok?"内定":"お祈り"}<small>${txt}</small></div>`;document.body.appendChild(t);setTimeout(()=>t.remove(),1900)}
 function showOffers(res){
   const ok=res.filter(x=>x.ok).sort((a,b)=>b.c.pr-a.c.pr||b.c.s[1]-a.c.s[1]);const box=$("offers");
   if(ok.length){
-    box.innerHTML=`<h2 class="serif" style="font-size:18px;margin:6px 0">入社先を選ぶ</h2>`+ok.map((x,k)=>`<button class="co ${k===0?"on":""}" onclick="startCareer(${CO.indexOf(x.c)})">${k===0?'<span class="tag rec">おすすめ</span>':""}<span class="lg" style="background:${G[x.c.g].c}">${mono(x.c.n)}</span><span class="n">${x.c.n}</span><span class="p">${fmt(x.c.s[0])}<small>初任給 万円</small></span><span class="m">${G[x.c.g].n}・30歳で約${fmt(x.c.s[1])}万・成長 ${"●".repeat(x.c.gr)}${"○".repeat(5-x.c.gr)}</span></button>`).join("");
-    if(autoMode)setTimeout(()=>startCareer(CO.indexOf(ok[0].c)),1200);
+    box.innerHTML=`<h2 class="serif" style="font-size:18px;margin:6px 0">入社先を選ぶ</h2>`+ok.map((x,k)=>`<button class="co" onclick="startCareer(${CO.indexOf(x.c)})"><span class="lg" style="background:${G[x.c.g].c}">${mono(x.c.n)}</span><span class="n">${x.c.n}</span><span class="p">${fmt(x.c.s[0])}<small>初任給 万円</small></span><span class="m">${G[x.c.g].n}・30歳で約${fmt(x.c.s[1])}万・成長 ${"●".repeat(x.c.gr)}${"○".repeat(5-x.c.gr)}</span></button>`).join("");
   }else if(UI.round===1){
     box.innerHTML=`<h2 class="serif rose" style="font-size:18px;margin:6px 0">全滅</h2><p class="muted small">持ち駒がなくなりました。</p><button class="big" onclick="round2()">二次募集に回る</button> <button class="big ghost" onclick="ronin()">就職浪人する（翌年に再挑戦）</button>`;
-    if(autoMode)setTimeout(round2,1200);
   }else{
     box.innerHTML=`<h2 class="serif rose" style="font-size:18px;margin:6px 0">二次募集も全滅</h2><p class="muted small">就職先が決まらないまま、卒業しました。</p><button class="big" onclick="ronin()">既卒で来年もう一度</button> <button class="big ghost" onclick="startCareer(-1)">ニートになる</button>`;
-    if(autoMode)setTimeout(ronin,1200);
   }
 }
-function round2(){UI.round=2;UI.picked=[];UI.filter="all";renderBoard();go("board");if(autoMode){autoPick();setTimeout(()=>$("submit").click(),600)}}
-function ronin(){P.ronin++;P.age++;P.year++;P.happy-=8;if(P.ronin>=2){startCareer(-1);return}P.gak=clamp(P.gak+6,0,100);P.head=clamp(P.head+2,0,100);UI.round=1;UI.picked=[];UI.filter="all";renderBoard();go("board");if(autoMode){autoPick();setTimeout(()=>$("submit").click(),600)}}
+function round2(){UI.round=2;UI.picked=[];UI.filter="all";renderBoard();go("board")}
+function ronin(){P.ronin++;P.age++;P.year++;P.happy-=8;if(P.ronin>=2){startCareer(-1);return}P.gak=clamp(P.gak+6,0,100);P.head=clamp(P.head+2,0,100);UI.round=1;UI.picked=[];UI.filter="all";renderBoard();go("board")}
 
 // ============ キャリア ============
 // P.chg: キャリアチェンジ直後の年収係数（勤続とともに1に戻る）
-const ROLES=["メンバー","シニア","マネージャー","部長・ディレクター","役員・パートナー"], ROLEX=[1,1.06,1.15,1.3,1.5];
-function setJob(c,role,jt){P.job=c;P.tenure=0;P.role=role||0;P.jt=jt||(c.g==="indie"?"biz":c.g==="neet"?(P.jt||"sales"):jtOf(c)[0]);P.history.push({age:P.age,c});if(c.pr>P.peakPr)P.peakPr=c.pr}
-function addLog(t,cls){P.log.unshift({age:P.age,t,cls:cls||""})}
+const ROLES=["メンバー","シニア","マネージャー","部長・ディレクター","役員・パートナー"], ROLEX=[1,1.05,1.13,1.25,1.45];
+function setJob(c,role,jt){P.job=c;P.tenure=0;P.role=role||0;P.jt=jt||(c.g==="indie"?"biz":(c.g==="neet"||c.g==="free")?(P.jt||"sales"):jtOf(c)[0]);P.history.push({age:P.age,c});if(c.pr>P.peakPr)P.peakPr=c.pr}
+function addLog(t,cls){P.log.unshift({age:P.age,year:P.year,t,cls:cls||""})}
 function startCareer(i){
   ended=false;paused=false;
-  const c=i<0?NEET:CO[i];setJob(c);P.nextD=P.age+(c===NEET?1:3);P.log=[];
+  const c=i<0?NEET:CO[i];setJob(c);P.nextD=P.age+(c===NEET?1:ri(3,4));P.lastD=P.age;P.log=[];P.years=[];
   if(c===NEET)addLog(`${P.uni}を卒業。就職先は決まらず、既卒ニートとして社会に出ます。`,"bad");
   else addLog(`${P.uni}を卒業し、${P.age}歳で${c.n}に新卒入社しました。`,"move");
-  P.income=calcIncome();renderCareer();go("career");$("auto").classList.toggle("on",autoMode);schedule();
+  P.income=calcIncome();renderCareer();go("career");schedule();
 }
-function salAt(c,a){const s=c.s;return a<=22?s[0]:a<=30?s[0]+(s[1]-s[0])*(a-22)/8:a<=40?s[1]+(s[2]-s[1])*(a-30)/10:s[2]*(1+(a-40)*0.01)}
-function calcIncome(){const c=P.job;if(c.g==="neet")return P.tenure>0?120:0;if(c.g==="indie")return P.income;const chg=P.chg&&P.chg<1?Math.min(1,P.chg+P.tenure*0.06):1;return Math.round(salAt(c,P.age)*(1+(P.skill-50)/250)*ROLEX[P.role]*chg)}
-function midIncome(c){const jd=c._jd===undefined?jtFor(c).d:c._jd;const chg=[1,0.88,0.75,0.65,0.5][jd];const ind=(c.g===P.job.g||(ADJ[P.job.g]||[]).includes(c.g))?1:0.92;return salAt(c,P.age)*(1+(P.skill-50)/250)*ROLEX[Math.max(0,P.role-(c.pr>P.job.pr?1:0))]*chg*ind}
+function salAt(c,a){const s=c.s;return a<=22?s[0]:a<=30?s[0]+(s[1]-s[0])*(a-22)/8:a<=40?s[1]+(s[2]-s[1])*(a-30)/10:s[2]*(1+(a-40)*0.006)}
+function calcIncome(){const c=P.job;if(c.g==="neet")return P.tenure>0?120:0;if(c.g==="indie"||c.g==="free")return P.income;const chg=P.chg&&P.chg<1?Math.min(1,P.chg+P.tenure*0.04):1;const senior=P.age>=47&&P.role<3&&!["gaigin","pe","cons_s"].includes(c.g)?0.85:1;return Math.round(salAt(c,P.age)*(1+(P.skill-50)/250)*ROLEX[P.role]*chg*senior)}
+function midIncome(c){const jd=c._jd===undefined?jtFor(c).d:c._jd;const chg=[1,0.8,0.65,0.5,0.4][jd];const ind=(c.g===P.job.g||(ADJ[P.job.g]||[]).includes(c.g))?1:0.92;return salAt(c,P.age)*(1+(P.skill-50)/250)*ROLEX[Math.max(0,P.role-(c.pr>P.job.pr?1:0))]*chg*ind}
 function netWorth(){return P.savings+P.idx+P.crypto+(P.home?P.home.val-P.home.loan:0)+P.coVal-P.debt}
 
 function stepYear(){
@@ -537,11 +606,22 @@ function stepYear(){
   P.skill=clamp(P.skill+(c.gr*2.2+r(0,2))*agef*(c.g==="neet"?-0.6:1),0,100);
   P.net=clamp(P.net+r(1,3)+c.pr*0.6-(c.g==="neet"?3:0),0,100);
   if(["gaigin","gaishi_it","cons_s","shosha","pe"].includes(c.g))P.eng=clamp(P.eng+2,0,100);
-  P.health=clamp(P.health-c.st*r(0.6,2)+(c.st<=2?1.5:0)+(P.age>40?-1:0)+(P.happy>65?1:0),0,100);
+  P.health=clamp(P.health-c.st*r(0.8,2.4)+(c.st<=2?1.5:0)+(P.age>40?-1.5:0)+(P.happy>65?1:0),0,100);
   const tH=46+c.pr*5-(c.st-2.5)*8+P.role*3+(P.spouse?6:0)+(P.kids?4:0)-(c.g==="neet"?20:0)-(P.debt>0?12:0)+(P.home?3:0);
   P.happy=clamp(P.happy+(tH-P.happy)*0.35+r(-6,6),0,100);
   // 収入と支出
-  if(c.g==="indie"){P.income=Math.round(P.income*r(0.7,1.5));P.coVal=Math.max(0,Math.round(P.coVal*r(0.6,1.6)))}
+  if(c.g==="indie"){
+    const cap=c.pr>=5?12000:c.pr===4?5000:c.pr===3?1800:800;
+    P.income=Math.round(Math.min(cap,P.income*r(0.75,1.3)));P.coVal=Math.max(0,Math.round(P.coVal*r(0.6,1.5)));
+    const ruin=Math.random();
+    if(ruin<(c.pr>=4?0.06:0.09)){
+      // 廃業・倒産：年収は一気に落ちる
+      const big=c.pr>=4;const d=big?ri(1000,5000):ri(0,800);P.debt+=d;P.coVal=0;P.happy-=22;P.health-=8;
+      const nj=pick(CO.filter(k=>k.pr<=2&&k.g!=="gov"));setJob(nj,0,jtFor(nj).jt);P.chg=0.9;P.income=calcIncome();P.moves++;
+      addLog(`${c.n}は資金が尽きて${big?"倒産":"廃業"}。${d?`借金${oku(d)}を背負い、`:""}${nj.n}に再就職。年収は${fmt(P.income)}万円まで落ちた。`,"bad");
+    }else if(ruin<0.2){P.income=Math.round(P.income*0.6);addLog(pick(["大口の取引先を失い、売上が4割落ちた。","共同創業者が抜け、半年は火消しで終わった。","資金調達に失敗し、給料を自分で削った。"]),"bad")}
+  }
+  else if(c.g==="free"){const m=r(0.7,1.3)*(P.net>60?1.05:1);P.income=Math.round(Math.min(2500,P.income*m));P.skill=clamp(P.skill+1,0,100);if(Math.random()<0.12){P.income=Math.round(P.income*0.5);addLog("案件が切れて半年無収入。貯金を取り崩した。","bad")}}
   else P.income=calcIncome();
   const sp=P.spouse?P.spouse.inc:0;
   // 年収が上がるほど生活水準も上がる。配偶者の収入も6割は生活費に消える
@@ -550,36 +630,46 @@ function stepYear(){
   P.savings+=P.income+sp+P.side-living;
   if(P.side>0&&--P.sideY<=0)P.side=0;
   // 投資・不動産・借金
-  if(P.idx>0){const g=r(-0.2,0.26);P.idx=Math.round(P.idx*(1+g));if(Math.abs(g)>0.18)addLog(g>0?`株高でインデックス投資が+${Math.round(g*100)}%。`:`株価急落。インデックス投資が${Math.round(g*100)}%。`,g>0?"gold":"bad")}
-  if(P.crypto>0){const m=pick([0.15,0.4,0.7,1,1.3,2,3.5,0.25,8]);P.crypto=Math.round(P.crypto*m);addLog(m>=2?`仮想通貨が${m}倍に。含み益${oku(P.crypto)}。`:m<=0.4?`仮想通貨が暴落。残り${oku(P.crypto)}。`:`仮想通貨は${m>1?"微増":"横ばい"}。`,m>=2?"gold":m<=0.4?"bad":"")}
+  if(P.idx>0){const g=r(-0.2,0.26);P.idx=Math.round(P.idx*(1+g));if(Math.abs(g)>0.24)addLog(g>0?`株高でインデックス投資が+${Math.round(g*100)}%。`:`株価急落。インデックス投資が${Math.round(g*100)}%。`,g>0?"gold":"bad")}
+  if(P.crypto>0){const m=pick([0.15,0.4,0.7,1,1.3,2,3.5,0.25,8]);P.crypto=Math.round(P.crypto*m);if(m>=2||m<=0.4)addLog(m>=2?`仮想通貨が${m}倍に。含み益${oku(P.crypto)}。`:`仮想通貨が暴落。残り${oku(P.crypto)}。`,m>=2?"gold":"bad")}
   if(P.home){P.home.val=Math.round(P.home.val*(P.home.type==="tower"?r(0.96,1.09):r(0.95,1.02)));if(P.home.loan>0){const pay=Math.min(P.home.loan,P.home.loan0/35);P.home.loan-=pay;P.savings-=pay+P.home.loan*0.01}}
   if(P.debt>0){const pay=Math.min(P.debt,Math.max(150,P.income*0.3));P.debt-=pay;P.savings-=pay;if(P.debt<=0)addLog("借金を完済しました。長かった。","gold")}
   P.incomes.push(P.income);
   // 昇進
-  if(!["neet","indie"].includes(c.g)&&P.role<4&&P.tenure>=2){let pp=0.09+P.skill/500+(P.tenure>4?.06:0)-P.role*0.05-(c.pr>=5?.04:0);if(P.role===3&&P.skill<75)pp=0;if(Math.random()<pp){P.role++;addLog(`${c.n}で${ROLES[P.role]}に昇進しました。`,"gold");P.happy+=6}}
+  if(P.age===47&&P.role<3&&!["neet","indie","free","gaigin","pe","cons_s"].includes(c.g))addLog("役職定年。給与テーブルが下がり、若手の下につくことになった。","bad");
+  yearMemory();
+  P.years.push({age:P.age,year:P.year,co:c.n,g:c.g,role:["neet","indie","free"].includes(c.g)?"":ROLES[P.role],jt:P.jt,inc:P.income,nw:Math.round(netWorth())});
+  if(!["neet","indie","free"].includes(c.g)&&P.role<4&&P.tenure>=2){let pp=0.06+P.skill/700+(P.tenure>4?.04:0)-P.role*0.05-(c.pr>=5?.04:0);if(P.role===3&&(P.skill<80||P.net<55))pp=0;if(P.role===2&&P.skill<60)pp*=0.5;if(Math.random()<pp){P.role++;addLog(`${c.n}で${ROLES[P.role]}に昇進しました。`,"gold");P.happy+=6}}
   P.happy=clamp(P.happy,0,100);P.health=clamp(P.health,0,100);
   renderCareer();
   if(P.age>=END_AGE)return finish();
   // イベント（選択を伴うものは "wait" で止まる）
-  const ev=lifeEvent(); if(ev==="wait")return;
-  let forced=false; if(Math.random()<0.4)forced=careerEvent();
-  if(P.health<=10&&!forced){addLog("体を壊して休職。この会社には戻れそうにありません。","bad");P.health=50;P.happy-=12;forced="burnout"}
+  lifeEvent();
+  let forced=false; if(Math.random()<0.32)forced=careerEvent();
+  if(P.health<=10&&!forced){addLog(c.g==="indie"?"体を壊して倒れ、会社は畳むしかなくなった。":c.g==="free"?"体を壊して仕事を受けられなくなった。":"体を壊して休職。この会社には戻れそうにありません。","bad");P.health=50;P.happy-=12;forced="burnout"}
   P.happy=clamp(P.happy,0,100);P.health=clamp(P.health,0,100);
   renderCareer();
-  if(c.g==="indie"){if(P.age>=P.nextD)indieDecision();else schedule();return}
+  if(c.g==="indie"&&P.coVal>=3000&&P.age>=P.nextD){indieDecision();return}
   if(forced||P.age>=P.nextD){openDecision(forced);return}
   schedule();
 }
 function careerEvent(){
   const e=Math.random(),c=P.job,g=c.g;
   if(g==="neet"){if(e<.25){P.skill+=6;addLog(pick(["プログラミングスクールに通い始めました。","簿記2級を取りました。","バイトでリーダーを任されました。"]));}else if(e<.4){P.happy-=8;addLog("親から「いつまで家にいるの」と言われました。","bad")}return false}
-  if(g==="indie")return false;
-  if(e<.08&&["gaigin","startup","web","pe"].includes(g)){addLog("業績悪化でリストラ。あなたの席はなくなりました。","bad");P.happy-=12;return "fired"}
-  if(e<.14&&!P.mba&&P.age>=26&&P.age<=32&&P.savings>=1600&&["cons","cons_s","shosha","fin","gaigin","maker","sier"].includes(g)){P.mba=true;P.age+=2;P.year+=2;P.savings-=1500;P.head=clamp(P.head+8,0,100);P.eng=clamp(P.eng+25,0,100);P.net=clamp(P.net+15,0,100);P.skill=clamp(P.skill+6,0,100);addLog("海外MBAに私費留学。2年と1,500万円を使い、英語と人脈を手に入れました。","gold");return "headhunt"}
+  if(g==="indie"||g==="free")return false;
+  if(e<.05&&["gaigin","startup","pe"].includes(g)){addLog("業績悪化でリストラ。あなたの席はなくなりました。","bad");P.happy-=12;return "fired"}
   if(e<.22&&["shosha","maker","infra"].includes(g)){P.eng=clamp(P.eng+15,0,100);P.net=clamp(P.net+8,0,100);P.savings+=P.income*0.4;addLog(pick(["シンガポール駐在。手当で貯金が増え、英語が伸びました。","米国駐在。現地法人を回す経験を積みました。"]),"gold");return false}
-  if(e<.30&&["cons","cons_s","sier","gaigin"].includes(g)){P.health-=12;P.skill=clamp(P.skill+7,0,100);addLog(pick(["炎上案件に投入され、3か月タクシー帰り。腕は上がりました。","深夜2時のスライド修正が日常に。"]),"bad");return false}
+  if(e<.30&&["cons","cons_s","sier","gaigin"].includes(g)){P.health-=12;P.skill=clamp(P.skill+7,0,100);addLog(pick(["炎上案件に投入され、3か月タクシー帰り。腕は上がりました。","深夜2時のスライド修正が日常に。","パートナーのレビューで資料を5回作り直した。"]),"bad");return false}
+  // 働きすぎて病む（健康が低いほど起きやすい）
+  if(c.st>=4&&Math.random()<(P.health<40?0.22:P.health<60?0.1:0.03)){
+    const x=Math.random();
+    if(x<0.45){P.health-=20;P.happy-=18;P.income=Math.round(P.income*0.7);P.skill=clamp(P.skill-3,0,100);addLog(pick(["朝、起き上がれなくなった。適応障害の診断で3か月休職。","電車に乗れなくなり、心療内科へ。うつ病と診断され休職。","会議中に涙が止まらなくなり、産業医に止められた。半年休職。"]),"bad");P.flags.sick=(P.flags.sick||0)+1;if(P.health<=15)return "burnout";return false}
+    if(x<0.75){P.health-=15;P.savings-=150;addLog(pick(["過労で倒れ、救急搬送。点滴を打ちながら資料を直した。","胃潰瘍で入院。病室でもSlackを見ていた。","円形脱毛症になった。鏡を見るのが怖い。"]),"bad");return false}
+    if(x<0.9){P.happy-=12;addLog(pick(["睡眠薬なしで眠れなくなった。","週末も頭が仕事から離れない。友人からの連絡を無視するようになった。","体重が10kg減った。心配した母親が上京してきた。"]),"bad");return false}
+    P.health-=30;P.happy-=25;P.income=Math.round(P.income*0.5);addLog("過労で倒れ、医師に『このまま働けば命に関わる』と言われた。1年間の療養。","bad");P.flags.sick=(P.flags.sick||0)+1;return "burnout";
+  }
   if(e<.36&&g==="startup"&&c.pr>=3&&Math.random()<.5){const b=ri(500,8000);P.savings+=b;addLog(`会社が上場。ストックオプションが${oku(b)}になりました。`,"big");return false}
-  if(e<.44&&P.skill>=50){addLog("ヘッドハンターから連絡がありました。","move");return "headhunt"}
+  if(e<.36&&P.skill>=65&&P.job.pr>=3&&P.age-P.lastD>=3&&P.age<=42){addLog("ヘッドハンターから連絡がありました。","move");return "headhunt"}
   if(e<.52){P.net=clamp(P.net+8,0,100);addLog(pick(["大学の同期会で人脈が広がりました。","業界カンファレンスに登壇しました。"]));return false}
   if(e<.60){P.happy-=10;addLog(pick(["上司が変わり、評価がリセットされました。","望まない部署に異動。","同期が先に昇進しました。"]),"bad");return false}
   if(e<.66&&c.pr>=4){const b=Math.round(P.income*r(.15,.4));P.savings+=b;addLog(`業績好調でボーナス上乗せ。${fmt(b)}万円。`,"gold");return false}
@@ -588,85 +678,84 @@ function careerEvent(){
   return false;
 }
 
+// ---------- 毎年の思い出（仕事の辛さ・暮らし） ----------
+const MEM={
+ hard:["終電を逃してタクシー帰りが月に何度も。","土曜も出社。日曜は寝て終わる。","上司の詰めが厳しく、トイレで深呼吸する日々。","胃薬が手放せなくなった。","数字が未達で、月末はいつも胃が痛い。","3日連続で深夜2時。朝のコーヒーが効かない。","案件の炎上対応で、夏休みが消えた。","クライアントの無茶な修正に耐えた一年。","同期が一人、また一人と辞めていく。","休日に仕事の夢を見る。"],
+ mid:["新しい後輩の教育係になった。","初めて自分の企画が通った。","出張続きで、ホテルの朝食に詳しくなった。","飲み会の幹事を押し付けられた。","社内の評価面談で、まずまずの評価。","小さなミスで始末書。しばらく落ち込んだ。","同期の結婚式でスピーチをした。","残業は多いが、仕事は面白くなってきた。","プロジェクトが一区切り。打ち上げで泣いた。","部署の異動で、また一から覚え直し。"],
+ easy:["定時で帰れる日が増えた。","有給で沖縄に行った。","平日の夜にジムに通い始めた。","ゆっくり本を読む時間ができた。","職場の人間関係が穏やかで助かる。","趣味のランニングでフルマラソン完走。","親孝行で温泉旅行に連れて行った。","昼休みに同僚と将棋を指す日々。"],
+ young:["初任給で親にご飯をごちそうした。","初めての一人暮らし。狭いけど自由。","名刺の渡し方を怒られた。","歓迎会で先輩の武勇伝を聞かされた。","初めてのボーナスで時計を買った。"],
+ old:["後輩がマネージャーになった。","健康診断で初めて要再検査が出た。","老眼鏡を買った。","昔の同期と久しぶりに飲んだ。みんな疲れていた。","部下の退職を止められなかった。","子どもの参観日に行けた。"],
+ neet:["ハローワークの帰りに公園でぼんやりした。","親の目が痛い。","深夜のコンビニバイトが生活の中心。","求人サイトを見ては閉じる毎日。"],
+ indie:["資金繰りで銀行を回った。","初めての大口契約が決まった夜、眠れなかった。","社員の給料日が一番怖い。","プロダクトが雑誌に載った。","共同創業者と大喧嘩した。","投資家との面談で散々に言われた。"],
+ free:["案件が途切れて2か月、貯金を切り崩した。","単価を上げたら、意外と通った。","カフェで仕事をする日が増えた。","確定申告で領収書の山と格闘。","昔の同僚から仕事の紹介が来た。"],
+};
+function yearMemory(){
+  const c=P.job;if(Math.random()<0.25)return;
+  let pool;
+  if(c.g==="neet")pool=MEM.neet;else if(c.g==="indie")pool=MEM.indie;else if(c.g==="free")pool=MEM.free;
+  else if(P.age<=25&&Math.random()<0.5)pool=MEM.young;else if(P.age>=42&&Math.random()<0.4)pool=MEM.old;
+  else pool=c.st>=4?(Math.random()<0.7?MEM.hard:MEM.mid):c.st<=2?(Math.random()<0.6?MEM.easy:MEM.mid):(Math.random()<0.3?MEM.hard:MEM.mid);
+  const t=pick(pool);if(P.log.some(l=>l.t===t))return;
+  addLog(t,pool===MEM.hard?"dim":"");
+}
+
 // ---------- 選択モーダル（共通） ----------
 function choose(title,lead,opts,note){
   clearTimeout(tickT);clearTimeout(cdT);
-  const rec=opts.find(o=>o.rec)||opts[0];
-  if(autoMode){setTimeout(()=>{rec.fn();resume()},60);return}
   const ov=$("overlay");
-  ov.innerHTML=`<div class="modal"><h2>${title}</h2><p class="lead">${lead}</p><div class="cd"><i id="cdbar"></i></div><div class="lo" id="lo"></div>${note?`<p class="note">${note}</p>`:""}</div>`;
+  ov.innerHTML=`<div class="modal"><h2>${title}</h2><p class="lead">${lead}</p><div class="lo" id="lo"></div>${note?`<p class="note">${note}</p>`:""}</div>`;
   const box=ov.querySelector("#lo");
-  opts.forEach(o=>{const b=document.createElement("button");if(o===rec)b.className="rec";b.innerHTML=`${o===rec?'<span class="tag rec">おすすめ</span>':""}${o.tag?`<span class="tag" style="background:${o.col||"var(--rose)"}">${o.tag}</span>`:""}${o.lg?`<span class="lg" style="background:${o.lgc}">${o.lg}</span>`:""}<span class="t">${o.t}</span><span class="d">${o.d}</span>${o.v?`<span class="v" style="color:${o.vc||"var(--ink)"}">${o.v}<small>${o.vs||""}</small></span>`:""}`;
-    b.onclick=()=>{clearTimeout(cdT);ov.hidden=true;o.fn();resume()};box.appendChild(b)});
+  opts.forEach(o=>{const b=document.createElement("button");b.innerHTML=`${o.tag?`<span class="tag" style="background:${o.col||"var(--rose)"}">${o.tag}</span>`:""}${o.lg?`<span class="lg" style="background:${o.lgc}">${o.lg}</span>`:""}<span class="t">${o.t}</span><span class="d">${o.d}</span>${o.v?`<span class="v" style="color:${o.vc||"var(--ink)"}">${o.v}<small>${o.vs||""}</small></span>`:""}`;
+    b.onclick=()=>{ov.hidden=true;o.fn();resume()};box.appendChild(b)});
   ov.hidden=false;
-  const bar=$("cdbar");const ms=paused?0:9000;
-  if(ms){bar.style.transition=`width ${ms}ms linear`;requestAnimationFrame(()=>requestAnimationFrame(()=>bar.style.width="0%"));cdT=setTimeout(()=>{ov.hidden=true;rec.fn();resume()},ms)}else bar.style.display="none";
 }
-function resume(){P.happy=clamp(P.happy,0,100);renderCareer();if(P.age>=END_AGE)finish();else if(document.querySelector(".toast")&&!autoMode)setTimeout(schedule,1500);else schedule()}
+function resume(){P.happy=clamp(P.happy,0,100);renderCareer();if(P.age>=END_AGE)finish();else if(document.querySelector(".toast"))setTimeout(schedule,1500);else schedule()}
 
 // ---------- ライフイベント ----------
 function lifeEvent(){
   const a=P.age,e=Math.random(),c=P.job,rich=P.spouse&&P.spouse.type==="rich";
-  // 結婚
-  if(!P.spouse&&a>=26&&a<=42&&e<0.16){
+  // 結婚（自動）
+  if(!P.spouse&&a>=26&&a<=42&&e<0.11){
     const charm=P.com*0.5+P.job.pr*8+P.income/40+(P.akeys.includes("circle")?10:0);
-    const richP=clamp(0.03+(P.job.pr>=4?0.08:0)+(P.net>60?0.05:0)+(P.akeys.includes("kikoku")?0.03:0),0.03,0.25);
-    const t=Math.random()<richP?"rich":Math.random()<0.5?"power":"normal";
-    const who=t==="rich"?{t:"大富豪の相手と結婚する",d:"相手の実家は不動産オーナー。生活費は半分以下に。ただし義実家との付き合いは重い。将来、遺産の話も。",inc:0,tag:"大チャンス",col:"var(--purple)"}
-      :t==="power"?{t:"パワーカップルになる",d:`相手は${pick(["外資コンサル","商社","医師","弁護士","メガベンチャー"])}勤務。世帯年収は跳ね上がる。`,inc:ri(600,1500),tag:"共働き",col:"var(--teal)"}
-      :{t:"結婚する",d:"気の合う相手。生活費は増えますが、帰る理由ができます。",inc:ri(0,350)};
-    const ok=charm>35;
-    choose("プロポーズ",`${a}歳。${pick(["合コンで出会った相手","同期","友人の紹介","マッチングアプリで会った相手"])}と、結婚の話になりました。`,[
-      {...who,rec:ok,fn:()=>{P.spouse={type:t,inc:who.inc};P.happy+=t==="rich"?8:12;addLog(t==="rich"?"大富豪の家に嫁入り（婿入り）しました。":t==="power"?`結婚。世帯年収は${fmt(P.income+who.inc)}万円に。`:"結婚しました。",t==="rich"?"big":"gold")}},
-      {t:"今は仕事に集中する",d:"独身のまま。身軽さは武器でもあります。",rec:!ok,fn:()=>{P.happy-=3;addLog("結婚は見送りました。")}}
-    ]);return "wait";
-  }
-  // 家
-  if(!P.home&&a>=29&&a<=44&&P.savings>=600&&c.g!=="neet"&&e<0.14){
-    const canTower=P.income>=900||P.savings>=4000;
-    choose("家を買うか",`${a}歳・年収${fmt(P.income)}万円・貯金${fmt(P.savings)}万円。不動産屋から「今が買い時」と言われています。`,[
-      ...(canTower?[{t:"湾岸タワマンを買う",d:"1.2億円、頭金1,000万円。値上がりすれば資産、下がればローン地獄。",v:"1.2億円",vs:"35年ローン",tag:"勝負",col:"var(--purple)",rec:P.income>=1500,fn:()=>{P.home={type:"tower",val:12000,loan:11000,loan0:11000,cost:60};P.savings-=1000;addLog("湾岸のタワマンを1.2億円で購入。夜景が綺麗です。","gold")}}]:[]),
-      {t:"郊外に戸建てを買う",d:"5,500万円、頭金500万円。資産価値は下がるが、暮らしは安定。",v:"5,500万円",vs:"35年ローン",rec:!(P.income>=1500),fn:()=>{P.home={type:"house",val:5500,loan:5000,loan0:5000,cost:40};P.savings-=500;addLog("郊外に戸建てを購入。庭でバーベキューができます。","gold");P.happy+=5}},
-      {t:"賃貸のまま",d:"身軽でいる。家賃は払い続けます。",rec:false,fn:()=>addLog("家は買わず、賃貸を続けます。")}
-    ]);return "wait";
-  }
-  // 投資
-  if(a>=25&&P.savings>=400&&P.idx===0&&P.crypto===0&&e<0.12){
-    const half=Math.round(P.savings*0.5),all=Math.round(P.savings*0.9);
-    choose("お金をどうする",`貯金${fmt(P.savings)}万円が眠っています。${pick(["同僚がNISAの話をしています。","友人が仮想通貨で車を買いました。","YouTubeの投資動画を見てしまいました。"])}`,[
-      {t:"インデックス投資に半分",d:"年平均+5%前後、たまに暴落。堅実に増える。",v:fmt(half)+"万円",vs:"投資額",rec:true,fn:()=>{P.idx=half;P.savings-=half;addLog(`インデックス投資を${fmt(half)}万円から始めました。`)}},
-      {t:"仮想通貨に全ツッパ",d:"10分の1にも、8倍にもなる。寝られなくなる。",v:fmt(all)+"万円",vs:"投資額",tag:"ギャンブル",col:"var(--rose)",fn:()=>{P.crypto=all;P.savings-=all;addLog(`貯金のほぼ全額${fmt(all)}万円を仮想通貨に。`,"bad");P.health-=4}},
-      {t:"貯金のまま",d:"増えないけど減らない。",fn:()=>addLog("投資はせず、貯金を続けます。")}
-    ]);return "wait";
-  }
-  // 起業の誘い
-  if(c.g!=="indie"&&c.g!=="neet"&&a>=25&&a<=40&&P.skill>=35&&e<0.10){
-    const p=indieOdds();
-    choose("共同創業の誘い",`${pick(["大学の同期","前職の先輩","元上司"])}から「一緒に会社をやらないか」と誘われました。${P.akeys.includes("kigyo")?"学生時代の経験が活きそうです。":""}`,[
-      {t:"乗る",d:`大成功すれば上場して数十億、大失敗すれば借金。安定した${P.job.n}は手放すことになります。`,v:`${Math.round(p.big*100)}% / ${Math.round(p.fail*100)}%`,vs:"大成功率 / 失敗率",tag:"人生の分岐",col:"var(--purple)",rec:p.big+p.ok>=0.4,fn:()=>startIndie()},
-      {t:"断る",d:"今の会社でもう少し頑張る。",rec:!(p.big+p.ok>=0.4),fn:()=>addLog("起業の誘いは断りました。数年後、その会社の名前をニュースで見ることになります。")}
-    ]);return "wait";
+    if(charm>30||Math.random()<0.3){
+      const richP=clamp(0.02+(P.job.pr>=4?0.07:0)+(P.net>60?0.04:0)+(P.akeys.includes("kikoku")?0.03:0),0.02,0.2);
+      const t=Math.random()<richP?"rich":Math.random()<0.45?"power":"normal";
+      const inc=t==="power"?ri(600,1500):t==="normal"?ri(0,350):0;
+      P.spouse={type:t,inc};P.happy+=t==="rich"?8:12;
+      addLog(t==="rich"?`${pick(["友人の紹介","仕事の会食"])}で出会った相手と結婚。相手の実家は不動産オーナーで、生活費はほぼかからなくなりました。`:t==="power"?`${pick(["外資コンサル","商社","医師","弁護士","メガベンチャー"])}勤務の相手と結婚。世帯年収は${fmt(P.income+inc)}万円に。`:pick(["同期と結婚しました。","マッチングアプリで出会った相手と結婚しました。","学生時代からの恋人と結婚しました。"]),t==="rich"?"big":"gold");
+    }
+    return;
   }
   // 離婚
-  if(P.spouse&&!rich&&e<(c.st>=4?0.035:0.015)){
+  if(P.spouse&&!rich&&e<(c.st>=4?0.03:0.012)){
     const half=x=>Math.round(x/2);P.savings=half(P.savings);P.idx=half(P.idx);P.crypto=half(P.crypto);if(P.home){P.savings+=half(P.home.val-P.home.loan);P.home=null}
-    P.spouse=null;P.divorces++;P.happy-=20;addLog(pick(["すれ違いの末に離婚。財産は半分になりました。","激務が祟って離婚。家も手放しました。"]),"bad");return false;
+    P.spouse=null;P.divorces++;P.happy-=20;addLog(pick(["すれ違いの末に離婚。財産は半分になりました。","激務が祟って離婚。家も手放しました。"]),"bad");return;
   }
-  if(P.spouse&&rich&&e<0.02){P.spouse=null;P.divorces++;P.happy-=15;addLog("義実家と折り合わず離婚。慰謝料は少額でしたが、暮らしは元に戻りました。","bad");return false}
-  // 子ども
-  if(P.spouse&&P.kids<2&&a<=42&&e<0.12){P.kids++;P.happy+=10;addLog(P.kids===1?"子どもが生まれました。":"二人目が生まれました。","gold");return false}
-  // 遺産
-  if(a>=40&&e<0.05&&!P.flags.inh){P.flags.inh=1;const v=rich?ri(20000,80000):ri(300,4000);P.savings+=v;addLog(rich?`義父が亡くなり、不動産を相続。資産が${oku(v)}増えました。`:`親の遺産${oku(v)}を相続しました。`,rich?"big":"gold");return false}
-  // 大病
-  if(a>=35&&e<0.02){P.health-=25;P.savings-=300;P.income=Math.round(P.income*0.5);addLog("大きな病気で半年休職。医療費と収入減で300万円以上飛びました。","bad");return false}
-  // 宝くじ・詐欺
-  if(e<0.004){P.savings+=10000;addLog("年末ジャンボで1億円が当たりました。信じられません。","big");return false}
-  if(e<0.02&&P.savings>=1000){const v=Math.round(P.savings*r(.2,.5));P.savings-=v;addLog(`「必ず儲かる」投資話に${fmt(v)}万円を騙し取られました。`,"bad");return false}
-  return false;
+  if(P.spouse&&rich&&e<0.02){P.spouse=null;P.divorces++;P.happy-=15;addLog("義実家と折り合わず離婚。慰謝料は少額でしたが、暮らしは元に戻りました。","bad");return}
+  if(P.spouse&&P.kids<2&&a<=42&&e<0.12){P.kids++;P.happy+=10;addLog(P.kids===1?"子どもが生まれました。夜泣きで寝不足の一年。":"二人目が生まれました。","gold");return}
+  if(a>=40&&e<0.05&&!P.flags.inh){P.flags.inh=1;const v=rich?ri(20000,80000):ri(300,4000);P.savings+=v;addLog(rich?`義父が亡くなり、不動産を相続。資産が${oku(v)}増えました。`:`親の遺産${oku(v)}を相続しました。`,rich?"big":"gold");return}
+  if(a>=35&&e<0.03){P.health-=25;P.savings-=300;P.income=Math.round(P.income*0.5);addLog("大きな病気で半年休職。医療費と収入減で300万円以上飛びました。","bad");return}
+  if(e<0.004){P.savings+=10000;addLog("年末ジャンボで1億円が当たりました。信じられません。","big");return}
+  if(e<0.02&&P.savings>=1000){const v=Math.round(P.savings*r(.2,.5));P.savings-=v;addLog(`「必ず儲かる」投資話に${fmt(v)}万円を騙し取られました。`,"bad");return}
+  if(P.home&&P.home.type==="tower"&&e<0.03){P.home.val=Math.round(P.home.val*1.15);addLog("再開発でタワマンの相場が急騰。含み益が膨らみました。","gold");return}
+  // 家（自動）
+  if(!P.home&&a>=30&&a<=44&&P.savings>=700&&c.g!=="neet"&&e<0.12){
+    if(P.income>=1200&&P.savings>=1500){P.home={type:"tower",val:12000,loan:11000,loan0:11000,cost:60};P.savings-=1000;addLog(pick(["湾岸のタワマンを1.2億円で購入。夜景を見ながらビールを飲む。","港区のタワマンに引っ越した。管理費の高さに驚く。"]),"gold")}
+    else{P.home={type:"house",val:5500,loan:5000,loan0:5000,cost:40};P.savings-=500;P.happy+=5;addLog(pick(["郊外に戸建てを購入。庭でバーベキューができるようになった。","駅から15分の新築戸建てを買った。35年ローン。"]),"gold")}
+    return;
+  }
+  // 投資（自動）
+  if(a>=27&&P.savings>=500&&P.idx===0&&P.crypto===0&&e<0.08){
+    if(Math.random()<0.15){const all=Math.round(P.savings*0.8);P.crypto=all;P.savings-=all;P.health-=3;addLog(`友人に勧められ、貯金の大半${fmt(all)}万円を仮想通貨に突っ込んだ。`,"bad")}
+    else{const half=Math.round(P.savings*0.5);P.idx=half;P.savings-=half;addLog(pick([`NISAでインデックス投資を${fmt(half)}万円から始めた。`,`同僚の勧めで積立投資を開始。${fmt(half)}万円。`]))}
+    return;
+  }
+  // 消費の思い出
+  if(e<0.04&&P.income>=800){addLog(pick(["ボーナスで時計を買った。","海外旅行で散財した。","車を買い替えた。","高い寿司屋の常連になった。","親に温泉旅行をプレゼントした。"]));return}
 }
 function indieOdds(){
   const base=0.05+P.skill/500+P.net/600+(P.akeys.includes("kigyo")?0.06:0)+(["cons_s","gaigin","gaishi_it","startup","web"].includes(P.job.g)?0.04:0);
-  const big=clamp(base,0.03,0.25), ok=clamp(0.15+P.skill/300,0.15,0.35), fail=clamp(0.45-P.skill/300-P.net/500,0.15,0.45);
+  const big=clamp(base*0.8,0.02,0.18), ok=clamp(0.12+P.skill/350,0.12,0.3), fail=clamp(0.5-P.skill/300-P.net/500,0.2,0.5);
   return {big,ok,fail};
 }
 function startIndie(){
@@ -677,11 +766,10 @@ function startIndie(){
   else if(x<1-o.fail){setJob({n:fam+"事務所",g:"indie",pr:3,st:4,gr:4,s:[0,0,0]},4);P.income=ri(300,900);P.coVal=P.income;P.happy+=5;addLog(`${from}を辞めて起業。細々と食べていける程度。年収${fmt(P.income)}万円。`)}
   else if(Math.random()<0.7){const loss=Math.round(P.savings*r(.5,.9));P.savings-=loss;P.happy-=15;const c=pick(CO.filter(k=>k.pr<=Math.max(1,P.job.pr-1)&&k.g!=="gov"));setJob(c);P.income=calcIncome();addLog(`起業に失敗。貯金${fmt(loss)}万円を溶かし、${c.n}に再就職しました。`,"bad")}
   else{const d=ri(2000,6000);P.savings=Math.min(P.savings,0);P.debt+=d;P.idx=0;P.crypto=0;P.home=null;P.happy-=25;P.health-=10;const c=pick(CO.filter(k=>k.pr<=1));setJob(c);P.income=calcIncome();addLog(`大失敗。連帯保証で借金${oku(d)}を背負い、家も手放し、${c.n}で働きながら返済する日々。`,"bad")}
-  P.nextD=P.age+ri(3,5);
+  P.nextD=P.age+ri(3,5);P.lastD=P.age;
 }
 function indieDecision(){
-  P.nextD=P.age+ri(2,4);
-  if(P.coVal<3000){schedule();return}
+  P.nextD=P.age+ri(3,5);P.lastD=P.age;
   const sell=Math.round(P.coVal*r(0.5,0.9));
   choose("会社をどうする",`${P.job.n}の評価額は${oku(P.coVal)}。買収の打診が来ています。`,[
     {t:"売却して現金化",d:"確実に資産にする。その後は役員として数年残る。",v:oku(sell),vs:"手取り見込み",rec:P.age>=40,fn:()=>{P.savings+=sell;P.coVal=0;addLog(`会社を${oku(sell)}で売却しました。`,"big");P.income=ri(1500,3000)}},
@@ -689,57 +777,81 @@ function indieDecision(){
   ]);
 }
 
-// ---------- 転職の決断 ----------
+// ---------- 人生の決断（転職・起業・独立・家・投資・留学をまとめて） ----------
 function openDecision(reason){
   const cur=P.job,head=reason==="headhunt",canStay=!(reason==="fired"||reason==="burnout");
+  P.lastD=P.age;P._mustLeave=!canStay;
   let pool=[...CO,...MID].filter(c=>c!==cur&&c.pr>=Math.max(1,cur.pr-1));
-  if(cur.g==="neet")pool=CO.filter(c=>c.pr<=2);
-  pool=pool.filter(c=>!(c.g==="pe"&&!(["gaigin","cons_s","cons","shosha"].includes(cur.g)&&P.age<=36))&&!(c.g==="gov"&&P.age>30));
+  if(cur.g==="neet")pool=CO.filter(c=>c.pr<=(P.skill>=70?3:2));
+  if(cur.g==="free")pool=CO.filter(c=>c.pr<=4);
+  pool=pool.filter(c=>!(c.g==="pe"&&!((["gaigin","cons_s"].includes(cur.g)||(cur.g==="cons"&&P.mba))&&P.age>=27&&P.age<=36))&&!(c.g==="gov"&&P.age>30));
+  // ユニコーンCxO は 35歳以上で格4以上の経験者、または起業経験者のみ
+  pool=pool.filter(c=>!(c.n.startsWith("ユニコーン")&&!(P.age>=35&&(cur.pr>=4||P.history.some(h=>h.c.g==="indie")))));
+  // 格の低い会社から一気に★5へは行けない（ヘッドハント時を除く）
+  pool=pool.filter(c=>!(c.pr===5&&cur.pr<=2&&!head));
+  // 29歳以下で部長以上のポジションや年収2000万超の求人はない
+  pool=pool.filter(c=>!(P.age<30&&c.pr===5&&["pe","gaigin"].includes(c.g)&&P.job.g!==c.g&&!head));
   pool.forEach(c=>{const j=jtFor(c);c._jt=j.jt;c._jd=j.d});
   pool=pool.filter(c=>c._jd<=3);
   pool.forEach(c=>c._p=probMid(c,head));
   const sh=a=>a.sort(()=>Math.random()-.5);
-  // 期待値。合格率が低い憧れ枠は「おすすめ」にしない
   const ev=c=>c._p*midIncome(c)+(1-c._p)*P.income*0.9+(c.pr>cur.pr?40*(c.pr-cur.pr):0)-c.st*15*(P.health<40?3:1)-(c._p<0.2?9999:0);
   const dream=sh(pool.filter(c=>c.pr>=cur.pr+2&&c._p>=0.04)).slice(0,1);
-  const up=sh(pool.filter(c=>c.pr===cur.pr+1)).sort((a,b)=>ev(b)-ev(a)).slice(0,1);
+  const up=sh(pool.filter(c=>c.pr===cur.pr+1)).sort((a,b)=>ev(b)-ev(a)).slice(0,2);
   const safe=sh(pool.filter(c=>c.pr<=cur.pr&&c._p>=0.35)).sort((a,b)=>ev(b)-ev(a)).slice(0,1);
   let cands=[...dream,...up,...safe];
-  if(!cands.length)cands=sh(pool).slice(0,2);
+  if(cands.length<2)cands=[...cands,...sh(pool.filter(c=>!cands.includes(c))).slice(0,2)];
   const stayV=canStay?P.income*0.95+(P.happy>60?60:0):-1;
   let best=null,bs=stayV;cands.forEach(c=>{const s=ev(c);if(s>bs){bs=s;best=c}});
   if(cur.g==="neet"&&!best&&cands.length)best=[...cands].sort((a,b)=>b._p-a._p)[0];
-  const title=reason==="fired"?"次を探さないといけない":reason==="burnout"?"休職明け、次をどうするか":head?"声がかかった":cur.g==="neet"?"就職活動":"転職を考える年";
-  const opts=cands.map((c,k)=>({lg:mono(c.n),lgc:G[c.g].c,t:c.n,d:`${G[c.g].n}・${JTN[c._jt]}${c._jd>0?`（${JTN[P.jt]}からキャリアチェンジ）`:""}・格 ${"★".repeat(c.pr)}${"☆".repeat(5-c.pr)}・激務 ${"●".repeat(c.st)}${"○".repeat(5-c.st)}・年収見込み ${fmt(midIncome(c))}万円${midIncome(c)<P.income*0.95?"（現職より下がる）":""}`,v:`${Math.round(c._p*100)}%`,vs:"合格率",vc:c._p>=.5?"var(--green)":c._p>=.25?"var(--gold)":"var(--rose)",tag:head&&k===0?"ヘッドハント":c.pr>=cur.pr+2?"憧れ":null,col:head&&k===0?"var(--gold)":"var(--purple)",rec:c===best,fn:()=>applyMid(c)}));
-  if(canStay)opts.push({t:cur.g==="neet"?"今年は何もしない":`${cur.n}に残る`,d:cur.g==="neet"?"スキルは落ち、年齢だけ上がります。":"昇進を待つ。安定しますが、スキルの伸びは鈍ります。",v:"—",vs:"確実",rec:!best,fn:()=>{P.nextD=P.age+(cur.g==="neet"?1:ri(2,4));addLog(cur.g==="neet"?"今年も動けませんでした。":`${cur.n}に残ることにしました。`)}});
-  choose(title,`${P.age}歳・${cur.n}（${cur.g==="neet"?"無職":ROLES[P.role]}）・年収${fmt(P.income)}万円。落ちたら現職のまま。`,opts,"合格率はスキル・現職の格・人脈・英語・地頭・年齢・業界の近さから推定。33歳を超えると戦コン・外銀・PEは急に厳しくなります。");
+  const title=reason==="fired"?"次を探さないといけない":reason==="burnout"?"休職明け、次をどうするか":head?"声がかかった":cur.g==="neet"?"就職活動":`${P.age}歳の決断`;
+  const opts=cands.map((c,k)=>({lg:mono(c.n),lgc:G[c.g].c,t:c.n,d:`${G[c.g].n}・${JTN[c._jt]}${c._jd>0?`（${JTN[P.jt]}からキャリアチェンジ）`:""}・格 ${"★".repeat(c.pr)}${"☆".repeat(5-c.pr)}・激務 ${"●".repeat(c.st)}${"○".repeat(5-c.st)}・年収見込み ${fmt(midIncome(c))}万円${midIncome(c)<P.income*0.95?"（現職より下がる）":""}`,v:`${Math.round(c._p*100)}%`,vs:"合格率",vc:c._p>=.5?"var(--green)":c._p>=.25?"var(--gold)":"var(--rose)",tag:head&&k===0?"ヘッドハント":c.pr>=cur.pr+2?"憧れ":null,col:head&&k===0?"var(--gold)":"var(--purple)",fn:()=>applyMid(c)}));
+  // 仕事以外の選択肢（条件を満たすものから2〜3枚）
+  const extras=[];const a=P.age,fam=P.name.split(" ")[0];
+  if(!["indie","neet"].includes(cur.g)&&a>=28&&a<=42&&P.skill>=45&&Math.random()<0.6){const o=indieOdds();extras.push({t:"スタートアップを起業する",d:`${cur.n}を辞めて創業。大成功なら上場して数十億、大失敗なら借金。`,v:`${Math.round(o.big*100)}% / ${Math.round(o.fail*100)}%`,vs:"大成功率 / 失敗率",tag:"人生の分岐",col:"var(--purple)",fn:()=>startIndie()})}
+  if(!["indie","neet","free"].includes(cur.g)&&a>=30&&P.skill>=55&&["eng","cons","cre"].includes(P.jt)&&Math.random()<0.6){const inc=Math.round(P.income*r(0.9,1.4));extras.push({t:`フリーランスの${JTN[P.jt]}として独立`,d:"会社を離れて個人で受ける。単価は上がるが、案件が切れれば収入ゼロ。福利厚生もなし。",v:fmt(inc)+"万円",vs:"初年度の見込み",tag:"独立",col:"var(--teal)",fn:()=>{setJob({n:`${fam}${P.jt==="eng"?"エンジニアリング":P.jt==="cons"?"コンサルティング":"事務所"}（個人事業）`,g:"free",pr:Math.min(3,cur.pr),st:3,gr:3,s:[0,0,0]},0,P.jt);P.moves++;P.income=inc;P.coVal=0;addLog(`${cur.n}を辞めてフリーランスに。初年度は${fmt(inc)}万円。`,"move")}})}
+  if(cur.g==="free"&&a<=45){extras.push({t:"法人化して会社にする",d:"個人事業を会社に。人を雇えば伸びるが、固定費も背負う。",tag:"起業",col:"var(--purple)",fn:()=>startIndie()})}
+  if(!P.mba&&a>=26&&a<=33&&P.savings>=1600&&!["neet","indie","free"].includes(cur.g)){extras.push({t:"海外MBAに私費留学",d:"2年と1,500万円。英語・地頭・人脈が大きく伸び、帰国後は外資・コンサル・PEの扉が開く。",v:"−1,500万円",vs:"2年間",tag:"投資",col:"var(--blue)",fn:()=>{P.mba=true;P.age+=2;P.year+=2;P.savings-=1500;P.head=clamp(P.head+8,0,100);P.eng=clamp(P.eng+25,0,100);P.net=clamp(P.net+15,0,100);P.skill=clamp(P.skill+6,0,100);P.nextD=P.age;addLog("海外MBAに私費留学。2年と1,500万円を使い、英語と人脈を手に入れました。","gold")}})}
+  if(cur.g!=="gov"&&cur.g!=="neet"&&a<=30&&P.head>=50&&Math.random()<0.5){const c=CO.find(x=>x.n==="都庁・県庁");extras.push({t:"公務員試験を受けて都庁へ",d:"年収は下がるが、定時と安定が手に入る。激務からの避難先。",v:fmt(midIncome(Object.assign(c,{_jd:jtFor(c).d})))+"万円",vs:"年収見込み",fn:()=>{c._p=0.6;c._jt="gov";applyMid(c)}})}
+  if(cur.pr>=3&&a>=30&&a<=45&&Math.random()<0.4){extras.push({t:"地元にUターンして中堅企業へ",d:"年収は3割下がるが、家賃は半分、親も近い。幸福度は上がる。",tag:"暮らし",col:"var(--green)",fn:()=>{const c=pick(CO.filter(x=>x.g==="other"&&x.pr===2));c._jt=jtFor(c).jt;setJob(c,Math.min(P.role,2),c._jt);P.moves++;P.income=Math.round(P.income*0.7);P.chg=1;P.happy+=15;P.flags.rural=1;addLog(`地元に戻り、${c.n}に転職。年収は${fmt(P.income)}万円に下がったが、毎日が穏やかになった。`,"move")}})}
+  if(cur.g!=="neet"&&a>=35&&P.savings>=1500&&Math.random()<0.3){extras.push({t:"脱サラして飲食店を開く",d:"貯金1,500万円を注ぎ込む。当たれば2号店、外せば借金。",v:"−1,500万円",vs:"開業資金",tag:"賭け",col:"var(--rose)",fn:()=>{P.savings-=1500;const x=Math.random();if(x<0.25){setJob({n:`${fam}の店（2号店あり）`,g:"indie",pr:3,st:4,gr:2,s:[0,0,0]},4);P.income=ri(900,2000);P.coVal=3000;addLog("脱サラして開いた店が行列店に。2号店も出しました。","big")}else if(x<0.6){setJob({n:`${fam}の店`,g:"indie",pr:2,st:4,gr:2,s:[0,0,0]},4);P.income=ri(300,600);P.coVal=500;addLog("脱サラして飲食店を開業。なんとか回っています。")}else{P.debt+=1000;const c=pick(CO.filter(k=>k.pr<=1));setJob(c);P.income=calcIncome();P.happy-=20;addLog(`飲食店は2年で閉店。借金1,000万円を抱え、${c.n}で働き始めました。`,"bad")}P.moves++}})}
+  sh(extras).slice(0,cur.g==="neet"?1:2).forEach(x=>opts.push(x));
+  if(canStay)opts.push({t:cur.g==="neet"?"今年は何もしない":cur.g==="free"||cur.g==="indie"?"このまま続ける":`${cur.n}に残る`,d:cur.g==="neet"?"スキルは落ち、年齢だけ上がります。":"昇進を待つ。安定しますが、スキルの伸びは鈍ります。",v:"—",vs:"確実",fn:()=>{addLog(cur.g==="neet"?"今年も動けませんでした。":`${cur.n}に残ることにしました。`)}});
+  P.nextD=P.age+(cur.g==="neet"?1:ri(5,7));
+  choose(title,`${P.age}歳・${cur.n}（${cur.g==="neet"?"無職":ROLES[P.role]}）・年収${fmt(P.income)}万円・貯金${fmt(P.savings)}万円。次の決断は${cur.g==="neet"?"来年":"4〜6年後"}。`,opts,"合格率はスキル・現職の格・人脈・英語・地頭・年齢・業界と職種の近さから推定。33歳を超えると戦コン・外銀・PEは急に厳しくなります。");
 }
 function applyMid(c){
-  P.nextD=P.age+ri(2,4);
   if(Math.random()<c._p){
-    const from=P.job,up=c.pr>from.pr;const role=Math.max(0,P.role-(up?1:0));
-    const chg=c._jd>0,fromJt=P.jt;
-    setJob(c,role,c._jt);P.moves++;P.coVal=0;P.chg=[1,0.88,0.75,0.65,0.5][c._jd];P.income=Math.round(midIncome(c));P.happy+=up?12:5;P.net=clamp(P.net+5,0,100);
+    const from=P.job,up=c.pr>from.pr;const role=["neet","indie","free"].includes(from.g)?Math.min(1,Math.max(0,P.role-2)):Math.max(0,P.role-(up?1:0));
+    const chg=c._jd>0,fromJt=P.jt,wasOut=from.g==="neet"||from.g==="indie"||from.g==="free";
+    setJob(c,role,c._jt);P.moves++;P.coVal=0;P.chg=[1,0.8,0.65,0.5,0.4][c._jd]*(wasOut?0.8:1);P.income=Math.round(midIncome(c)*(wasOut?0.8:1));P.happy+=up?12:5;P.net=clamp(P.net+5,0,100);
     toast(true,c.n);
     addLog(from.g==="neet"?`${c.n}に就職が決まりました。社会人のスタートです。`:`${from.n}から${c.n}へ転職しました（${JTN[P.jt]}・${ROLES[role]}）。${chg?`${JTN[fromJt]}からのキャリアチェンジで、年収はいったん${fmt(P.income)}万円に。`:up?"ステップアップです。":""}`,"move");
   }else{
-    P.fails++;P.happy-=8;P.nextD=P.age+ri(1,3);toast(false,c.n);
-    addLog(`${c.n}に応募しましたが、${pick(["最終面接で落ちました。","書類で落ちました。","ケース面接で手も足も出ませんでした。","「ご縁がなかった」と連絡がありました。"])}${P.job.g==="neet"?"":"現職に残ります。"}`,"bad");
+    P.fails++;P.happy-=8;P.nextD=P.age+ri(2,3);toast(false,c.n);
+    if(P._mustLeave){
+      // 会社を失った状態で落ちた：無職になる
+      const from=P.job;P.coVal=0;setJob(JOBLESS,0,P.jt);P.income=0;P.nextD=P.age+1;P.happy-=10;
+      addLog(`${c.n}に応募しましたが落ちました。${from.n}には戻れず、無職に。年収はゼロになりました。`,"bad");
+    }else addLog(`${c.n}に応募しましたが、${pick(["最終面接で落ちました。","書類で落ちました。","ケース面接で手も足も出ませんでした。","「ご縁がなかった」と連絡がありました。"])}${P.job.g==="neet"?"":"現職に残ります。"}`,"bad");
   }
+  P._mustLeave=false;
 }
 
 // ---------- 描画 ----------
 function renderCareer(){
   const c=P.job,nw=netWorth();
-  const ae=$("asset");ae.textContent=fmt(nw);ae.classList.toggle("neg",nw<0);
-  $("goalbar").style.width=clamp(nw/GOAL*100,0,100)+"%";
+  const ae=$("asset");ae.textContent=fmt(nw);ae.style.color=nw<0?"var(--rose)":"";
+  const ib=$("incbig");ib.textContent=fmt(P.income);ib.classList.toggle("ok",P.income>=GOAL);
+  $("incmax").textContent=fmt(Math.max(P.income,...P.incomes,0));
+  $("goalbar").style.width=clamp(P.income/GOAL*100,0,100)+"%";
   const rows=[["貯金",P.savings],["投資",P.idx+P.crypto],["不動産",P.home?P.home.val-P.home.loan:0],["会社の持ち株",P.coVal],["借金",-P.debt]].filter(x=>x[1]!==0);
   $("ab").innerHTML=rows.map(([n,v])=>`<span>${n}</span><b class="num" style="${v<0?"color:var(--rose)":""}">${fmt(v)}</b>`).join("");
   $("av2").textContent=P.name[0];$("cname").textContent=P.name;$("cdesc").textContent=`${P.age}歳・${P.year}年・${P.uni}`;
   const st=[["スキル",P.skill,""],["人脈",P.net,""],["健康",P.health,P.health<30?"rose":""],["幸福",P.happy,"g"]];
   $("cstats").innerHTML=st.map(([n,v,k])=>`<div class="stat"><span>${n}</span><span class="b"><i class="${k}" style="width:${v}%${k==="rose"?";background:var(--rose)":""}"></i></span><b class="num" style="text-align:right">${Math.round(v)}</b></div>`).join("");
   $("jlg").textContent=mono(c.n);$("jlg").style.background=G[c.g].c;$("jn").textContent=c.n;
-  $("jr").textContent=`${G[c.g].n}${["neet","indie"].includes(c.g)?"":"・"+JTN[P.jt]+"・"+ROLES[P.role]}・${c.g==="neet"?"既卒":c.g==="indie"?"創業":"勤続"}${P.tenure}年目`;
+  $("jr").textContent=`${G[c.g].n}${["neet","indie"].includes(c.g)?"":"・"+JTN[P.jt]+(c.g==="free"?"":"・"+ROLES[P.role])}・${c.g==="neet"?"既卒":c.g==="indie"?"創業":c.g==="free"?"独立":"勤続"}${P.tenure}年目`;
   $("jfacts").innerHTML=`<span>年収<b class="num">${fmt(P.income)}</b></span><span>格<b>${"★".repeat(c.pr)}${"☆".repeat(5-c.pr)}</b></span><span>激務<b>${"●".repeat(c.st)}${"○".repeat(5-c.st)}</b></span><span>転職<b class="num">${P.moves}回</b></span><span>次の機会<b class="num">${P.nextD>P.age?P.nextD+"歳":"今年"}</b></span>`;
   const tl=$("tl");tl.innerHTML="";for(let a=22;a<=END_AGE;a++){const i=document.createElement("i");const h=[...P.history].reverse().find(h=>h.age<=a);if(h&&a<=P.age){i.style.background=G[h.c.g].c;i.title=`${a}歳 ${h.c.n}`}if(a===P.age)i.className="now";if(a%4===2)i.innerHTML=`<em>${a}</em>`;tl.appendChild(i)}
   $("log").innerHTML=P.log.map(l=>`<div class="ev ${l.cls}"><span class="y num">${l.age}歳</span><span></span></div>`).join("");
@@ -749,18 +861,40 @@ function renderCareer(){
   $("peak").textContent=inc.length?`最高年収 ${fmt(Math.max(...inc))}万円`:"";
   $("life").innerHTML=[["家族",P.spouse?(P.spouse.type==="rich"?"大富豪の配偶者":P.spouse.type==="power"?"パワーカップル":"既婚")+(P.kids?`・子${P.kids}人`:""):"独身"],["住まい",P.home?(P.home.type==="tower"?"湾岸タワマン":"郊外の戸建て"):"賃貸"],["投資",P.crypto>0?"仮想通貨":P.idx>0?"インデックス":"なし"],["副業",P.side?`年${fmt(P.side)}万`:"なし"],["離婚",P.divorces?P.divorces+"回":"—"]].map(([n,v])=>`<span>${n}</span><b style="text-align:left;font-family:inherit">${v}</b>`).join("");
 }
-function schedule(){clearTimeout(tickT);if(paused&&!autoMode)return;tickT=setTimeout(stepYear,autoMode?70:1100/speed)}
+function schedule(){clearTimeout(tickT);if(paused||ended)return;tickT=setTimeout(stepYear,1100/speed)}
 $("pause").onclick=e=>{paused=!paused;e.target.textContent=paused?"▶ 再開":"⏸ 一時停止";if(paused)clearTimeout(tickT);else schedule()};
 document.querySelectorAll(".spd").forEach(b=>b.onclick=()=>{document.querySelectorAll(".spd").forEach(x=>x.classList.remove("on"));b.classList.add("on");speed=+b.dataset.s;if(!paused)schedule()});
-$("auto").onclick=e=>{autoMode=!autoMode;e.target.classList.toggle("on",autoMode);if(autoMode){const ov=$("overlay");if(!ov.hidden){clearTimeout(cdT);const rb=ov.querySelector(".lo button.rec")||ov.querySelector(".lo button");if(rb){rb.click();return}}schedule()}};
+
+
+// ============ 振り返り ============
+function yearRows(){
+  const h0=P.history[0];const first={age:h0.age,year:h0.age-22+2026,co:h0.c.n,g:h0.c.g,role:h0.c.g==="neet"?"":ROLES[0],inc:P.incomes[0]||0,nw:0};
+  return [first,...P.years].map(y=>{const ev=P.log.filter(l=>l.age===y.age).reverse().map(l=>`<span class="${l.cls}">${l.t}</span>`).join("<br>");
+    return `<tr><td class="num">${y.age}</td><td class="num dim">${y.year}</td><td><i style="background:${G[y.g].c}"></i>${y.co}${y.role?`<small>${y.role}</small>`:""}</td><td class="num">${fmt(y.inc)}</td><td class="num ${y.nw<0?"rose":""}">${oku(y.nw)}</td><td class="ev2">${ev}</td></tr>`}).join("");
+}
+function story(){
+  const h=P.history,inc=P.incomes,mx=Math.max(...inc),mxAge=P.years.find(y=>y.inc===mx)?.age||END_AGE,nw=netWorth();
+  const longest=h.reduce((b,x,i)=>{const len=(h[i+1]?h[i+1].age:END_AGE)-x.age;return len>b.len?{len,c:x.c}:b},{len:0,c:h[0].c});
+  const hard=P.log.filter(l=>l.cls==="dim").length,bad=P.log.filter(l=>l.cls==="bad").length;
+  const p=[];
+  p.push(`${P.uni}を出て、${h[0].age}歳で${h[0].c.n}に入った。${h[0].c.st>=4?"最初の数年は終電とタクシーの記憶ばかりだ。":h[0].c.st<=2?"穏やかな職場で、定時に帰る日も多かった。":"仕事は普通に忙しく、普通に楽しかった。"}`);
+  if(h.length>1){const moves=h.slice(1).map(x=>`${x.age}歳で${x.c.n}`).join("、");p.push(`その後、${moves}へ。${P.fails?`落ちた選考は${P.fails}回。`:"応募した会社には、すべて受かった。"}いちばん長くいたのは${longest.c.n}の${longest.len}年。`)}
+  else p.push(`転職は一度もしなかった。${h[0].c.n}一筋、${END_AGE-h[0].age}年。${P.fails?`応募して落ちたことは${P.fails}回ある。`:""}`);
+  p.push(`年収のピークは${mxAge}歳の${fmt(mx)}万円。${mx>=GOAL?"3000万円の壁は越えた。":mx>=2000?"3000万円には届かなかったが、十分に高い。":mx>=1000?"1000万円は越えた。":"派手な数字ではないが、働き続けた。"}${P.flags.sick?`働きすぎて${P.flags.sick}回、体か心を壊した。`:""}${hard>=6?"記録には、辛い年がやけに多い。":hard>=3?"辛い年もあったが、乗り越えた。":"仕事で潰れそうになった記憶は、あまりない。"}`);
+  const fam=P.spouse?(P.spouse.type==="rich"?"相手の実家は不動産オーナーで、お金の心配はほとんど消えた。":P.spouse.type==="power"?"共働きで、世帯年収はずっと高かった。":"結婚して、帰る理由ができた。"):"結婚はしなかった。";
+  p.push(`${fam}${P.kids?`子どもは${P.kids}人。`:""}${P.divorces?`離婚を${P.divorces}回経験し、そのたびに資産は半分になった。`:""}${P.home?(P.home.type==="tower"?"湾岸のタワマンに住んでいる。":"郊外の戸建てに住んでいる。"):"ずっと賃貸だった。"}${P.crypto>0?"仮想通貨に手を出したのは、良くも悪くも人生の分岐点だった。":P.idx>0?"積立投資は地味に効いた。":""}`);
+  p.push(`50歳。年収${fmt(P.income)}万円、総資産${oku(nw)}。${nw<0?"借金はまだ残っている。":nw>=30000?"もう働かなくてもいい。":nw>=10000?"老後の心配は、たぶんない。":"老後のことは、これから考える。"}${bad>=8?"波乱の多い人生だった。":bad>=4?"それなりに波はあった。":"思ったより、平穏な人生だった。"}`);
+  return p.map(x=>`<p>${x}</p>`).join("");
+}
 
 // ============ エンディング ============
 function finish(){
   ended=true;clearTimeout(tickT);clearTimeout(cdT);$("overlay").hidden=true;
   const nw=netWorth(),c=P.job,inc=P.incomes,mx=Math.max(...inc);
-  const rk=nw>=100000?"SS":nw>=30000?"S":nw>=10000?"A":nw>=5000?"B":nw>=1500?"C":nw>=0?"D":"E";
+  const rk=mx>=5000?"SS":mx>=3000?"S":mx>=2000?"A":mx>=1200?"B":mx>=800?"C":mx>=400?"D":"E";
   let title,body;
-  if(nw>=100000){title="十億の人";body="会社員の生涯年収を何回分も手にしました。もう働く必要はありません。"}
+  if(mx>=5000){title="年収5000万円の景色";body="日本の給与所得者の上位0.1%。会社員の枠を超えました。"}
+  else if(mx>=3000){title="年収3000万円に届いた人";body="ごく一部しか辿り着けない数字です。代償は、記録を見れば分かります。"}
   else if(nw<0){title="借金とともに生きる人";body="資産はマイナス。それでも、まだ返せる年齢です。"}
   else if(c.g==="indie"&&nw>=30000){title="自分の看板で勝った人";body="会社の名前ではなく、自分の名前で仕事をしました。"}
   else if(P.spouse&&P.spouse.type==="rich"){title="玉の輿に乗った人";body="自分の稼ぎより、出会いが人生を決めました。"}
@@ -769,13 +903,15 @@ function finish(){
   else if(nw>=10000){title="億り人";body="派手さはなくても、着実に1億円を超えました。"}
   else if(c.g==="neet"){title="まだ何者でもない人";body="50歳、就職先は決まらないまま。でも、まだ人生の半分です。"}
   else if(P.divorces>=2){title="波乱の恋愛遍歴";body="資産は半分になるたび、また増やしました。"}
+  else if(P.flags.sick>=2){title="働きすぎた人";body="年収のために健康を差し出した。その選択を後悔しているかは、本人にしか分からない。"}
   else if(P.moves>=5){title="転職を重ねた旅人";body=`${P.moves}回の転職。どの会社にも、あなたを覚えている人がいます。`}
   else if(P.happy>=65){title="ほどよく働き、よく生きた人";body="資産の数字より、毎日の機嫌を大事にしました。"}
   else{title="普通の、長い会社員生活";body="大きな当たりはありませんでしたが、ずっと働き続けました。それ自体が難しいことです。"}
-  const hl=P.log.filter(l=>["big","bad","gold"].includes(l.cls)).slice(0,8).reverse();
-  $("endbox").innerHTML=`<p class="dim small">50歳・資産の決算</p><div class="rank">${rk}</div><div class="asset num ${nw<0?"neg":""}">${oku(nw)}</div><div class="xs dim">総資産</div><h2>${title}</h2><p class="muted">${body}</p>
-   <div class="sum"><div><b class="num">${fmt(P.income)}</b><span>50歳の年収（万円）</span></div><div><b class="num">${fmt(mx)}</b><span>最高年収（万円）</span></div><div><b class="num">${fmt(P.savings)}</b><span>貯金（万円）</span></div><div><b class="num">${fmt(P.idx+P.crypto)}</b><span>投資（万円）</span></div><div><b class="num">${P.home?fmt(P.home.val-P.home.loan):"—"}</b><span>不動産（万円）</span></div><div><b class="num">${Math.round(P.happy)}</b><span>幸福度</span></div></div>
-   <div class="hl">${hl.map(l=>`<div><span class="dim num">${l.age}歳</span>　${l.t}</div>`).join("")}</div>
+  const hl=[];
+  $("endbox").innerHTML=`<p class="dim small">50歳・キャリアの決算</p><div class="rank">${rk}</div><div class="asset num ${mx>=GOAL?"ok":""}">${fmt(mx)}<span style="font-size:20px">万円</span></div><div class="xs dim">最高年収${mx>=GOAL?"・3000万円 達成":"・3000万円まであと"+fmt(GOAL-mx)+"万円"}</div><div class="serif num" style="font-size:22px;margin-top:6px;color:${nw<0?"var(--rose)":"var(--ink)"}">${oku(nw)}</div><div class="xs dim">総資産</div><h2>${title}</h2><p class="muted">${body}</p>
+   <div class="sum"><div><b class="num">${fmt(P.income)}</b><span>50歳の年収（万円）</span></div><div><b class="num">${P.moves}回</b><span>転職・独立（不採用${P.fails}回）</span></div><div><b class="num">${fmt(P.savings)}</b><span>貯金（万円）</span></div><div><b class="num">${fmt(P.idx+P.crypto)}</b><span>投資（万円）</span></div><div><b class="num">${P.home?fmt(P.home.val-P.home.loan):"—"}</b><span>不動産（万円）</span></div><div><b class="num">${Math.round(P.happy)}</b><span>幸福度</span></div></div>
+   <div class="story">${story()}</div>
+   <details class="tbl" open><summary>年表で振り返る</summary><table><thead><tr><th>歳</th><th>年</th><th>所属</th><th>年収</th><th>資産</th><th>出来事</th></tr></thead><tbody>${yearRows()}</tbody></table></details>
    <div class="path">${P.history.map(x=>`<span><i style="background:${G[x.c.g].c}"></i>${x.age}歳 ${x.c.n}</span>`).join("")}</div>
    <button class="big ghost" onclick="location.reload()">もう一度、別の人生で</button>
    <div class="cta"><div class="u">延べ利用者 20万人<small>突破</small></div><h3>就職も転職も、AIキャリアエージェントに相談しよう。</h3><p>ゲームの中では落ちてばかりでも、本当のキャリアは一緒に考えられます。CaseMatchのAIキャリアエージェントが、あなたに合う企業と受かり方を一緒に探します。</p><a class="big" href="https://casematch.jp/" target="_blank" rel="noopener">CaseMatchで相談する →</a></div>`;
