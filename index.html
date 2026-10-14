@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>転職年表 — キャリアシミュレーター</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF1EE; --paper:#FBFCFA; --paper2:#F2F5F1; --line:#D5DBD4;
+  --ink:#1A2A2C; --ink2:#52666A; --ink3:#8A9A9D;
+  --teal:#0F6B62; --teal-soft:#D8EBE7; --amber:#A86A12; --rose:#A73B4E; --rose-soft:#F4DDE1;
+  --t1:#B9C2BD; --t2:#8FB3A4; --t3:#4E9484; --t4:#1F6F66; --t5:#0D3F3A; --t6:#6A3D8F;
+  --shadow:0 8px 28px rgba(20,40,40,.12);
+  color-scheme:light; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#131A1A; --paper:#1B2424; --paper2:#222C2C; --line:#324040;
+  --ink:#E5ECEA; --ink2:#A4B3B1; --ink3:#6F7F7E;
+  --teal:#5FC2B3; --teal-soft:#1E3A37; --amber:#E0A94B; --rose:#E3738A; --rose-soft:#3C2328;
+  --t1:#3C4846; --t2:#4E6E64; --t3:#3E8E7E; --t4:#5FC2B3; --t5:#A8F0E3; --t6:#B98AE0;
+  --shadow:0 8px 28px rgba(0,0,0,.5); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#131A1A; --paper:#1B2424; --paper2:#222C2C; --line:#324040;
+  --ink:#E5ECEA; --ink2:#A4B3B1; --ink3:#6F7F7E;
+  --teal:#5FC2B3; --teal-soft:#1E3A37; --amber:#E0A94B; --rose:#E3738A; --rose-soft:#3C2328;
+  --t1:#3C4846; --t2:#4E6E64; --t3:#3E8E7E; --t4:#5FC2B3; --t5:#A8F0E3; --t6:#B98AE0;
+  --shadow:0 8px 28px rgba(0,0,0,.5); color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"BIZ UDPGothic","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;font-size:15px;line-height:1.65}
+h1,h2,h3,.serif{font-family:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;font-weight:700;letter-spacing:.02em}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.num{font-variant-numeric:tabular-nums}
+.muted{color:var(--ink2)}.small{font-size:12.5px}
+
+.wrap{max-width:1180px;margin:0 auto;padding:16px}
+header.bar{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:10px}
+header.bar h1{font-size:18px;margin:0;color:var(--teal)}
+header.bar .age{font-size:34px;line-height:1}
+header.bar .age small{font-size:16px;margin-left:2px}
+.ctrl{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.ctrl button{border:1px solid var(--line);background:var(--paper);border-radius:4px;padding:5px 12px;font-size:13px}
+.ctrl button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.ctrl .sp{flex:1}
+
+.grid{display:grid;grid-template-columns:300px 1fr 300px;gap:14px;align-items:start}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:16px 18px}
+.card h2{font-size:16px;margin:0 0 10px}
+.card+.card{margin-top:14px}
+.col{display:flex;flex-direction:column;gap:14px}.col .card+.card{margin-top:0}
+
+.id{padding:0;overflow:hidden}
+.id .tag{display:flex;justify-content:space-between;background:var(--teal);color:#fff;padding:6px 14px;font-size:12px;letter-spacing:.08em}
+.id .body{padding:14px 16px}
+.id .name{font-size:22px;margin:0 0 8px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:3px 12px;font-size:13px}
+.kv span:nth-child(odd){color:var(--ink3)}
+
+.stat{display:grid;grid-template-columns:48px 1fr 34px;align-items:center;gap:8px;font-size:13px;margin:6px 0}
+.stat .b{height:7px;background:var(--line);border-radius:4px;overflow:hidden}
+.stat .b i{display:block;height:100%;border-radius:4px;transition:width .5s}
+.money{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;padding-top:12px;border-top:1px dashed var(--line)}
+.money b{display:block;font-size:20px;font-family:"Shippori Mincho",serif}
+.money .lbl{font-size:11px;color:var(--ink3)}
+
+.job{position:relative}
+.job .tier{display:inline-block;font-size:11px;padding:2px 8px;border-radius:3px;color:#fff;margin-bottom:6px;letter-spacing:.05em}
+.job .co{font-size:22px;margin:0}
+.job .role{color:var(--ink2);margin-bottom:8px}
+.job .facts{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--ink2)}
+.job .facts b{color:var(--ink);font-size:16px;font-family:"Shippori Mincho",serif}
+
+.log{max-height:430px;overflow-y:auto}
+.ev{display:grid;grid-template-columns:44px 1fr;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
+.ev:first-child{font-weight:700}
+.ev .y{color:var(--ink3);font-size:12px;padding-top:3px}
+.ev.move{color:var(--teal)}.ev.bad{color:var(--rose)}.ev.gold{color:var(--amber)}
+
+.map{display:grid;grid-template-columns:repeat(11,1fr);gap:3px}
+.map i{aspect-ratio:1;border-radius:2px;background:var(--line);display:block;border:1px solid transparent}
+.map i.now{border-color:var(--rose);box-shadow:0 0 0 1px var(--rose)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:10px;font-size:11.5px;color:var(--ink2)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;vertical-align:middle;margin-right:4px}
+.chart{width:100%;height:120px;margin-top:4px}
+
+.overlay{position:fixed;inset:0;background:rgba(10,24,24,.6);display:grid;place-items:center;z-index:30;padding:16px;overflow-y:auto}
+.overlay[hidden]{display:none}
+.modal{background:var(--paper);border-radius:8px;max-width:720px;width:100%;padding:26px 28px 24px;box-shadow:var(--shadow);max-height:calc(100% - 20px);overflow-y:auto}
+.modal h2{font-size:22px;margin:0 0 4px}
+.modal .lead{color:var(--ink2);margin:0 0 16px;font-size:14px}
+.offers{display:grid;gap:10px}
+.offer{display:grid;grid-template-columns:1fr auto;gap:4px 16px;text-align:left;border:1px solid var(--line);background:var(--paper2);border-radius:6px;padding:12px 14px;align-items:center}
+.offer:hover{border-color:var(--teal)}
+.offer .co{font-size:17px;font-family:"Shippori Mincho",serif;font-weight:700}
+.offer .co .tier{font-size:11px;color:#fff;padding:1px 7px;border-radius:3px;margin-right:8px;vertical-align:middle;font-family:"BIZ UDPGothic",sans-serif;font-weight:400}
+.offer .d{font-size:13px;color:var(--ink2)}
+.offer .p{grid-row:1/3;text-align:right}
+.offer .p b{display:block;font-size:22px;font-family:"Shippori Mincho",serif;line-height:1.1}
+.offer .p span{font-size:11px;color:var(--ink3)}
+.offer.stay{background:transparent}
+.modal .note{font-size:12px;color:var(--ink3);margin-top:12px}
+.big{display:block;width:100%;margin-top:18px;border:0;border-radius:6px;padding:13px;background:var(--teal);color:#fff;font-weight:700;font-size:16px}
+.result .hero{font-size:34px;margin:4px 0 6px;line-height:1.3}
+.result .sum{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}
+.result .sum div{background:var(--paper2);border-radius:6px;padding:10px 12px}
+.result .sum b{display:block;font-size:20px;font-family:"Shippori Mincho",serif}
+.result .sum span{font-size:11px;color:var(--ink3)}
+.timeline{font-size:13px;border-top:1px solid var(--line);margin-top:10px;max-height:220px;overflow-y:auto}
+.timeline div{display:grid;grid-template-columns:70px 1fr;gap:10px;padding:5px 0;border-bottom:1px solid var(--line)}
+.timeline span:first-child{color:var(--ink3)}
+.intro h2{font-size:40px;line-height:1.15;margin:0 0 10px}
+.intro p{margin:0 0 10px}
+
+@media (max-width:960px){
+  .grid{grid-template-columns:1fr}
+  .wrap{padding:10px}
+  .log{max-height:300px}
+  .result .sum{grid-template-columns:1fr 1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="bar">
+    <h1>転職年表</h1>
+    <div class="age serif"><span id="age">22</span><small>歳</small></div>
+    <div class="muted num" id="yearline">2026年</div>
+    <div class="muted small" id="cohort"></div>
+  </header>
+  <div class="ctrl">
+    <button id="pause">⏸ 一時停止</button>
+    <button class="spd on" data-s="1">1×</button><button class="spd" data-s="2">2×</button><button class="spd" data-s="4">4×</button><button class="spd" data-s="8">8×</button>
+    <button id="skip">次の決断まで »</button>
+    <button id="auto">おまかせ</button>
+    <span class="sp"></span>
+    <button id="theme">◐</button>
+    <button id="quit">やり直す</button>
+  </div>
+
+  <div class="grid">
+    <div class="col">
+      <div class="card id">
+        <div class="tag"><span>履歴書</span><span id="idno" class="num"></span></div>
+        <div class="body">
+          <h2 class="name" id="pname"></h2>
+          <div class="kv" id="pkv"></div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>状態 <span class="muted small" style="font-weight:400;float:right">0–100</span></h2>
+        <div id="stats"></div>
+        <div class="money">
+          <div><span class="lbl">年収</span><b class="num" id="income">—</b><span class="small muted">万円</span></div>
+          <div><span class="lbl">貯金</span><b class="num" id="savings">—</b><span class="small muted">万円</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card job">
+        <span class="tier" id="jtier"></span>
+        <h2 class="co" id="jco"></h2>
+        <div class="role" id="jrole"></div>
+        <div class="facts" id="jfacts"></div>
+      </div>
+      <div class="card">
+        <h2>キャリアの記録 <span class="muted small" style="font-weight:400;float:right">新しい順</span></h2>
+        <div class="log" id="log"></div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card">
+        <h2>キャリア地図 <span class="muted small" style="font-weight:400;float:right">1マス＝1年</span></h2>
+        <div class="map" id="map"></div>
+        <div class="legend" id="legend"></div>
+      </div>
+      <div class="card">
+        <h2>年収の推移 <span class="muted small" style="font-weight:400;float:right">万円</span></h2>
+        <svg class="chart" id="chart" viewBox="0 0 300 120" preserveAspectRatio="none"></svg>
+        <div class="small muted" id="peak"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+
+<script>
+// ---------- データ ----------
+const IND={
+  retail:{n:"飲食・小売",base:[250,310,380,480,620],learn:.9,stress:1.1,adj:["ad","mfg","trade"],top:"全国チェーン本部",pre:["まるみ","サンライズ","ほくと","グリーン","みなと","ひまわり"],suf:["フーズ","ストア","商店","マート","ダイニング","商事"]},
+  mfg:{n:"メーカー",base:[280,350,440,620,860],learn:1.05,stress:.85,adj:["trade","it","retail"],top:"グローバルメーカー",pre:["北斗","東邦","大和","ミツワ","新光","旭"],suf:["製作所","工業","精機","電機","化成","重工"]},
+  it:{n:"IT・Web",base:[300,400,530,780,1150],learn:1.4,stress:1.0,adj:["startup","ad","cons"],top:"メガテック",pre:["ネクスト","クラウド","ブルー","ラピッド","オープン","シグナル"],suf:["システムズ","テック","ソリューションズ","ワークス","ラボ","ネット"]},
+  ad:{n:"広告・メディア",base:[280,370,480,700,980],learn:1.1,stress:1.15,adj:["it","retail","startup"],top:"大手代理店",pre:["東京","ユニバーサル","クリエイト","アート","メトロ","ライト"],suf:["エージェンシー","プランニング","クリエイティブ","メディア","出版","広告社"]},
+  trade:{n:"商社",base:[320,420,560,920,1350],learn:1.1,stress:1.0,adj:["mfg","fin","retail"],top:"総合商社",pre:["セントラル","三栄","日本","太平洋","丸紅","東西"],suf:["物産","商事","貿易","興産","通商","産業"]},
+  fin:{n:"金融",base:[330,430,600,950,2300],learn:1.2,stress:1.45,adj:["trade","cons","it"],top:"外資系投資銀行",pre:["みらい","東都","あさひ","第一","中央","ロイヤル"],suf:["銀行","証券","信用金庫","キャピタル","アセット","保険"]},
+  cons:{n:"コンサル",base:[350,480,700,1100,2100],learn:1.6,stress:1.5,adj:["fin","it","startup"],top:"戦略ファーム",pre:["アクシス","ブリッジ","ストラテジー","プライム","ノース","コア"],suf:["コンサルティング","パートナーズ","アドバイザリー","&カンパニー","アソシエイツ","総研"]},
+  gov:{n:"公務員・団体",base:[300,360,430,560,720],learn:.8,stress:.6,adj:["mfg","retail","fin"],top:"中央省庁",pre:["北部","東部","南部","西部","中央","市"],suf:["市役所","県庁","振興公社","商工会議所","機構","協会"]},
+  startup:{n:"スタートアップ",base:[280,380,500,720,1050],learn:1.5,stress:1.3,adj:["it","ad","cons"],top:"ユニコーン",pre:["Flow","Nova","Orbit","Pulse","Kite","Mint"],suf:["Labs","AI","Inc.","Works","HQ","Tech"]},
+};
+const TIERS=["非正規・零細","中小企業","中堅企業","大手企業","トップ企業"];
+const TIERCOL=["var(--t1)","var(--t2)","var(--t3)","var(--t4)","var(--t5)"];
+const REQ=[0,15,35,55,78]; // 入社に必要なスキル目安
+const ROLES=["担当","主任","課長","部長","役員"], ROLEX=[1,1.15,1.4,1.85,2.6];
+const ROLES5={fin:["アナリスト","アソシエイト","VP","ディレクター","MD"],cons:["アナリスト","コンサルタント","マネージャー","プリンシパル","パートナー"]};
+const EDU=[["高卒",18,.30,0],["専門卒",20,.14,0],["大卒（中堅大）",22,.32,1],["大卒（上位大）",22,.16,2],["院卒",24,.08,2]];
+const FAM=["佐藤","鈴木","高橋","田中","伊藤","渡辺","山本","中村","小林","加藤","吉田","山田","森","清水","岡田","長谷川"];
+const GM=["大輝","翔太","健","拓也","悠斗","隼人","亮","直樹"], GF=["美咲","彩","結衣","七海","真由","さくら","茉莉","葵"];
+const r=(a,b)=>a+Math.random()*(b-a), ri=(a,b)=>Math.floor(r(a,b+1)), pick=a=>a[ri(0,a.length-1)], clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const fmtM=v=>Math.round(v).toLocaleString("ja-JP");
+
+// ---------- 状態 ----------
+let P, speed=1, paused=false, autoMode=false, skipping=false, tickT=null, ended=false;
+
+function coName(ind,tier){
+  const I=IND[ind];
+  if(tier===4) return pick(ind==="fin"?["ゴールドリッジ","ソルベイ・ブラザーズ","ハーバー・キャピタル"]:ind==="cons"?["マッキンリー","ノースゲート&Co.","アトラス・ストラテジー"]:ind==="trade"?["五大物産","環太平洋商事","日東通商"]:ind==="it"?["Nimbus","Lattice","Orbital"]:ind==="startup"?["SmartHire","Lumen","Preferred Works"]:[pick(I.pre)+pick(I.suf)+"ホールディングス"]);
+  return pick(I.pre)+pick(I.suf);
+}
+function newPerson(){
+  let x=Math.random(),edu=EDU[0];for(const e of EDU){x-=e[2];if(x<=0){edu=e;break}}
+  const g=Math.random()<.5?"男性":"女性";
+  const skill0=ri(8,22)+edu[3]*6, net0=ri(5,20);
+  P={name:pick(FAM)+" "+pick(g==="男性"?GM:GF),gender:g,edu:edu[0],eduB:edu[3],age:edu[1],year:2026,
+     skill:skill0,net:net0,health:ri(70,95),happy:ri(50,70),savings:ri(0,80),income:0,
+     job:null,tenure:0,role:0,history:[],incomes:[],years:[],log:[],moves:0,fails:0,nextDecision:0,married:false,peak:null,
+     id:"JP-"+P_id()};
+  // 初職
+  const t= edu[3]===0?(Math.random()<.5?0:1): edu[3]===1?(Math.random()<.6?1:2):(Math.random()<.5?2:3);
+  const inds=Object.keys(IND).filter(k=>k!=="startup"||t>=1);
+  setJob({ind:pick(inds),tier:t},true);
+  P.nextDecision=P.age+ri(2,4);
+  P.log=[];
+  addLog(`${P.edu}。${P.age}歳で${IND[P.job.ind].n}の${P.job.co}に新卒入社しました。`,"move");
+}
+function P_id(){return String(ri(100000,999999))}
+function setJob(j,first){
+  const co=coName(j.ind,j.tier);
+  P.job={ind:j.ind,tier:j.tier,co};P.tenure=0;P.role=j.role||0;
+  if(!first){P.moves++}
+  P.history.push({age:P.age,ind:j.ind,tier:j.tier,co});
+  if(!P.peak||j.tier>P.peak.tier)P.peak={tier:j.tier,co,ind:j.ind};
+}
+function roleName(){const R=(P.job.tier===4&&ROLES5[P.job.ind])||ROLES;return R[P.role]}
+function calcIncome(){
+  const I=IND[P.job.ind]; let v=I.base[P.job.tier]*ROLEX[P.role];
+  v*=1+Math.min(P.age-22,20)*0.012; v*=1+(P.skill-50)/300;
+  if(P.job.ind==="indie")v=P.income;
+  return Math.round(v);
+}
+function addLog(t,cls){P.log.unshift({age:P.age,year:P.year,t,cls:cls||""});}
+
+// ---------- 1年進める ----------
+function stepYear(){
+  if(ended)return;
+  P.age++;P.year++;P.tenure++;
+  const I=IND[P.job.ind]; const tf=1+P.job.tier*0.18; const agef=P.age<35?1:P.age<50?.7:.4;
+  P.skill=clamp(P.skill+I.learn*r(1.2,2.8)*tf*agef,0,100);
+  P.net=clamp(P.net+r(1,3)*(P.job.tier*0.4+0.6),0,100);
+  P.health=clamp(P.health-I.stress*r(0.5,2.5)-(P.age>50?1.5:0)+(P.happy>65?1:0)+(I.stress<.9?1.5:0),0,100);
+  const targetH= 48 + P.job.tier*4 + (P.married?6:0) - (I.stress-1)*18 + (P.role*2) ;
+  P.happy=clamp(P.happy+(targetH-P.happy)*0.35+r(-6,6),0,100);
+  P.income=calcIncome();
+  const living=180+P.income*0.45+(P.married?60:0);
+  P.savings+=P.income-living;
+  P.incomes.push(P.income);P.years.push({age:P.age,tier:P.job.tier,ind:P.job.ind});
+  // 昇進
+  if(P.role<4&&P.tenure>=2){
+    let pp=0.08+P.skill/500+(P.tenure>4?.06:0)-(P.job.tier===4?.05:0)-P.role*0.03;
+    if(Math.random()<pp){P.role++;addLog(`${P.job.co}で${roleName()}に昇進しました。`,"gold");P.happy=clamp(P.happy+8,0,100)}
+  }
+  // イベント
+  let forced=false;
+  if(Math.random()<0.3) forced=randomEvent()||forced;
+  P.happy=clamp(P.happy,0,100);
+  if(P.health<=12&&!forced){addLog("体を壊して休職しました。この会社には戻れそうにありません。","bad");P.health=55;P.happy=clamp(P.happy-15,0,100);P.skill=clamp(P.skill-5,0,100);forced="burnout"}
+  if(P.age>=65){return finish()}
+  render();
+  if(forced||P.age>=P.nextDecision){ openDecision(forced); return }
+  schedule();
+}
+function randomEvent(){
+  const e=Math.random(), t=P.job.tier, ind=P.job.ind;
+  if(e<.12&&t<=1&&ind!=="gov"){addLog(`${P.job.co}が倒産しました。急いで次を探さないといけません。`,"bad");P.happy-=10;return "fired"}
+  if(e<.20&&(ind==="fin"||ind==="startup"||ind==="ad")){addLog("景気が冷え込み、会社がリストラを発表。あなたの席はなくなりました。","bad");P.happy-=12;return "fired"}
+  if(e<.30&&ind==="startup"&&t>=2&&Math.random()<.35){const b=ri(300,4000);P.savings+=b;addLog(`会社が上場。ストックオプションが${fmtM(b)}万円になりました。`,"gold");return false}
+  if(e<.40){P.skill=clamp(P.skill+6,0,100);addLog(pick(["夜間スクールに通い、資格を取りました。","難しい案件をやり切って、一回り成長しました。","上司が優秀で、仕事の型を教わりました。"]));return false}
+  if(e<.50&&!P.married&&P.age>=26&&P.age<=42){P.married=true;P.happy+=12;addLog("結婚しました。生活費は増えますが、帰る理由ができました。","gold");return false}
+  if(e<.58){P.net=clamp(P.net+8,0,100);addLog(pick(["元同僚に誘われて勉強会に参加。人脈が広がりました。","業界イベントで登壇し、知り合いが増えました。"]));return false}
+  if(e<.66){P.happy-=10;addLog(pick(["上司が変わり、評価がぜんぶリセットされました。","異動で望まない部署へ。モヤモヤする一年。","転勤で知らない街に。友人が減りました。"]),"bad");return false}
+  if(e<.72&&P.skill>=45){addLog("ヘッドハンターから連絡がありました。","move");return "headhunt"}
+  if(e<.78){P.health-=10;addLog(pick(["体調を崩して2週間入院しました。","腰を痛めて、しばらく通院。"]),"bad");return false}
+  if(e<.84&&t>=3){const b=Math.round(P.income*r(.1,.4));P.savings+=b;addLog(`業績好調でボーナスが上乗せ。${fmtM(b)}万円。`,"gold");return false}
+  return false;
+}
+
+// ---------- 転職の意思決定 ----------
+function successProb(o){
+  const t=P.job.tier, gap=o.tier-t;
+  let p= gap<=-1?0.9: gap===0?0.65: 0.42;
+  p+=(P.skill-REQ[o.tier])/120;
+  p+=P.net/400;
+  if(o.tier>=3)p+=P.eduB*0.05;
+  if(gap>0&&P.age>45)p-=0.2;
+  if(gap>0&&P.age>55)p-=0.2;
+  if(o.tier===4){p=Math.min(p,0.45); if(P.age>38)p-=0.15; if(!(t>=3))p-=0.2; if(["fin","cons"].includes(o.ind)&&P.age>32)p-=0.15}
+  if(o.ind!==P.job.ind&&!IND[P.job.ind].adj.includes(o.ind))p-=0.12;
+  if(o.head)p+=0.25;
+  if(P.fails>0&&P.tenure<2)p-=0.05;
+  return clamp(p,0.05,0.95);
+}
+function genOffers(reason){
+  const t=P.job.tier, cur=P.job.ind, out=[], seen=new Set();
+  const inds=[cur,...IND[cur].adj,pick(Object.keys(IND))];
+  const tiers=[t-1,t,t+1].filter(x=>x>=0&&x<=4);
+  const pool=[];
+  inds.forEach(ind=>tiers.forEach(tier=>{
+    if(tier===4&&!(t>=3||P.skill>=85))return;
+    if(tier===t+1&&P.skill<REQ[tier]-15)return;
+    if(ind==="gov"&&P.age>35&&tier>=2)return;
+    pool.push({ind,tier});
+  }));
+  if(!pool.length)pool.push({ind:cur,tier:Math.max(0,t-1)});
+  const want=ri(2,3);
+  while(out.length<want&&pool.length){
+    const o=pool.splice(ri(0,pool.length-1),1)[0]; const k=o.ind+o.tier;
+    if(seen.has(k)||(o.ind===cur&&o.tier===t&&Math.random()<.6))continue; seen.add(k);
+    o.co=coName(o.ind,o.tier);o.role=Math.max(0,P.role-(o.tier>t?1:0)-(o.tier>t+0&&o.tier===4?1:0));
+    out.push(o);
+  }
+  if(reason==="headhunt"&&t<4){const o={ind:pick([cur,...IND[cur].adj]),tier:t+1,head:true};o.co=coName(o.ind,o.tier);o.role=Math.max(0,P.role-1);out.unshift(o)}
+  if(P.skill>=60&&P.savings>=500&&P.age<=50&&Math.random()<.35)out.push({ind:"indie"});
+  out.forEach(o=>{if(o.ind!=="indie"){const I=IND[o.ind];o.inc=Math.round(I.base[o.tier]*ROLEX[o.role]*(1+Math.min(P.age-22,20)*0.012)*(1+(P.skill-50)/300));o.p=successProb(o)}});
+  return out;
+}
+function openDecision(reason){
+  clearTimeout(tickT);
+  const offers=genOffers(reason);
+  const canStay=!(reason==="fired"||reason==="burnout");
+  if(autoMode){ autoChoose(offers,canStay); return }
+  const ov=document.getElementById("overlay");
+  const title= reason==="fired"?"次の仕事を探す": reason==="burnout"?"休職明け、次をどうするか": reason==="headhunt"?"声がかかりました":"転職を考える年";
+  ov.innerHTML=`<div class="modal"><h2>${title}</h2><p class="lead">${P.age}歳・${P.job.co}（${roleName()}）・年収${fmtM(P.income)}万円。応募しても落ちることがあります。落ちると1年を失います。</p><div class="offers" id="offers"></div><p class="note">採用確率は、スキル・人脈・学歴・年齢・業界の近さから推定しています。いきなり2段上の会社には応募できません。</p></div>`;
+  const box=ov.querySelector("#offers");
+  offers.forEach(o=>{
+    const b=document.createElement("button");b.className="offer";
+    if(o.ind==="indie"){b.innerHTML=`<div class="co"><span class="tier" style="background:var(--t6)">独立</span>独立・起業する</div><div class="d">貯金${fmtM(P.savings)}万円を元手に。年収は大きく上下します。失敗すると貯金が減り、どこかに再就職。</div><div class="p"><b>?</b><span>成否はスキル次第</span></div>`}
+    else{const I=IND[o.ind];b.innerHTML=`<div class="co"><span class="tier" style="background:${TIERCOL[o.tier]}">${TIERS[o.tier]}</span>${o.co}${o.head?' <span class="small" style="color:var(--amber);font-family:\'BIZ UDPGothic\'">ヘッドハント</span>':""}</div><div class="d">${I.n}・${(o.tier===4&&ROLES5[o.ind]||ROLES)[o.role]}・年収見込み ${fmtM(o.inc)}万円・忙しさ ${"●".repeat(Math.round(I.stress*3))}${"○".repeat(5-Math.round(I.stress*3))}</div><div class="p"><b class="num">${Math.round(o.p*100)}%</b><span>採用確率</span></div>`}
+    b.onclick=()=>{ov.hidden=true;apply(o)}; box.appendChild(b);
+  });
+  if(canStay){const s=document.createElement("button");s.className="offer stay";s.innerHTML=`<div class="co">${P.job.co}に残る</div><div class="d">今の会社で昇進を待つ。慣れた環境は安心ですが、スキルの伸びは鈍ります。</div><div class="p"><b>—</b><span>確実</span></div>`;s.onclick=()=>{ov.hidden=true;stay()};box.appendChild(s)}
+  ov.hidden=false;
+}
+function stay(){P.nextDecision=P.age+ri(2,5);addLog(`${P.job.co}に残ることにしました。`);P.happy=clamp(P.happy+2,0,100);render();schedule()}
+function apply(o){
+  P.nextDecision=P.age+ri(2,5);
+  if(o.ind==="indie"){
+    const ok=Math.random()<clamp(0.25+P.skill/200+P.net/300,0.2,0.75);
+    if(ok){const inc=Math.round(r(400,2500)*(1+P.skill/100));P.income=inc;P.job={ind:"indie",tier:3,co:P.name.split(" ")[0]+"事務所"};P.tenure=0;P.role=4;P.moves++;P.history.push({age:P.age,ind:"indie",tier:3,co:P.job.co});IND.indie={n:"独立",base:[0,0,0,inc,inc],learn:1.2,stress:1.2,adj:["cons","it","startup"],top:"",pre:[],suf:[]};addLog(`独立しました。初年度の売上は${fmtM(inc)}万円。`,"gold");P.happy=clamp(P.happy+10,0,100);if(!P.peak||3>P.peak.tier)P.peak={tier:3,co:P.job.co,ind:"indie"}}
+    else{const loss=Math.round(P.savings*r(.4,.8));P.savings-=loss;addLog(`起業に失敗。貯金が${fmtM(loss)}万円減り、再就職しました。`,"bad");P.happy=clamp(P.happy-15,0,100);setJob({ind:pick(["it","retail","mfg"]),tier:Math.max(0,P.job.tier-1)});P.income=calcIncome()}
+    render();schedule();return;
+  }
+  if(Math.random()<o.p){
+    const from=P.job.co, up=o.tier>P.job.tier;
+    setJob({ind:o.ind,tier:o.tier,role:o.role});P.income=calcIncome();
+    addLog(`${from}から${IND[o.ind].n}の${o.co}へ転職しました（${roleName()}）。${up?"ステップアップです。":""}`,"move");
+    P.happy=clamp(P.happy+(up?10:4),0,100);P.net=clamp(P.net+5,0,100);
+  }else{
+    P.fails++;addLog(`${o.co}に応募しましたが、${pick(["最終面接で落ちました。","書類で落ちました。","ケース面接で手も足も出ませんでした。","「ご縁がなかった」と連絡がありました。"])}`,"bad");
+    P.happy=clamp(P.happy-8,0,100);P.nextDecision=P.age+ri(1,3);
+  }
+  render();schedule();
+}
+function autoChoose(offers,canStay){
+  let best=null,bs=canStay?P.income*0.9+(P.happy>60?60:0):-1;
+  offers.forEach(o=>{if(o.ind==="indie")return;const s=o.p*o.inc+(1-o.p)*(P.income*0.7)+(o.tier>P.job.tier?80:0)-IND[o.ind].stress*20*(P.health<40?3:1);if(s>bs){bs=s;best=o}});
+  if(best)apply(best);else stay();
+}
+
+// ---------- 描画 ----------
+function render(){
+  document.getElementById("age").textContent=P.age;
+  document.getElementById("yearline").textContent=`${P.year}年・${P.name}・1年≈${(1.6/speed).toFixed(1)}秒`;
+  document.getElementById("idno").textContent=P.id;
+  document.getElementById("pname").textContent=P.name;
+  document.getElementById("pkv").innerHTML=`<span>性別</span><span>${P.gender}</span><span>学歴</span><span>${P.edu}</span><span>家族</span><span>${P.married?"既婚":"独身"}</span><span>転職回数</span><span class="num">${P.moves}回（不採用${P.fails}回）</span><span>最高到達</span><span>${P.peak?TIERS[P.peak.tier]+"・"+P.peak.co:"—"}</span>`;
+  const st=[["スキル",P.skill,"var(--teal)"],["人脈",P.net,"var(--t3)"],["健康",P.health,P.health<30?"var(--rose)":"var(--t2)"],["幸福",P.happy,"var(--amber)"]];
+  document.getElementById("stats").innerHTML=st.map(([n,v,c])=>`<div class="stat"><span>${n}</span><span class="b"><i style="width:${v}%;background:${c}"></i></span><b class="num" style="text-align:right">${Math.round(v)}</b></div>`).join("");
+  document.getElementById("income").textContent=fmtM(P.income||calcIncome());
+  document.getElementById("savings").textContent=fmtM(P.savings);
+  const I=IND[P.job.ind]; const jt=document.getElementById("jtier");
+  jt.textContent=P.job.ind==="indie"?"独立":TIERS[P.job.tier]+(P.job.tier===4?"・"+I.top:""); jt.style.background=P.job.ind==="indie"?"var(--t6)":TIERCOL[P.job.tier];
+  document.getElementById("jco").textContent=P.job.co;
+  document.getElementById("jrole").textContent=`${I.n}・${roleName()}・勤続${P.tenure}年`;
+  document.getElementById("jfacts").innerHTML=`<span>忙しさ <b>${"●".repeat(Math.round(I.stress*3))}${"○".repeat(Math.max(0,5-Math.round(I.stress*3)))}</b></span><span>成長しやすさ <b>${"●".repeat(Math.round(I.learn*2.5))}${"○".repeat(Math.max(0,5-Math.round(I.learn*2.5)))}</b></span><span>次の転職検討 <b class="num">${P.nextDecision}歳ごろ</b></span>`;
+  document.getElementById("log").innerHTML=P.log.map(l=>`<div class="ev ${l.cls}"><span class="y num">${l.age}歳</span><span></span></div>`).join("");
+  document.querySelectorAll("#log .ev").forEach((d,i)=>d.lastElementChild.textContent=P.log[i].t);
+  // 地図
+  const map=document.getElementById("map"); const start=18; map.innerHTML="";
+  for(let a=start;a<=65;a++){const y=P.years.find(x=>x.age===a);const i=document.createElement("i");if(y){i.style.background=y.ind==="indie"?"var(--t6)":TIERCOL[y.tier];i.title=`${a}歳 ${y.ind==="indie"?"独立":IND[y.ind].n}`}if(a===P.age)i.className="now";map.appendChild(i)}
+  document.getElementById("legend").innerHTML=TIERS.map((t,i)=>`<span><i style="background:${TIERCOL[i]}"></i>${t}</span>`).join("")+`<span><i style="background:var(--t6)"></i>独立</span>`;
+  // チャート
+  const inc=P.incomes; const svg=document.getElementById("chart");
+  if(inc.length>1){const max=Math.max(...inc,500);const pts=inc.map((v,i)=>`${(i/47)*300},${118-v/max*110}`).join(" ");svg.innerHTML=`<polyline points="${pts}" fill="none" stroke="var(--teal)" stroke-width="2"/><text x="2" y="12" font-size="10" fill="var(--ink3)">${fmtM(max)}</text>`}
+  document.getElementById("peak").textContent=inc.length?`最高年収 ${fmtM(Math.max(...inc))}万円・生涯年収 ${fmtM(inc.reduce((a,b)=>a+b,0))}万円`:"";
+}
+function schedule(){clearTimeout(tickT);if(paused&&!skipping&&!autoMode)return;tickT=setTimeout(stepYear,skipping||autoMode?120:1600/speed)}
+
+// ---------- 終了 ----------
+function finish(){
+  ended=true;clearTimeout(tickT);
+  const life=P.incomes.reduce((a,b)=>a+b,0), mx=Math.max(...P.incomes);
+  const pk=P.peak;
+  let title,body;
+  if(pk.ind==="indie"&&P.savings>5000){title="自分の看板で生きた人";body="会社の名前ではなく、自分の名前で仕事をしました。"}
+  else if(pk.tier===4&&P.happy>=55){title="頂上まで登って、笑っていた人";body=`${pk.co}まで辿り着き、しかも幸福度を保ちました。めったにいません。`}
+  else if(pk.tier===4){title="頂上に立ったが、代償も払った人";body=`${pk.co}の名刺は手に入れましたが、健康と幸福はすり減りました。`}
+  else if(P.savings>=8000){title="堅実に積み上げた人";body="派手な転職はしませんでしたが、貯金は一番の武器になりました。"}
+  else if(P.moves>=7){title="転職を重ねた旅人";body=`${P.moves}回の転職。どの会社にも、あなたを覚えている人がいます。`}
+  else if(P.happy>=65){title="ほどよく働き、よく生きた人";body="年収の数字より、毎日の機嫌を大事にしました。"}
+  else{title="普通の、長い会社員生活";body="大きな当たりはありませんでしたが、ずっと働き続けました。それ自体が難しいことです。"}
+  const ov=document.getElementById("overlay");
+  ov.innerHTML=`<div class="modal result"><p class="lead">65歳・定年</p><h2 class="hero">${title}</h2><p>${body}</p>
+   <div class="sum"><div><b class="num">${fmtM(life)}</b><span>生涯年収（万円）</span></div><div><b class="num">${fmtM(mx)}</b><span>最高年収（万円）</span></div><div><b class="num">${fmtM(P.savings)}</b><span>最終貯金（万円）</span></div><div><b>${TIERS[pk.tier]}</b><span>最高到達 ${pk.co}</span></div><div><b class="num">${P.moves}回</b><span>転職（不採用${P.fails}回）</span></div><div><b class="num">${Math.round(P.happy)}</b><span>最後の幸福度</span></div></div>
+   <div class="timeline">${P.history.map(h=>`<div><span class="num">${h.age}歳</span><span></span></div>`).join("")}</div>
+   <button class="big" id="again">もう一度、別の人生で</button></div>`;
+  ov.querySelectorAll(".timeline div").forEach((d,i)=>{const h=P.history[i];d.lastElementChild.textContent=`${h.co}（${h.ind==="indie"?"独立":IND[h.ind].n}・${h.ind==="indie"?"独立":TIERS[h.tier]}）`});
+  ov.hidden=false;document.getElementById("again").onclick=intro;
+}
+function intro(){
+  ended=true;clearTimeout(tickT);
+  const ov=document.getElementById("overlay");
+  ov.innerHTML=`<div class="modal intro"><h2>転職年表</h2><p class="muted">学歴も最初の会社も、選べません。</p>
+   <p>ランダムに生まれた一人の社会人として、18〜24歳から65歳までを1年ずつ歩みます。数年ごとに転職の機会が来て、応募先を選びます。</p>
+   <p>いきなりトップ企業には行けません。一段ずつ上がり、スキルと人脈を貯め、年齢の壁が来る前に動く必要があります。応募は落ちることもあります。</p>
+   <p class="small muted">データは保存されません。閉じればこの人生は消えます。</p>
+   <button class="big" id="start">履歴書を受け取る</button></div>`;
+  ov.hidden=false;document.getElementById("start").onclick=()=>{ov.hidden=true;begin()};
+}
+function begin(){ended=false;paused=false;autoMode=false;skipping=false;document.getElementById("auto").classList.remove("on");document.getElementById("pause").textContent="⏸ 一時停止";newPerson();P.income=calcIncome();render();schedule()}
+
+// ---------- 操作 ----------
+document.getElementById("pause").onclick=e=>{paused=!paused;e.target.textContent=paused?"▶ 再開":"⏸ 一時停止";if(!paused)schedule();else clearTimeout(tickT)};
+document.querySelectorAll(".spd").forEach(b=>b.onclick=()=>{document.querySelectorAll(".spd").forEach(x=>x.classList.remove("on"));b.classList.add("on");speed=+b.dataset.s;render();if(!paused)schedule()});
+document.getElementById("skip").onclick=()=>{skipping=true;paused=false;document.getElementById("pause").textContent="⏸ 一時停止";schedule()};
+document.getElementById("auto").onclick=e=>{autoMode=!autoMode;e.target.classList.toggle("on",autoMode);if(autoMode){document.getElementById("overlay").hidden=true;if(!ended)schedule()}};
+document.getElementById("quit").onclick=intro;
+document.getElementById("theme").onclick=()=>{const h=document.documentElement;const dark=getComputedStyle(h).colorScheme.includes("dark");h.setAttribute("data-theme",dark?"light":"dark")};
+const _open=openDecision; openDecision=function(r){skipping=false;_open(r)};
+intro();
+</script>
+</body>
+</html>
