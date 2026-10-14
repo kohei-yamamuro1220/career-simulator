@@ -168,6 +168,9 @@ button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .tbl td small{display:block;color:var(--ink3);font-size:10.5px}
 .tbl .ev2{color:var(--ink2);line-height:1.5}.tbl .ev2 .bad{color:var(--rose)}.tbl .ev2 .gold{color:var(--gold2)}.tbl .ev2 .big{color:var(--purple);font-weight:700}.tbl .ev2 .move{color:var(--teal)}.tbl .ev2 .dim{color:var(--ink3)}
 @media (max-width:980px){.tbl th:nth-child(2),.tbl td:nth-child(2),.tbl th:nth-child(5),.tbl td:nth-child(5){display:none}}
+.cta.top{margin:22px auto 8px;max-width:640px;animation:pop .5s .3s both}
+.again{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+.again .big{background:linear-gradient(135deg,var(--teal),#2A9D8F);color:#04201C}
 .cta{margin:28px auto 0;max-width:560px;background:linear-gradient(135deg,#17323A,#1B2A44);border:1px solid var(--teal);border-radius:16px;padding:24px 22px}
 .cta h3{font-size:22px;margin:0 0 6px;color:#fff}
 .cta p{margin:0 0 14px;color:var(--ink2);font-size:14px}
@@ -928,13 +931,16 @@ function finish(){
   else if(P.happy>=65){title="ほどよく働き、よく生きた人";body="資産の数字より、毎日の機嫌を大事にしました。"}
   else{title="普通の、長い会社員生活";body="大きな当たりはありませんでしたが、ずっと働き続けました。それ自体が難しいことです。"}
   const hl=[];
+  // 結果に合わせた広告の一言
+  const hook=P.job.g==="neet"?"無職からの再出発も、相談できます。":P.fails>=3?`${P.fails}回落ちた選考、本当なら対策できました。`:mx>=GOAL?"3000万円に届くキャリアは、現実でも設計できます。":P.flags.sick?"激務で壊れる前に、働き方を変える転職もあります。":`3000万円まであと${fmt(GOAL-mx)}万円。現実のキャリアは、ここから変えられます。`;
+  const cta=(cls)=>`<div class="cta ${cls||""}"><div class="u">延べ利用者 20万人<small>突破</small></div><h3>就職も転職も、AIキャリアエージェントに相談しよう。</h3><p>${hook}CaseMatchのAIキャリアエージェントが、あなたに合う企業と受かり方を一緒に探します。無料です。</p><a class="big" href="https://casematch.jp/" target="_blank" rel="noopener">CaseMatchで無料相談する →</a></div>`;
   $("endbox").innerHTML=`<p class="dim small">50歳・キャリアの決算</p><div class="rank">${rk}</div><div class="asset num ${mx>=GOAL?"ok":""}">${fmt(mx)}<span style="font-size:20px">万円</span></div><div class="xs dim">最高年収${mx>=GOAL?"・3000万円 達成":"・3000万円まであと"+fmt(GOAL-mx)+"万円"}</div><div class="serif num" style="font-size:22px;margin-top:6px;color:${nw<0?"var(--rose)":"var(--ink)"}">${oku(nw)}</div><div class="xs dim">総資産</div><h2>${title}</h2><p class="muted">${body}</p>
+   ${cta("top")}
    <div class="sum"><div><b class="num">${fmt(P.income)}</b><span>50歳の年収（万円）</span></div><div><b class="num">${P.moves}回</b><span>転職・独立（不採用${P.fails}回）</span></div><div><b class="num">${fmt(P.savings)}</b><span>貯金（万円）</span></div><div><b class="num">${fmt(P.idx+P.crypto)}</b><span>投資（万円）</span></div><div><b class="num">${P.home?fmt(P.home.val-P.home.loan):"—"}</b><span>不動産（万円）</span></div><div><b class="num">${Math.round(P.happy)}</b><span>幸福度</span></div></div>
    <div class="story">${story()}</div>
-   <details class="tbl" open><summary>年表で振り返る</summary><table><thead><tr><th>歳</th><th>年</th><th>所属</th><th>年収</th><th>資産</th><th>出来事</th></tr></thead><tbody>${yearRows()}</tbody></table></details>
+   <details class="tbl"><summary>年表で振り返る（22〜50歳）</summary><table><thead><tr><th>歳</th><th>年</th><th>所属</th><th>年収</th><th>資産</th><th>出来事</th></tr></thead><tbody>${yearRows()}</tbody></table></details>
    <div class="path">${P.history.map(x=>`<span><i style="background:${G[x.c.g].c}"></i>${x.age}歳 ${x.c.n}</span>`).join("")}</div>
-   <button class="big ghost" onclick="location.reload()">もう一度、別の人生で</button>
-   <div class="cta"><div class="u">延べ利用者 20万人<small>突破</small></div><h3>就職も転職も、AIキャリアエージェントに相談しよう。</h3><p>ゲームの中では落ちてばかりでも、本当のキャリアは一緒に考えられます。CaseMatchのAIキャリアエージェントが、あなたに合う企業と受かり方を一緒に探します。</p><a class="big" href="https://casematch.jp/" target="_blank" rel="noopener">CaseMatchで相談する →</a></div>`;
+   <div class="again"><a class="big" href="https://casematch.jp/" target="_blank" rel="noopener">CaseMatchで無料相談する →</a><button class="big ghost" onclick="location.reload()">もう一度、別の人生で</button></div>`;
   go("end");
 }
 
