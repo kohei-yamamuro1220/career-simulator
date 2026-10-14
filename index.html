@@ -164,7 +164,56 @@ button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .cta .u{font-family:"Zen Old Mincho";font-size:30px;color:var(--teal);line-height:1}
 .cta .u small{font-family:"Noto Sans JP";font-size:12px;color:var(--ink2);margin-left:4px}
 
-@media (max-width:980px){.career,.board,.grid2{grid-template-columns:1fr}.sticky{position:static}.hero h2{font-size:34px}.sum{grid-template-columns:1fr 1fr}}
+/* 合否演出 */
+.rrow{position:relative;overflow:hidden;min-height:68px}
+.rrow .v{font-size:15px;color:var(--ink3)}
+.rrow .v .dots::after{content:"";animation:dots 1.2s steps(4,end) infinite}
+@keyframes dots{0%{content:""}25%{content:"."}50%{content:".."}75%{content:"..."}}
+.stamp{position:absolute;right:14px;top:50%;transform:translateY(-50%) rotate(-8deg) scale(3);opacity:0;font-family:"Zen Old Mincho";font-weight:900;font-size:30px;letter-spacing:.1em;padding:2px 12px;border:3px solid currentColor;border-radius:8px;pointer-events:none}
+.stamp.in{animation:stampin .45s cubic-bezier(.2,1.4,.4,1) forwards}
+@keyframes stampin{0%{opacity:0;transform:translateY(-50%) rotate(-8deg) scale(3)}60%{opacity:1;transform:translateY(-50%) rotate(-8deg) scale(.95)}100%{opacity:1;transform:translateY(-50%) rotate(-8deg) scale(1)}}
+.stamp.ok{color:var(--green);text-shadow:0 0 18px rgba(76,212,138,.6)}
+.stamp.ng{color:var(--rose)}
+.rrow.ok .v,.rrow.ng .v{opacity:0}
+.rrow.ok{background:linear-gradient(90deg,var(--bg2),rgba(76,212,138,.12));animation:flash .5s}
+.rrow.ng{animation:shake .4s}
+@keyframes flash{0%{box-shadow:0 0 0 0 rgba(76,212,138,.6)}100%{box-shadow:0 0 0 18px rgba(76,212,138,0)}}
+@keyframes shake{0%,100%{transform:none}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.spark{position:absolute;width:6px;height:6px;border-radius:50%;background:var(--gold2);pointer-events:none;animation:spark .9s ease-out forwards}
+@keyframes spark{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.2)}}
+.rsum{text-align:center;margin:18px 0 6px;animation:pop .4s}
+.rsum b{font-family:"Zen Old Mincho";font-size:40px;display:block;line-height:1.1}
+.rsum.ok b{color:var(--green)}.rsum.ng b{color:var(--rose)}
+.toast{position:fixed;inset:0;display:grid;place-items:center;pointer-events:none;z-index:40}
+.toast div{font-family:"Zen Old Mincho";font-weight:900;font-size:64px;letter-spacing:.1em;padding:10px 36px;border:4px solid currentColor;border-radius:14px;background:rgba(10,16,24,.85);transform:rotate(-6deg);animation:stampin .45s cubic-bezier(.2,1.4,.4,1) forwards,fadeout .5s 1.3s forwards}
+.toast .ok{color:var(--green)}.toast .ng{color:var(--rose)}
+.toast small{display:block;font-family:"Noto Sans JP";font-size:14px;letter-spacing:0;font-weight:400;color:var(--ink2)}
+@keyframes fadeout{to{opacity:0;transform:rotate(-6deg) scale(1.1)}}
+/* スマホ */
+.mbar{display:none}
+@media (max-width:980px){
+  .career,.board,.grid2{grid-template-columns:1fr}.sticky{position:static}.hero h2{font-size:30px}.hero{padding:30px 8px 20px}.sum{grid-template-columns:1fr 1fr}
+  .wrap{padding:12px 12px 90px}.card{padding:14px 14px;border-radius:12px}
+  .top .step{margin-left:0;width:100%}
+  .career .col:nth-child(1){order:2}.career .col:nth-child(2){order:1}.career .col:nth-child(3){order:3}
+  .board .col.sticky{display:none}
+  .mbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:20;gap:8px;align-items:center;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));background:rgba(12,17,23,.96);border-top:1px solid var(--line2);backdrop-filter:blur(8px)}
+  .mbar .c{font-family:"Zen Old Mincho";font-size:18px;min-width:70px}
+  .mbar .c small{display:block;font-family:"Noto Sans JP";font-size:10px;color:var(--ink3)}
+  .mbar .big{flex:1;text-align:center;padding:12px 10px;font-size:15px}
+  .mbar .big.ghost{flex:0 0 auto;padding:12px 12px}
+  .cos{grid-template-columns:1fr}
+  .big{width:100%;text-align:center;margin-bottom:8px;padding:14px 20px}
+  .mbar .big{width:auto;margin:0}.mbar .big.ghost{white-space:nowrap}
+  .card h2{flex-wrap:wrap}.card h2 small{flex-basis:100%}
+  .modal{padding:18px 14px;border-radius:14px}.modal h2{font-size:21px}.lo{grid-template-columns:1fr}
+  .ctrl button{flex:1 1 auto;padding:10px 8px}
+  .jobhead .n{font-size:20px}.asset{font-size:34px}
+  .log{max-height:240px}
+  .end .rank{font-size:72px}.end .asset{font-size:40px}.end h2{font-size:24px}
+  .stamp{font-size:22px;right:8px}
+  .toast div{font-size:44px;padding:8px 22px}
+}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -226,6 +275,7 @@ button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
         <div class="card"><div class="stats" id="bstats"></div></div>
       </div>
     </div>
+    <div class="mbar"><div class="c"><span id="mcount">0/5</span><small>エントリー</small></div><button class="big ghost" onclick="autoPick()">おまかせ</button><button class="big" id="msubmit" disabled onclick="$('submit').click()">選考に進む</button></div>
   </section>
 
   <section class="screen" id="s-result">
@@ -424,7 +474,7 @@ function renderBoard(){
   $("picked").innerHTML=UI.picked.length?UI.picked.map(i=>`<div class="it"><span>${CO[i].n}</span><b class="num">${Math.round(probNew(CO[i])*100)}%</b></div>`).join(""):`<div class="dim small">企業カードを押して追加。迷ったら「おまかせ」</div>`;
   const any=1-UI.picked.reduce((a,i)=>a*(1-probNew(CO[i])),1);
   $("anyp").style.width=any*100+"%";$("anyn").textContent=UI.picked.length?Math.round(any*100)+"%":"—";
-  $("submit").disabled=!UI.picked.length;
+  $("submit").disabled=!UI.picked.length;$("msubmit").disabled=!UI.picked.length;$("mcount").textContent=UI.picked.length+"/5";
   $("bstats").innerHTML=`<div class="small muted" style="margin-bottom:6px">${P.name}・${P.uni}${P.attrs.length?"・"+P.attrs.join("・"):""}${P.ronin?"・既卒"+P.ronin+"年目":""}</div>`+STAT.map(([k,n])=>`<div class="stat"><span>${n}</span><span class="b"><i style="width:${P[k]}%"></i></span><b class="num" style="text-align:right">${Math.round(P[k])}</b></div>`).join("");
 }
 function togglePick(i){const j=UI.picked.indexOf(i);if(j>=0)UI.picked.splice(j,1);else if(UI.picked.length<5)UI.picked.push(i);renderBoard()}
@@ -440,9 +490,13 @@ $("submit").onclick=()=>{
   go("result");UI.applied=[...UI.applied,...UI.picked];
   const res=UI.picked.map(i=>({c:CO[i],p:probNew(CO[i]),ok:null}));
   $("rtitle").textContent=UI.round===1?"選考結果":"二次募集の結果";$("offers").innerHTML="";
-  $("res").innerHTML=res.map((x,k)=>`<div class="rrow" id="rr${k}"><span class="lg" style="background:${G[x.c.g].c}">${mono(x.c.n)}</span><span><b>${x.c.n}</b><div class="w">合格率 ${Math.round(x.p*100)}%</div></span><span class="v">選考中…</span></div>`).join("");
-  res.forEach((x,k)=>setTimeout(()=>{x.ok=Math.random()<x.p;const el=$("rr"+k);el.classList.add("show",x.ok?"ok":"ng");el.querySelector(".v").textContent=x.ok?"内定":pick(["お祈り","最終で落選","書類落ち","お祈り"]);if(k===res.length-1)setTimeout(()=>showOffers(res),500)},500+k*600));
+  $("res").innerHTML=res.map((x,k)=>`<div class="rrow" id="rr${k}"><span class="lg" style="background:${G[x.c.g].c}">${mono(x.c.n)}</span><span><b>${x.c.n}</b><div class="w">合格率 ${Math.round(x.p*100)}%</div></span><span class="v"><span class="dots">選考中</span></span><span class="stamp"></span></div>`).join("");
+  const gap=autoMode?350:1000;
+  res.forEach((x,k)=>setTimeout(()=>{x.ok=Math.random()<x.p;const el=$("rr"+k);el.classList.add("show",x.ok?"ok":"ng");el.querySelector(".v").textContent=x.ok?pick(["最終面接通過","内々定の連絡"]):pick(["最終で落選","書類で落選","二次面接で落選","お祈りメール"]);const st=el.querySelector(".stamp");st.textContent=x.ok?"内定":"お祈り";st.className="stamp in "+(x.ok?"ok":"ng");if(x.ok)sparkle(el);
+    if(k===res.length-1)setTimeout(()=>{const n=res.filter(y=>y.ok).length;$("res").insertAdjacentHTML("beforeend",`<div class="rsum ${n?"ok":"ng"}"><b>${n?`内定 ${n}社`:"全滅"}</b><span class="muted small">${n?pick(["おめでとうございます。","よく頑張りました。"]):"持ち駒がなくなりました。"}</span></div>`);showOffers(res)},700)},700+k*gap));
 };
+function sparkle(el){for(let i=0;i<14;i++){const s=document.createElement("i");s.className="spark";s.style.left=r(20,90)+"%";s.style.top="50%";s.style.setProperty("--dx",r(-80,80)+"px");s.style.setProperty("--dy",r(-70,70)+"px");s.style.animationDelay=r(0,.2)+"s";el.appendChild(s);setTimeout(()=>s.remove(),1200)}}
+function toast(ok,txt){if(autoMode)return;const t=document.createElement("div");t.className="toast";t.innerHTML=`<div class="${ok?"ok":"ng"}">${ok?"内定":"お祈り"}<small>${txt}</small></div>`;document.body.appendChild(t);setTimeout(()=>t.remove(),1900)}
 function showOffers(res){
   const ok=res.filter(x=>x.ok).sort((a,b)=>b.c.pr-a.c.pr||b.c.s[1]-a.c.s[1]);const box=$("offers");
   if(ok.length){
@@ -491,7 +545,7 @@ function stepYear(){
   else P.income=calcIncome();
   const sp=P.spouse?P.spouse.inc:0;
   // 年収が上がるほど生活水準も上がる。配偶者の収入も6割は生活費に消える
-  let living=(c.g==="neet"?100:150+P.income*0.5+Math.max(0,P.income-1500)*0.1)+sp*0.6+(P.spouse?60:0)+P.kids*90+(P.home?P.home.cost:120);
+  let living=(c.g==="neet"?100:100+P.income*0.45+Math.max(0,P.income-1500)*0.12)+sp*0.6+(P.spouse?60:0)+P.kids*90+(P.home?P.home.cost:100);
   if(P.spouse&&P.spouse.type==="rich")living*=0.5;
   P.savings+=P.income+sp+P.side-living;
   if(P.side>0&&--P.sideY<=0)P.side=0;
@@ -548,7 +602,7 @@ function choose(title,lead,opts,note){
   const bar=$("cdbar");const ms=paused?0:9000;
   if(ms){bar.style.transition=`width ${ms}ms linear`;requestAnimationFrame(()=>requestAnimationFrame(()=>bar.style.width="0%"));cdT=setTimeout(()=>{ov.hidden=true;rec.fn();resume()},ms)}else bar.style.display="none";
 }
-function resume(){P.happy=clamp(P.happy,0,100);renderCareer();if(P.age>=END_AGE)finish();else schedule()}
+function resume(){P.happy=clamp(P.happy,0,100);renderCareer();if(P.age>=END_AGE)finish();else if(document.querySelector(".toast")&&!autoMode)setTimeout(schedule,1500);else schedule()}
 
 // ---------- ライフイベント ----------
 function lifeEvent(){
@@ -645,7 +699,8 @@ function openDecision(reason){
   pool=pool.filter(c=>c._jd<=3);
   pool.forEach(c=>c._p=probMid(c,head));
   const sh=a=>a.sort(()=>Math.random()-.5);
-  const ev=c=>c._p*midIncome(c)+(1-c._p)*P.income*0.8+(c.pr>cur.pr?120*(c.pr-cur.pr):0)-c.st*15*(P.health<40?3:1);
+  // 期待値。合格率が低い憧れ枠は「おすすめ」にしない
+  const ev=c=>c._p*midIncome(c)+(1-c._p)*P.income*0.9+(c.pr>cur.pr?40*(c.pr-cur.pr):0)-c.st*15*(P.health<40?3:1)-(c._p<0.2?9999:0);
   const dream=sh(pool.filter(c=>c.pr>=cur.pr+2&&c._p>=0.04)).slice(0,1);
   const up=sh(pool.filter(c=>c.pr===cur.pr+1)).sort((a,b)=>ev(b)-ev(a)).slice(0,1);
   const safe=sh(pool.filter(c=>c.pr<=cur.pr&&c._p>=0.35)).sort((a,b)=>ev(b)-ev(a)).slice(0,1);
@@ -665,9 +720,10 @@ function applyMid(c){
     const from=P.job,up=c.pr>from.pr;const role=Math.max(0,P.role-(up?1:0));
     const chg=c._jd>0,fromJt=P.jt;
     setJob(c,role,c._jt);P.moves++;P.coVal=0;P.chg=[1,0.88,0.75,0.65,0.5][c._jd];P.income=Math.round(midIncome(c));P.happy+=up?12:5;P.net=clamp(P.net+5,0,100);
+    toast(true,c.n);
     addLog(from.g==="neet"?`${c.n}に就職が決まりました。社会人のスタートです。`:`${from.n}から${c.n}へ転職しました（${JTN[P.jt]}・${ROLES[role]}）。${chg?`${JTN[fromJt]}からのキャリアチェンジで、年収はいったん${fmt(P.income)}万円に。`:up?"ステップアップです。":""}`,"move");
   }else{
-    P.fails++;P.happy-=8;P.nextD=P.age+ri(1,3);
+    P.fails++;P.happy-=8;P.nextD=P.age+ri(1,3);toast(false,c.n);
     addLog(`${c.n}に応募しましたが、${pick(["最終面接で落ちました。","書類で落ちました。","ケース面接で手も足も出ませんでした。","「ご縁がなかった」と連絡がありました。"])}${P.job.g==="neet"?"":"現職に残ります。"}`,"bad");
   }
 }
