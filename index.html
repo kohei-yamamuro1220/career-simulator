@@ -211,7 +211,8 @@ button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .intro2{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:start;padding:40px 0 20px}
 .il h2{font-size:54px;line-height:1.15;margin:0 0 18px;color:var(--ink);font-weight:900}
 .il p{color:var(--ink2);font-size:15.5px;line-height:1.9;margin:0 0 22px;max-width:520px}
-.istats{display:flex;gap:28px;flex-wrap:wrap;margin-bottom:26px}
+.istats{display:flex;gap:28px;flex-wrap:wrap;margin-bottom:8px}
+.isrc{font-size:10.5px;color:var(--ink3);margin-bottom:22px}
 .istats b{display:block;font-family:"Zen Old Mincho";font-size:34px;line-height:1;color:var(--ink)}
 .istats b small{font-size:14px;margin-left:2px;font-family:"Noto Sans JP";color:var(--ink2)}
 .istats span{font-size:12px;color:var(--ink3)}
@@ -377,7 +378,8 @@ h1,h2,h3,.serif{letter-spacing:.06em}
       <div class="il">
         <h2>年収3000万円に、<br>たどり着けるか。</h2>
         <p>大学も最初の会社も選べない。ひとりの新卒として、22歳から50歳までを歩く。</p>
-        <div class="istats"><div><b class="num">270<small>社</small></b><span>実在の企業にエントリー</span></div><div><b class="num">4<small>%</small></b><span>東大京大が出る確率</span></div><div><b class="num">28<small>年</small></b><span>22歳から50歳まで</span></div></div>
+        <div class="istats"><div><b class="num">460<small>万円</small></b><span>日本の平均年収</span></div><div><b class="num">5.5<small>%</small></b><span>年収1,000万円を超える人</span></div><div><b class="num">1<small>%</small></b><span>年収3,000万円に届く人</span></div></div>
+        <div class="isrc">国税庁「民間給与実態統計調査」をもとにした概算</div>
         <button class="big" onclick="go('setup')">出身ガチャを引く</button>
         <p class="xs dim" style="margin-top:14px">企業名は実在。合格率や年収はゲーム上の値です。</p>
       </div>
@@ -555,6 +557,13 @@ const CO=[
  ["中部電力","infra",62,50,[3,3,1,2,2,2],[300,630,960],3,2,2],["東北電力","infra",58,45,[3,3,1,2,2,2],[290,600,900],3,2,2],["東急","infra",76,60,[3,4,1,1,3,2],[320,700,1050],4,2,2],["阪急阪神ホールディングス","infra",74,58,[3,4,1,1,3,2],[320,690,1020],4,2,2],["小田急電鉄","infra",70,55,[3,3,1,1,3,2],[310,650,980],3,2,2],["近鉄","infra",64,50,[3,3,1,1,2,2],[300,620,920],3,2,2],["西日本鉄道","infra",62,48,[3,3,1,1,2,2],[300,600,900],3,2,2],["日本航空（地上職）","infra",72,55,[2,5,3,1,3,3],[300,600,900],3,3,2],["大阪ガス","infra",68,52,[3,3,1,2,2,2],[300,650,1000],3,1,2],
  ["読売新聞","ad",82,68,[4,4,1,1,4,3],[380,800,1150],4,4,3],["TBS","ad",90,75,[3,5,1,1,5,4],[400,980,1450],5,5,3],["テレビ朝日","ad",88,72,[3,5,1,1,5,4],[400,950,1400],4,5,3],["テレビ東京","ad",82,66,[3,5,1,1,5,3],[380,850,1250],4,4,3],["小学館","ad",86,68,[3,4,1,1,5,2],[400,950,1350],4,3,3],["KADOKAWA","ad",76,58,[3,4,1,2,4,2],[380,780,1150],3,3,3],["博報堂DYメディアパートナーズ","ad",80,65,[2,5,1,1,4,3],[420,880,1300],4,4,3],["オリエンタルランド","ad",84,65,[2,5,1,1,5,3],[350,750,1100],4,3,2],
  ["パーソルキャリア","other",56,42,[2,4,1,1,3,3],[330,620,900],3,4,3],["エン・ジャパン","other",52,40,[2,4,1,1,3,3],[320,600,850],2,4,3],["マイナビ","other",54,40,[2,4,1,1,3,3],[320,600,850],3,4,3],["セコム","other",54,40,[2,3,1,2,2,3],[300,580,850],3,2,2],["星野リゾート","other",62,45,[2,5,2,1,4,4],[300,560,820],3,4,3],["帝国ホテル","other",58,42,[2,5,2,1,3,3],[280,520,760],3,3,2],["ドン・キホーテ（PPIH）","other",46,0,[2,4,1,1,2,4],[300,560,800],2,4,2],["しまむら","other",40,0,[2,3,1,1,2,3],[280,500,700],2,3,1],["コストコ","other",38,0,[1,3,2,1,1,4],[320,520,700],2,3,1],["IKEA","other",40,0,[1,4,2,1,2,3],[300,500,680],2,3,2],["スターバックス（店舗）","other",30,0,[1,4,1,1,2,4],[250,400,540],1,3,1],["保育園","other",18,0,[1,3,1,1,1,3],[230,350,460],1,3,1],["公立学校の教員","gov",50,0,[3,4,1,1,2,3],[280,560,800],2,4,1],["消防士・警察官","gov",44,0,[2,3,1,1,2,5],[290,560,800],2,3,1],["自衛官","gov",40,0,[2,3,1,1,2,5],[280,540,760],2,3,1],
+ ["三菱UFJ信託銀行","fin",74,58,[3,4,1,2,2,2],[320,760,1150],4,3,2],["りそな銀行","fin",58,45,[3,4,1,1,2,2],[290,650,980],3,3,2],["千葉銀行","fin",52,40,[2,3,1,1,2,2],[280,560,820],2,2,1],["横浜銀行","fin",54,42,[2,3,1,1,2,2],[280,580,850],2,2,1],["静岡銀行","fin",50,40,[2,3,1,1,2,2],[270,540,800],2,2,1],["JA（農協）","fin",36,0,[1,3,1,1,1,2],[240,420,600],1,2,1],["アフラック","fin",62,48,[2,4,1,1,2,2],[320,680,1000],3,2,2],["プルデンシャル生命（営業）","fin",50,0,[1,5,1,1,3,4],[400,900,1500],2,5,3],["ソニー生命（営業）","fin",48,0,[1,5,1,1,3,4],[380,850,1400],2,5,3],["クレディセゾン","fin",50,40,[2,3,1,2,2,2],[300,580,850],2,2,2],["JCB","fin",66,50,[3,3,1,2,2,2],[320,680,1000],3,2,2],["野村アセットマネジメント","fin",84,70,[5,3,2,3,2,1],[450,950,1500],4,3,3],["日本M&Aセンター","fin",70,50,[2,5,1,1,3,5],[500,1200,2200],3,5,3],["M&A総合研究所","fin",62,45,[2,5,1,1,3,5],[450,1100,2000],3,5,3],
+ ["ドリームインキュベータ","cons_s",86,76,[4,3,2,1,2,1],[580,1100,2200],4,5,5],["経営共創基盤（IGPI）","cons_s",88,78,[4,3,2,2,2,1],[600,1150,2300],4,5,5],["アクセンチュア（戦略）","cons_s",84,72,[4,3,2,1,2,1],[550,1000,2000],4,5,5],["日本総研","cons",72,58,[4,3,1,3,2,1],[450,800,1200],3,3,3],["三菱総研","cons",80,65,[5,2,1,3,1,1],[480,850,1300],4,2,3],["みずほリサーチ&テクノロジーズ","cons",64,50,[4,2,1,3,1,1],[400,700,1050],3,2,2],["クニエ","cons",66,52,[3,3,1,2,2,2],[450,750,1150],3,4,3],["フューチャー","cons",70,52,[4,2,1,4,2,2],[500,850,1300],3,4,4],["レイヤーズ・コンサルティング","cons",60,45,[3,3,1,2,2,2],[420,700,1050],3,4,3],["リブ・コンサルティング","cons",56,42,[2,4,1,1,2,3],[400,680,1000],2,5,3],["タナベコンサルティング","cons",50,40,[2,4,1,1,2,3],[380,620,900],2,4,2],
+ ["日本IBM（営業）","gaishi_it",72,52,[3,4,2,2,2,2],[500,900,1400],3,3,3],["日本HP","gaishi_it",64,48,[3,3,2,3,2,2],[450,800,1200],3,2,2],["デル・テクノロジーズ","gaishi_it",64,48,[3,4,2,2,2,2],[450,800,1200],3,3,2],["ServiceNow","gaishi_it",80,55,[3,4,3,3,2,2],[650,1200,1900],4,3,3],["Datadog","gaishi_it",82,55,[4,3,3,4,2,2],[700,1300,2000],4,3,4],["Snowflake","gaishi_it",84,58,[4,3,3,4,2,2],[750,1400,2200],4,3,4],["Stripe","gaishi_it",88,62,[4,3,4,4,2,1],[800,1500,2400],4,3,4],["LINE（海外拠点）","gaishi_it",70,50,[3,3,3,4,2,1],[500,850,1300],3,2,3],
+ ["ディップ","web",54,40,[2,4,1,1,3,3],[350,620,900],2,4,3],["ラクスル","web",68,45,[3,4,1,3,3,2],[480,780,1150],3,3,4],["マクアケ","web",58,40,[2,4,1,2,3,2],[400,650,950],2,3,3],["note","web",66,45,[3,3,1,3,3,1],[450,700,1000],3,2,3],["クックパッド","web",60,42,[3,3,1,3,2,1],[420,680,950],3,2,2],["カカクコム","web",68,50,[3,3,1,3,2,1],[450,750,1100],3,2,3],["じげん","web",56,40,[2,4,1,2,3,3],[380,650,950],2,4,3],["アカツキ","web",62,42,[3,3,1,3,3,2],[450,750,1050],3,3,3],["コロプラ","web",58,40,[3,2,1,4,2,1],[420,680,950],3,3,2],["ガンホー","web",60,42,[3,2,1,4,2,1],[430,700,1000],3,3,2],["スクウェア・エニックス","web",74,52,[3,2,1,4,4,1],[400,720,1050],3,3,3],["バンダイナムコ","web",76,55,[3,3,1,3,4,2],[400,760,1100],4,3,3],["セガ","web",64,45,[3,2,1,4,3,1],[380,680,980],3,3,3],["カプコン","web",68,48,[3,2,1,4,3,1],[380,700,1000],3,3,3],["Cygames","web",66,45,[3,2,1,4,3,2],[450,780,1100],3,4,3],
+ ["大塚商会","sier",52,40,[2,4,1,2,2,3],[330,600,850],2,4,2],["オービック","sier",62,45,[3,3,1,3,2,3],[400,800,1200],3,3,3],["日本ユニシス（BIPROGY）","sier",60,45,[3,3,1,3,2,2],[310,620,900],3,2,2],["NTTコムウェア","sier",58,45,[3,2,1,3,2,2],[310,600,880],3,2,2],["JR東日本情報システム","sier",56,42,[3,2,1,3,2,2],[300,580,850],2,2,2],["野村システム（NRIセキュア）","sier",64,48,[4,2,1,4,1,1],[400,750,1100],3,3,3],["ワークスアプリケーションズ","sier",54,40,[3,2,1,3,2,2],[380,620,850],2,4,3],["サイボウズ","sier",66,45,[3,3,1,4,3,1],[450,720,1000],3,1,3],
+ ["スズキ","maker",64,50,[3,3,1,3,2,3],[310,660,950],3,2,2],["SUBARU","maker",66,50,[3,3,2,3,2,3],[320,680,980],3,2,2],["マツダ","maker",64,50,[3,3,2,3,2,3],[310,660,950],3,2,2],["ヤマハ発動機","maker",68,52,[3,3,2,3,2,3],[320,700,1000],3,2,2],["アイシン","maker",66,50,[3,2,1,4,2,2],[320,690,980],3,2,2],["豊田自動織機","maker",68,52,[3,2,1,4,2,2],[330,700,1000],4,2,2],["オムロン","maker",72,55,[3,3,2,4,2,2],[340,720,1050],4,2,3],["京セラ","maker",68,52,[3,3,2,3,2,2],[320,680,980],3,2,2],["日本電産（ニデック）","maker",66,50,[3,3,2,3,2,4],[330,700,1050],3,4,3],["TDK","maker",70,52,[3,2,2,4,2,2],[330,700,1050],3,2,3],["ソニーセミコンダクタ","maker",76,58,[4,2,1,5,2,1],[380,800,1200],4,2,3],["キヤノン","maker",72,55,[3,3,2,3,2,2],[330,700,1050],4,2,2],["リコー","maker",62,48,[3,3,1,3,2,2],[310,640,920],3,2,2],["富士通ゼネラル","maker",56,42,[3,2,1,3,2,2],[300,600,850],2,2,2],["大日本印刷","maker",64,50,[3,3,1,3,3,2],[320,650,950],3,2,2],["凸版印刷","maker",64,50,[3,3,1,3,3,2],[320,650,950],3,2,2],["日清製粉","maker",72,55,[3,3,1,2,3,2],[330,700,1000],4,2,2],["森永製菓","maker",72,55,[2,4,1,2,3,3],[330,690,1000],3,2,2],["ロッテ","maker",68,52,[2,4,1,2,3,3],[330,680,980],3,2,2],["ハウス食品","maker",68,52,[2,4,1,2,3,2],[320,660,950],3,2,2],["コーセー","maker",72,55,[2,4,2,2,4,2],[330,700,1000],3,2,3],["ライオン","maker",66,50,[3,3,1,3,3,2],[320,670,950],3,2,2],["小林製薬","maker",68,52,[3,3,1,3,3,2],[330,690,980],3,2,2],["塩野義製薬","maker",80,62,[4,3,2,4,2,1],[420,900,1400],4,2,3],["協和キリン","maker",76,58,[4,3,2,4,2,1],[400,850,1300],4,2,3],["テルモ","maker",74,56,[3,3,2,4,2,2],[350,760,1150],4,2,3],["オリンパス","maker",72,55,[3,3,2,4,2,2],[350,740,1100],4,2,3],["シスメックス","maker",72,55,[3,3,2,4,2,2],[360,760,1150],4,2,3],["ニコン","maker",66,50,[3,2,2,4,2,2],[330,690,1000],3,2,2],["ヤマハ","maker",70,52,[3,3,2,3,3,2],[330,690,1000],3,2,2],["任天堂（販売職）","maker",76,55,[3,4,2,2,3,2],[380,780,1100],4,2,2],
+ ["JTB（法人営業）","other",56,42,[2,5,2,1,3,3],[280,520,760],2,3,2],["リクルートスタッフィング","other",44,0,[1,4,1,1,2,3],[300,500,650],2,4,2],["パソナ","other",46,0,[1,4,1,1,2,3],[300,500,650],2,3,2],["レバレジーズ","other",52,40,[2,4,1,1,3,4],[400,700,1000],2,5,3],["ネオキャリア","other",40,0,[1,4,1,1,2,4],[320,540,720],1,5,2],["オープンワーク","other",56,42,[3,3,1,2,3,2],[400,650,950],2,3,3],["アパホテル","other",34,0,[1,3,1,1,1,3],[280,460,620],1,3,1],["東横イン","other",32,0,[1,3,1,1,1,3],[270,440,600],1,3,1],["ルートインホテルズ","other",30,0,[1,3,1,1,1,3],[260,420,580],1,3,1],["大戸屋","other",22,0,[1,3,1,1,1,4],[250,390,520],1,4,1],["鳥貴族","other",22,0,[1,3,1,1,1,4],[260,400,540],1,4,1],["サイゼリヤ","other",26,0,[1,3,1,1,1,4],[260,420,560],1,4,1],["ゼンショー","other",24,0,[1,3,1,1,1,4],[260,410,550],1,4,1],["マクドナルド","other",30,0,[1,3,1,1,2,4],[260,430,600],1,3,1],["ローソン本部","other",50,40,[2,4,1,1,3,3],[300,580,850],2,3,2],["ファミリーマート本部","other",50,40,[2,4,1,1,3,3],[300,580,850],2,3,2],["ニトリ（店舗）","other",40,0,[1,3,1,1,2,3],[280,480,660],2,3,2],["ユニクロ（店舗）","other",42,0,[1,4,2,1,2,4],[300,500,700],2,4,2],["ABCマート","other",30,0,[1,3,1,1,1,3],[260,430,580],1,3,1],["青山商事","other",30,0,[1,3,1,1,1,3],[260,430,580],1,3,1],["カーディーラーの営業","other",34,0,[1,4,1,1,2,4],[290,520,700],1,4,2],["中古車販売（ビッグモーター系）","other",24,0,[1,4,1,1,1,5],[300,550,750],1,5,1],["携帯ショップ","other",22,0,[1,3,1,1,1,3],[260,420,560],1,3,1],["パチンコホール","other",16,0,[1,2,1,1,1,4],[300,460,600],1,4,1],["ゲームセンター運営","other",16,0,[1,2,1,1,1,3],[250,380,500],1,3,1],["ジムのトレーナー","other",22,0,[1,4,1,1,2,5],[250,400,540],1,3,2],["美容クリニックの受付・カウンセラー","other",30,0,[1,4,1,1,2,3],[300,500,680],1,3,2],["歯科医院の受付","other",14,0,[1,3,1,1,1,2],[240,350,440],1,2,1],["学習塾（集団指導）","other",34,0,[2,4,1,1,2,3],[280,450,600],1,4,2],["私立学校の教員","other",50,40,[3,4,1,1,2,3],[300,560,800],2,3,1],["NPO法人","other",30,0,[2,3,2,1,3,2],[240,380,520],1,2,2],["地方の出版社","other",36,0,[3,3,1,1,3,2],[260,440,600],1,3,2],["地方新聞社","other",54,40,[3,3,1,1,3,3],[300,560,800],2,3,2],["ラジオ局","other",56,42,[3,4,1,1,4,3],[300,560,800],2,3,2],["イベント会社","other",30,0,[1,4,1,1,3,4],[260,430,600],1,4,2],["葬儀社","other",22,0,[1,3,1,1,1,3],[270,440,600],1,3,1],["引越し会社","other",16,0,[1,2,1,1,1,5],[280,420,560],1,4,1],["ガソリンスタンド","other",12,0,[1,2,1,1,1,4],[240,360,460],1,3,1],["コールセンター","other",14,0,[1,3,1,1,1,2],[240,350,450],1,3,1],["データ入力の派遣","other",10,0,[1,1,1,1,1,1],[220,300,380],1,2,1],["工場の派遣社員","other",8,0,[1,1,1,1,1,4],[240,320,400],1,3,1],["フードデリバリー配達員","other",6,0,[1,1,1,1,1,5],[200,280,340],1,3,1],
  ["楽天銀行","other",52,40,[3,3,1,2,2,2],[320,600,850],2,2,2],["セブン-イレブン本部","other",58,42,[2,4,1,1,3,3],[320,620,900],3,3,2],["イオン","other",46,0,[2,3,1,1,2,3],[280,520,750],2,3,1],["ヤマダデンキ","other",36,0,[1,3,1,1,1,3],[270,450,620],1,3,1],["すかいらーく","other",28,0,[1,3,1,1,1,4],[260,420,580],1,4,1],["ワタミ","other",22,0,[1,3,1,1,1,5],[250,400,540],1,5,1],["ビックカメラ","other",36,0,[1,3,1,1,1,3],[270,450,620],1,3,1],["明光義塾（塾講師）","other",30,0,[2,4,1,1,2,3],[260,420,560],1,3,2],["ベネッセ","other",62,45,[3,4,1,1,3,2],[330,640,920],3,2,2],["JTB","other",58,42,[2,5,2,1,3,3],[280,520,760],2,3,2],["HIS","other",46,0,[2,4,2,1,2,3],[270,480,700],2,4,2],["リゾートホテルのフロント","other",30,0,[1,4,2,1,2,3],[250,400,550],1,3,1],["介護施設の職員","other",18,0,[1,3,1,1,1,4],[240,360,480],1,4,1],["タクシー会社","other",14,0,[1,2,1,1,1,4],[280,400,500],1,3,1],["警備会社","other",14,0,[1,2,1,1,1,4],[250,380,480],1,3,1],["地方の信用組合","other",36,0,[2,3,1,1,2,2],[240,420,600],1,2,1],["中堅の建設会社","other",36,0,[2,3,1,2,1,4],[290,500,700],2,4,2],["町工場","other",20,0,[1,2,1,2,1,3],[240,380,500],1,3,1],["地方の中堅SIer","other",34,0,[2,2,1,3,1,2],[270,460,620],2,3,2],["ゲーム会社（中堅）","other",50,0,[3,2,1,4,3,2],[300,520,760],2,4,3],["医療機器の営業","other",48,0,[2,4,1,2,2,3],[320,620,880],2,3,2],["人材紹介のキャリアアドバイザー","other",40,0,[2,4,1,1,2,3],[300,520,700],2,4,2],["Web制作会社","other",36,0,[2,3,1,3,2,2],[280,450,620],1,3,3],["不動産デベロッパー（地方）","other",46,0,[2,4,1,1,2,3],[320,600,850],2,3,2],["食品卸","other",30,0,[1,3,1,1,1,3],[260,430,600],1,2,1],["アパレル店員","other",22,0,[1,3,1,1,2,3],[240,380,520],1,3,1],["ブライダル","other",34,0,[1,4,1,1,3,4],[260,430,600],1,4,2],["放課後デイサービス","other",20,0,[1,3,1,1,1,3],[240,360,480],1,3,1],
  ["SmartHR","startup",72,45,[3,4,1,4,4,2],[500,800,1200],3,3,5],["タイミー","startup",68,40,[3,4,1,3,4,2],[450,750,1100],3,4,5],["ベンチャー企業（創業3年）","startup",50,0,[2,4,1,3,3,3],[380,600,900],2,4,5],
  ["大手製薬のMR","other",62,45,[2,5,1,2,3,3],[350,700,950],3,3,2],["ニトリ","other",56,40,[2,4,1,1,3,3],[300,550,800],2,3,3],["ファーストリテイリング","other",60,40,[3,4,2,1,3,4],[320,600,900],3,4,3],["ヤマト運輸・佐川急便","other",45,0,[2,3,1,1,2,4],[290,500,700],2,3,1],["専門商社","other",52,40,[2,4,2,1,2,3],[300,550,800],2,3,2],["信用金庫","other",40,0,[2,3,1,1,2,2],[250,450,650],2,2,1],["オープンハウス","other",44,0,[1,5,1,1,2,5],[350,700,900],2,5,2],["大東建託","other",34,0,[1,4,1,1,1,4],[300,500,650],1,4,1],["不動産仲介の営業","other",42,0,[1,4,1,1,2,4],[300,550,750],2,4,2],["生命保険の営業職","other",36,0,[1,4,1,1,2,3],[280,500,650],1,4,1],["大手派遣会社の営業","other",40,0,[1,4,1,1,2,3],[290,480,620],1,4,2],["受託開発のIT企業","other",40,0,[2,2,1,4,1,2],[300,480,650],2,3,3],["中堅広告代理店","other",48,0,[2,4,1,1,3,3],[300,520,700],2,4,3],["地方テレビ局","other",64,45,[3,4,1,1,4,3],[350,650,900],3,3,2],["総合スーパー・小売","other",30,0,[1,3,1,1,1,3],[260,420,560],1,3,1],["地方の中堅メーカー","other",32,0,[2,2,1,2,1,2],[250,420,560],1,2,1],
@@ -567,7 +576,7 @@ const MID=[
 // 職種: sales 営業 / biz 企画・事業開発 / eng エンジニア / cons コンサル / fin 金融専門職 / sogo 総合職 / gov 公務員 / cre クリエイティブ
 const JTN={sales:"営業",biz:"企画・事業開発",eng:"エンジニア",cons:"コンサルタント",fin:"金融専門職",sogo:"総合職",gov:"公務員",cre:"クリエイティブ"};
 const JT_G={cons_s:["cons"],cons:["cons"],shosha:["sogo"],gaigin:["fin"],fin:["sogo","sales"],gaishi_it:["sales","eng"],web:["biz","sales","eng"],sier:["eng","sales"],maker:["sogo","eng"],ad:["sales","cre"],dev:["sogo"],infra:["sogo","eng"],gov:["gov"],startup:["biz","sales","eng"],pe:["fin"],other:["sales","sogo"]};
-const JT_CO={"キーエンス":["sales"],"リクルート":["sales","biz"],"メルカリ":["eng","biz"],"LINEヤフー":["eng","biz"],"DeNA":["eng","biz"],"Google":["eng","sales"],"Microsoft":["eng","sales"],"任天堂":["eng","cre"],"ソニー":["eng","sogo"],"野村総合研究所":["cons","eng"],"受託開発のIT企業":["eng"],"中堅SIer":["eng","sales"],"中堅広告代理店":["sales","cre"],"地方テレビ局":["sogo","cre"],"地方銀行":["sogo","sales"],"信用金庫":["sogo","sales"],"中小メーカー":["sogo","sales"],"地方の中堅メーカー":["sogo","sales"],"ユニコーン企業の経営幹部（CxO）":["biz"],"野村総研（SE職）":["eng"],"ファナック":["eng"],"AWS":["eng","sales"],"Meta":["eng","sales"],"Apple Japan":["sales","eng"],"ティアフォー":["eng"],"Ubie":["eng","biz"],"LayerX":["eng","biz"],"freee":["eng","sales"],"マネーフォワード":["eng","sales"],"Sansan":["sales","eng"],"エムスリー":["biz","sales"],"NHK":["sogo","cre"],"日本テレビ":["sogo","cre"],"フジテレビ":["sogo","cre"],"講談社":["cre","sales"],"集英社":["cre","sales"],"日本経済新聞":["cre","sales"],"朝日新聞":["cre","sales"],"サイバーエージェント（広告）":["sales"],"ゲーム会社（中堅）":["eng","cre"],"Web制作会社":["cre","eng"],"地方の中堅SIer":["eng"],"明光義塾（塾講師）":["sales"],"人材紹介のキャリアアドバイザー":["sales"],"医療機器の営業":["sales"],"ベネッセ":["sogo","sales"],"JTB":["sales"],"HIS":["sales"],"日本銀行":["gov"],"外務省（国家総合職）":["gov"],"市役所":["gov"],"JICA":["sogo"],"船井総研":["cons","sales"],"ベイカレント":["cons"],"日本IBM":["eng","sales","cons"],"シスコシステムズ":["sales","eng"],"アドビ":["sales","eng"],"SAS Institute":["eng","sales"],"TBS":["sogo","cre"],"テレビ朝日":["sogo","cre"],"テレビ東京":["sogo","cre"],"読売新聞":["cre","sales"],"小学館":["cre","sales"],"KADOKAWA":["cre","biz"],"オリエンタルランド":["sogo"],"博報堂DYメディアパートナーズ":["sales"],"パーソルキャリア":["sales"],"エン・ジャパン":["sales"],"マイナビ":["sales"],"公立学校の教員":["gov"],"消防士・警察官":["gov"],"自衛官":["gov"],"スターバックス（店舗）":["sales"],"保育園":["sales"],"日本取引所グループ":["sogo"]};
+const JT_CO={"キーエンス":["sales"],"リクルート":["sales","biz"],"メルカリ":["eng","biz"],"LINEヤフー":["eng","biz"],"DeNA":["eng","biz"],"Google":["eng","sales"],"Microsoft":["eng","sales"],"任天堂":["eng","cre"],"ソニー":["eng","sogo"],"野村総合研究所":["cons","eng"],"受託開発のIT企業":["eng"],"中堅SIer":["eng","sales"],"中堅広告代理店":["sales","cre"],"地方テレビ局":["sogo","cre"],"地方銀行":["sogo","sales"],"信用金庫":["sogo","sales"],"中小メーカー":["sogo","sales"],"地方の中堅メーカー":["sogo","sales"],"ユニコーン企業の経営幹部（CxO）":["biz"],"野村総研（SE職）":["eng"],"ファナック":["eng"],"AWS":["eng","sales"],"Meta":["eng","sales"],"Apple Japan":["sales","eng"],"ティアフォー":["eng"],"Ubie":["eng","biz"],"LayerX":["eng","biz"],"freee":["eng","sales"],"マネーフォワード":["eng","sales"],"Sansan":["sales","eng"],"エムスリー":["biz","sales"],"NHK":["sogo","cre"],"日本テレビ":["sogo","cre"],"フジテレビ":["sogo","cre"],"講談社":["cre","sales"],"集英社":["cre","sales"],"日本経済新聞":["cre","sales"],"朝日新聞":["cre","sales"],"サイバーエージェント（広告）":["sales"],"ゲーム会社（中堅）":["eng","cre"],"Web制作会社":["cre","eng"],"地方の中堅SIer":["eng"],"明光義塾（塾講師）":["sales"],"人材紹介のキャリアアドバイザー":["sales"],"医療機器の営業":["sales"],"ベネッセ":["sogo","sales"],"JTB":["sales"],"HIS":["sales"],"日本銀行":["gov"],"外務省（国家総合職）":["gov"],"市役所":["gov"],"JICA":["sogo"],"船井総研":["cons","sales"],"ベイカレント":["cons"],"日本IBM":["eng","sales","cons"],"シスコシステムズ":["sales","eng"],"アドビ":["sales","eng"],"SAS Institute":["eng","sales"],"TBS":["sogo","cre"],"テレビ朝日":["sogo","cre"],"テレビ東京":["sogo","cre"],"読売新聞":["cre","sales"],"小学館":["cre","sales"],"KADOKAWA":["cre","biz"],"オリエンタルランド":["sogo"],"博報堂DYメディアパートナーズ":["sales"],"パーソルキャリア":["sales"],"エン・ジャパン":["sales"],"マイナビ":["sales"],"公立学校の教員":["gov"],"消防士・警察官":["gov"],"自衛官":["gov"],"スターバックス（店舗）":["sales"],"保育園":["sales"],"日本取引所グループ":["sogo"],"プルデンシャル生命（営業）":["sales"],"ソニー生命（営業）":["sales"],"日本M&Aセンター":["sales"],"M&A総合研究所":["sales"],"野村アセットマネジメント":["fin"],"アクセンチュア（戦略）":["cons"],"日本IBM（営業）":["sales"],"ServiceNow":["sales","eng"],"Datadog":["eng","sales"],"Snowflake":["eng","sales"],"Stripe":["eng","biz"],"サイボウズ":["eng","sales"],"スクウェア・エニックス":["eng","cre"],"バンダイナムコ":["sogo","cre"],"セガ":["eng","cre"],"カプコン":["eng","cre"],"Cygames":["eng","cre"],"コロプラ":["eng"],"ガンホー":["eng"],"アカツキ":["eng","biz"],"note":["eng","biz"],"クックパッド":["eng"],"カカクコム":["eng","biz"],"大塚商会":["sales"],"オービック":["sales","eng"],"任天堂（販売職）":["sales"],"私立学校の教員":["gov"],"学習塾（集団指導）":["sales"],"レバレジーズ":["sales"],"ネオキャリア":["sales"],"オープンワーク":["biz","sales"],"地方新聞社":["cre","sales"],"ラジオ局":["cre","sales"],"地方の出版社":["cre"],"NPO法人":["biz"],"ソニーセミコンダクタ":["eng"],"TDK":["eng"],"JTB（法人営業）":["sales"],"リクルートスタッフィング":["sales"],"パソナ":["sales"]};
 const jtOf=c=>JT_CO[c.n]||JT_G[c.g]||["sogo"];
 // 職種間の距離: 0 同じ / 1 隣接 / 2 遠い / 3 かなり遠い / 4 ほぼ不可能
 const JT_D={sales:{biz:1,sogo:1,cons:2,cre:2,fin:3,gov:3,eng:4},biz:{sales:1,sogo:1,cons:1,cre:2,fin:3,gov:3,eng:4},eng:{cons:1,biz:2,sales:2,sogo:2,cre:2,fin:3,gov:3},cons:{biz:1,sogo:1,sales:1,fin:2,cre:3,gov:3,eng:4},fin:{cons:1,sales:1,biz:2,sogo:2,cre:3,gov:3,eng:4},sogo:{sales:1,biz:1,cons:2,fin:2,cre:3,gov:2,eng:4},gov:{sogo:1,cons:2,biz:2,sales:2,fin:3,cre:3,eng:4},cre:{biz:2,sales:2,sogo:2,cons:3,fin:4,gov:4,eng:4}};
@@ -628,18 +637,21 @@ $("toJob").onclick=startJob;
 
 // ============ 合格率 ============
 function score(c,s){let t=0,w=0;const ks=["head","com","eng","spec","gak","sta"];c.w.forEach((wi,i)=>{t+=wi*s[ks[i]];w+=wi});return t/w}
+// 二次募集に残っている枠：一次で受けていない・学歴フィルターにかからない・格3以下・難易度は学歴に応じて下がる
+function round2ok(c){if(UI.applied.includes(CO.indexOf(c)))return false;if(c.pr>=4)return false;if(P.edu<c.f)return false;const cap=P.edu>=88?60:P.edu>=70?50:P.edu>=52?42:36;return c.d<=cap}
 function probNew(c){
   let p=sig((score(c,P)+(P.edu-60)*0.18-c.d)/8.5)-0.03;
   if(P.edu<c.f)p*=0.3;
   if(c.pr===5&&P.edu<88)p=Math.min(p,0.3);
-  if(UI.round===2)p+=0.08; if(P.ronin)p-=0.05*P.ronin;
-  if(c.g==="other")p=Math.max(p,0.45);
-  return clamp(p,0.02,0.96);
+  if(UI.round===2)p-=0.1; if(P.ronin)p-=0.06*P.ronin;
+  if(c.g==="other")p=Math.max(p,UI.round===2?0.3:0.4);
+  return clamp(p,0.02,0.93);
 }
 function probMid(c,head){
   const cur=P.job; const prS=cur.pr*20;
   let sc=0.38*P.skill+0.22*prS+0.14*P.net+0.1*P.eng+0.1*P.head+0.06*P.com;
-  let p=sig((sc+(P.edu-60)*0.08-c.d)/10)-0.08;
+  let p=sig((sc+(P.edu-60)*0.08-c.d)/10)-0.1;
+  if(c.pr===5)p-=0.12;
   if(c.g===cur.g)p+=0.1; else if((ADJ[cur.g]||[]).includes(c.g))p+=0.04; else p-=0.08;
   if(c.pr>cur.pr+1)p-=0.12;
   if(P.age>32&&["cons_s","gaigin","pe"].includes(c.g))p-=0.15;
@@ -657,7 +669,7 @@ function probMid(c,head){
 function renderBoard(){
   const groups=["all",...Object.keys(G).filter(k=>!["pe","neet","indie"].includes(k))];
   $("filters").innerHTML=groups.map(k=>`<button class="${UI.filter===k?"on":""}" style="${UI.filter===k?"background:"+(k==="all"?"var(--gold);color:#1A1200":G[k].c):""}" onclick="UI.filter='${k}';renderBoard()">${k==="all"?"すべて":G[k].n}</button>`).join("");
-  let list=CO.filter(c=>UI.round===1||(c.d<=70&&!UI.applied.includes(CO.indexOf(c))));
+  let list=CO.filter(c=>UI.round===1||round2ok(c));
   if(UI.filter!=="all")list=list.filter(c=>c.g===UI.filter);
   $("btitle").innerHTML=UI.round===1?`志望企業を選ぶ <small>最大5社</small>`:`二次募集 <small>最大5社</small>`;
   $("cos").innerHTML=list.map(c=>{const p=probNew(c);const i=CO.indexOf(c);const on=UI.picked.includes(i);const off=!on&&UI.picked.length>=5;
@@ -671,7 +683,7 @@ function renderBoard(){
 }
 function togglePick(i){const j=UI.picked.indexOf(i);if(j>=0)UI.picked.splice(j,1);else if(UI.picked.length<5)UI.picked.push(i);renderBoard()}
 function autoPick(){
-  const list=CO.filter(c=>UI.round===1||(c.d<=70&&!UI.applied.includes(CO.indexOf(c)))).map(c=>({i:CO.indexOf(c),p:probNew(c),c}));
+  const list=CO.filter(c=>UI.round===1||round2ok(c)).map(c=>({i:CO.indexOf(c),p:probNew(c),c}));
   const sh=a=>a.sort(()=>Math.random()-.5);
   const dream=sh(list.filter(x=>x.p>=.05&&x.p<.25&&x.c.pr>=4)).slice(0,2), real=sh(list.filter(x=>x.p>=.25&&x.p<.6)).slice(0,2), safe=sh(list.filter(x=>x.p>=.6)).sort((a,b)=>b.c.pr-a.c.pr).slice(0,1);
   UI.picked=[...dream,...real,...safe].map(x=>x.i).slice(0,5);
@@ -704,7 +716,7 @@ function ronin(){P.ronin++;P.age++;P.year++;P.happy-=8;if(P.ronin>=2){startCaree
 
 // ============ キャリア ============
 // P.chg: キャリアチェンジ直後の年収係数（勤続とともに1に戻る）
-const ROLES=["メンバー","シニア","マネージャー","部長・ディレクター","役員・パートナー"], ROLEX=[1,1.05,1.13,1.25,1.45];
+const ROLES=["メンバー","シニア","マネージャー","部長・ディレクター","役員・パートナー"], ROLEX=[1,1.03,1.08,1.16,1.3];
 function setJob(c,role,jt){P.job=c;P.tenure=0;P.role=role||0;P.jt=jt||(c.g==="indie"?"biz":(c.g==="neet"||c.g==="free")?(P.jt||"sales"):jtOf(c)[0]);P.history.push({age:P.age,c});if(c.pr>P.peakPr)P.peakPr=c.pr}
 function addLog(t,cls){P.log.unshift({age:P.age,year:P.year,t,cls:cls||""})}
 function startCareer(i){
@@ -714,9 +726,9 @@ function startCareer(i){
   else addLog(`${P.uni}を卒業し、${P.age}歳で${c.n}に新卒入社しました。`,"move");
   P.income=calcIncome();renderCareer();go("career");schedule();
 }
-function salAt(c,a){const s=c.s;return a<=22?s[0]:a<=30?s[0]+(s[1]-s[0])*(a-22)/8:a<=40?s[1]+(s[2]-s[1])*(a-30)/10:s[2]*(1+(a-40)*0.006)}
-function calcIncome(){const c=P.job;if(c.g==="neet")return P.tenure>0?120:0;if(c.g==="indie"||c.g==="free")return P.income;const chg=P.chg&&P.chg<1?Math.min(1,P.chg+P.tenure*0.04):1;const senior=P.age>=47&&P.role<3&&!["gaigin","pe","cons_s"].includes(c.g)?0.85:1;return Math.round(salAt(c,P.age)*(1+(P.skill-50)/250)*ROLEX[P.role]*chg*senior)}
-function midIncome(c){const jd=c._jd===undefined?jtFor(c).d:c._jd;const chg=[1,0.8,0.65,0.5,0.4][jd];const ind=(c.g===P.job.g||(ADJ[P.job.g]||[]).includes(c.g))?1:0.92;return salAt(c,P.age)*(1+(P.skill-50)/250)*ROLEX[Math.max(0,P.role-(c.pr>P.job.pr?1:0))]*chg*ind}
+function salAt(c,a){const s=c.s;const v=a<=22?s[0]:a<=30?s[0]+(s[1]-s[0])*(a-22)/8:a<=40?s[1]+(s[2]-s[1])*(a-30)/10:s[2]*(1+Math.min(a-40,5)*0.004);return a<=24?v:v*(c.pr>=5&&a>30?0.82:0.9)}
+function calcIncome(){const c=P.job;if(c.g==="neet")return P.tenure>0?120:0;if(c.g==="indie"||c.g==="free")return P.income;const chg=P.chg&&P.chg<1?Math.min(1,P.chg+P.tenure*0.04):1;const senior=P.age>=47&&P.role<3&&!["gaigin","pe","cons_s"].includes(c.g)?0.85:1;return Math.round(salAt(c,P.age)*(1+(P.skill-50)/450)*ROLEX[P.role]*chg*senior)}
+function midIncome(c){const jd=c._jd===undefined?jtFor(c).d:c._jd;const chg=[1,0.8,0.65,0.5,0.4][jd];const ind=(c.g===P.job.g||(ADJ[P.job.g]||[]).includes(c.g))?1:0.92;return salAt(c,P.age)*(1+(P.skill-50)/450)*ROLEX[Math.max(0,P.role-(c.pr>P.job.pr?1:0))]*chg*ind}
 function netWorth(){return P.savings+P.idx+P.crypto+(P.home?P.home.val-P.home.loan:0)+P.coVal-P.debt}
 
 function stepYear(){
@@ -747,7 +759,7 @@ function stepYear(){
   P.happy=clamp(P.happy+(tH-P.happy)*0.35+r(-6,6),0,100);
   // 収入と支出
   if(c.g==="indie"){
-    const cap=c.pr>=5?12000:c.pr===4?5000:c.pr===3?1800:800;
+    const cap=c.pr>=5?8000:c.pr===4?3500:c.pr===3?1500:700;
     P.income=Math.round(Math.min(cap,P.income*r(0.75,1.3)));P.coVal=Math.max(0,Math.round(P.coVal*r(0.6,1.5)));
     const ruin=Math.random();
     if(ruin<(c.pr>=4?0.06:0.09)){
@@ -757,7 +769,7 @@ function stepYear(){
       addLog(`${c.n}は資金が尽きて${big?"倒産":"廃業"}。${d?`借金${oku(d)}を背負い、`:""}${nj.n}に再就職。年収は${fmt(P.income)}万円まで落ちた。`,"bad");
     }else if(ruin<0.2){P.income=Math.round(P.income*0.6);addLog(pick(["大口の取引先を失い、売上が4割落ちた。","共同創業者が抜け、半年は火消しで終わった。","資金調達に失敗し、給料を自分で削った。"]),"bad")}
   }
-  else if(c.g==="free"){const m=r(0.7,1.3)*(P.net>60?1.05:1);P.income=Math.round(Math.min(2500,P.income*m));P.skill=clamp(P.skill+1,0,100);if(Math.random()<0.12){P.income=Math.round(P.income*0.5);addLog("案件が切れて半年無収入。貯金を取り崩した。","bad")}}
+  else if(c.g==="free"){const m=r(0.7,1.3)*(P.net>60?1.05:1);P.income=Math.round(Math.min(1800,P.income*m));P.skill=clamp(P.skill+1,0,100);if(Math.random()<0.12){P.income=Math.round(P.income*0.5);addLog("案件が切れて半年無収入。貯金を取り崩した。","bad")}}
   else P.income=calcIncome();
   const sp=P.spouse?P.spouse.inc:0;
   // 年収が上がるほど生活水準も上がる。配偶者の収入も6割は生活費に消える
@@ -775,7 +787,7 @@ function stepYear(){
   if(P.age===47&&P.role<3&&!["neet","indie","free","gaigin","pe","cons_s"].includes(c.g))addLog("役職定年。給与テーブルが下がり、若手の下につくことになった。","bad");
   yearMemory();
   P.years.push({age:P.age,year:P.year,co:c.n,g:c.g,role:["neet","indie","free"].includes(c.g)?"":ROLES[P.role],jt:P.jt,inc:P.income,nw:Math.round(netWorth())});
-  if(!["neet","indie","free"].includes(c.g)&&P.role<4&&P.tenure>=2){let pp=0.06+P.skill/700+(P.tenure>4?.04:0)-P.role*0.05-(c.pr>=5?.04:0);if(P.role===3&&(P.skill<80||P.net<55))pp=0;if(P.role===2&&P.skill<60)pp*=0.5;if(Math.random()<pp){P.role++;addLog(`${c.n}で${ROLES[P.role]}に昇進しました。`,"gold");P.happy+=6}}
+  if(!["neet","indie","free"].includes(c.g)&&P.role<4&&P.tenure>=2){let pp=0.05+P.skill/800+(P.tenure>4?.03:0)-P.role*0.05-(c.pr>=5?.04:0);if(P.role===3&&(P.skill<85||P.net<65))pp=0;if(P.role===2&&P.skill<65)pp*=0.5;if(P.role>=1&&P.age<30)pp*=0.5;if(Math.random()<pp){P.role++;addLog(`${c.n}で${ROLES[P.role]}に昇進しました。`,"gold");P.happy+=6}}
   P.happy=clamp(P.happy,0,100);P.health=clamp(P.health,0,100);
   renderCareer();
   if(P.age>=END_AGE)return finish();
@@ -901,8 +913,8 @@ function indieOdds(){
 function startIndie(){
   const o=indieOdds(),x=Math.random();
   const from=P.job.n,fam=P.name.split(" ")[0];P.moves++;
-  if(x<o.big){const val=ri(5,60)*10000;setJob({n:fam+"テック",g:"indie",pr:5,st:5,gr:5,s:[0,0,0]},4);P.income=ri(2000,5000);P.coVal=val;P.happy+=15;addLog(`${from}を辞めて起業。プロダクトが爆発的に伸び、3年後に上場。持ち株の評価額は${oku(val)}。`,"big")}
-  else if(x<o.big+o.ok){setJob({n:fam+"カンパニー",g:"indie",pr:4,st:4,gr:5,s:[0,0,0]},4);P.income=ri(1500,4000);P.coVal=P.income*3;P.happy+=12;addLog(`${from}を辞めて起業。事業が軌道に乗り、年収${fmt(P.income)}万円。`,"gold")}
+  if(x<o.big){const val=ri(3,40)*10000;setJob({n:fam+"テック",g:"indie",pr:5,st:5,gr:5,s:[0,0,0]},4);P.income=ri(1500,4000);P.coVal=val;P.happy+=15;addLog(`${from}を辞めて起業。プロダクトが爆発的に伸び、3年後に上場。持ち株の評価額は${oku(val)}。`,"big")}
+  else if(x<o.big+o.ok){setJob({n:fam+"カンパニー",g:"indie",pr:4,st:4,gr:5,s:[0,0,0]},4);P.income=ri(1000,2500);P.coVal=P.income*3;P.happy+=12;addLog(`${from}を辞めて起業。事業が軌道に乗り、年収${fmt(P.income)}万円。`,"gold")}
   else if(x<1-o.fail){setJob({n:fam+"事務所",g:"indie",pr:3,st:4,gr:4,s:[0,0,0]},4);P.income=ri(300,900);P.coVal=P.income;P.happy+=5;addLog(`${from}を辞めて起業。細々と食べていける程度。年収${fmt(P.income)}万円。`)}
   else if(Math.random()<0.7){const loss=Math.round(P.savings*r(.5,.9));P.savings-=loss;P.happy-=15;const c=pick(CO.filter(k=>k.pr<=Math.max(1,P.job.pr-1)&&k.g!=="gov"));setJob(c);P.income=calcIncome();addLog(`起業に失敗。貯金${fmt(loss)}万円を溶かし、${c.n}に再就職しました。`,"bad")}
   else{const d=ri(2000,6000);P.savings=Math.min(P.savings,0);P.debt+=d;P.idx=0;P.crypto=0;P.home=null;P.happy-=25;P.health-=10;const c=pick(CO.filter(k=>k.pr<=1));setJob(c);P.income=calcIncome();addLog(`大失敗。連帯保証で借金${oku(d)}を背負い、家も手放し、${c.n}で働きながら返済する日々。`,"bad")}
@@ -949,7 +961,7 @@ function openDecision(reason){
   // 仕事以外の選択肢（条件を満たすものから2〜3枚）
   const extras=[];const a=P.age,fam=P.name.split(" ")[0];
   if(!["indie","neet"].includes(cur.g)&&a>=28&&a<=42&&P.skill>=45&&Math.random()<0.6){const o=indieOdds();extras.push({t:"スタートアップを起業する",d:`${cur.n}を辞めて創業。大成功なら上場して数十億、大失敗なら借金。`,v:`${Math.round(o.big*100)}% / ${Math.round(o.fail*100)}%`,vs:"大成功率 / 失敗率",tag:"人生の分岐",col:"var(--purple)",fn:()=>startIndie()})}
-  if(!["indie","neet","free"].includes(cur.g)&&a>=30&&P.skill>=55&&["eng","cons","cre"].includes(P.jt)&&Math.random()<0.6){const inc=Math.round(P.income*r(0.9,1.4));extras.push({t:`フリーランスの${JTN[P.jt]}として独立`,d:"会社を離れて個人で受ける。単価は上がるが、案件が切れれば収入ゼロ。福利厚生もなし。",v:fmt(inc)+"万円",vs:"初年度の見込み",tag:"独立",col:"var(--teal)",fn:()=>{setJob({n:`${fam}${P.jt==="eng"?"エンジニアリング":P.jt==="cons"?"コンサルティング":"事務所"}（個人事業）`,g:"free",pr:Math.min(3,cur.pr),st:3,gr:3,s:[0,0,0]},0,P.jt);P.moves++;P.income=inc;P.coVal=0;addLog(`${cur.n}を辞めてフリーランスに。初年度は${fmt(inc)}万円。`,"move")}})}
+  if(!["indie","neet","free"].includes(cur.g)&&a>=30&&P.skill>=55&&["eng","cons","cre"].includes(P.jt)&&Math.random()<0.6){const inc=Math.round(P.income*r(0.85,1.25));extras.push({t:`フリーランスの${JTN[P.jt]}として独立`,d:"会社を離れて個人で受ける。単価は上がるが、案件が切れれば収入ゼロ。福利厚生もなし。",v:fmt(inc)+"万円",vs:"初年度の見込み",tag:"独立",col:"var(--teal)",fn:()=>{setJob({n:`${fam}${P.jt==="eng"?"エンジニアリング":P.jt==="cons"?"コンサルティング":"事務所"}（個人事業）`,g:"free",pr:Math.min(3,cur.pr),st:3,gr:3,s:[0,0,0]},0,P.jt);P.moves++;P.income=inc;P.coVal=0;addLog(`${cur.n}を辞めてフリーランスに。初年度は${fmt(inc)}万円。`,"move")}})}
   if(cur.g==="free"&&a<=45){extras.push({t:"法人化して会社にする",d:"個人事業を会社に。人を雇えば伸びるが、固定費も背負う。",tag:"起業",col:"var(--purple)",fn:()=>startIndie()})}
   if(!P.mba&&a>=26&&a<=33&&P.savings>=1600&&!["neet","indie","free"].includes(cur.g)){extras.push({t:"海外MBAに私費留学",d:"2年と1,500万円。英語・地頭・人脈が大きく伸び、帰国後は外資・コンサル・PEの扉が開く。",v:"−1,500万円",vs:"2年間",tag:"投資",col:"var(--blue)",fn:()=>{P.mba=true;P.age+=2;P.year+=2;P.savings-=1500;P.head=clamp(P.head+8,0,100);P.eng=clamp(P.eng+25,0,100);P.net=clamp(P.net+15,0,100);P.skill=clamp(P.skill+6,0,100);P.nextD=P.age;addLog("海外MBAに私費留学。2年と1,500万円を使い、英語と人脈を手に入れました。","gold")}})}
   if(cur.g!=="gov"&&cur.g!=="neet"&&a<=30&&P.head>=50&&Math.random()<0.5){const c=CO.find(x=>x.n==="都庁・県庁");extras.push({t:"公務員試験を受けて都庁へ",d:"年収は下がるが、定時と安定が手に入る。激務からの避難先。",v:fmt(midIncome(Object.assign(c,{_jd:jtFor(c).d})))+"万円",vs:"年収見込み",fn:()=>{c._p=0.6;c._jt="gov";applyMid(c)}})}
@@ -1006,6 +1018,10 @@ $("pause").onclick=e=>{paused=!paused;e.target.textContent=paused?"▶ 再開":"
 document.querySelectorAll(".spd").forEach(b=>b.onclick=()=>{document.querySelectorAll(".spd").forEach(x=>x.classList.remove("on"));b.classList.add("on");speed=+b.dataset.s;if(!paused)schedule()});
 
 
+// 年収 → 給与所得者の上位何%か（国税庁 民間給与実態統計の分布を概算で補間）
+const PCT=[[200,76],[300,62],[400,45],[500,31],[600,21],[700,14],[800,9.5],[900,7],[1000,5.5],[1200,3.3],[1500,1.8],[2000,0.9],[2500,0.5],[3000,0.3],[5000,0.1],[10000,0.03]];
+function topPct(v){if(v<=PCT[0][0])return 85;for(let i=1;i<PCT.length;i++){const [a,pa]=PCT[i-1],[b,pb]=PCT[i];if(v<=b){const t=(v-a)/(b-a);return pa+(pb-pa)*t}}return 0.02}
+const fmtPct=x=>x>=10?Math.round(x)+"%":x>=1?x.toFixed(1)+"%":x.toFixed(2)+"%";
 // ============ 振り返り ============
 function yearRows(){
   const h0=P.history[0];const first={age:h0.age,year:h0.age-22+2026,co:h0.c.n,g:h0.c.g,role:h0.c.g==="neet"?"":ROLES[0],inc:P.incomes[0]||0,nw:0};
@@ -1020,7 +1036,7 @@ function story(){
   p.push(`${P.uni}を出て、${h[0].age}歳で${h[0].c.n}に入った。${h[0].c.st>=4?"最初の数年は終電とタクシーの記憶ばかりだ。":h[0].c.st<=2?"穏やかな職場で、定時に帰る日も多かった。":"仕事は普通に忙しく、普通に楽しかった。"}`);
   if(h.length>1){const moves=h.slice(1).map(x=>`${x.age}歳で${x.c.n}`).join("、");p.push(`その後、${moves}へ。${P.fails?`落ちた選考は${P.fails}回。`:"応募した会社には、すべて受かった。"}いちばん長くいたのは${longest.c.n}の${longest.len}年。`)}
   else p.push(`転職は一度もしなかった。${h[0].c.n}一筋、${END_AGE-h[0].age}年。${P.fails?`応募して落ちたことは${P.fails}回ある。`:""}`);
-  p.push(`年収のピークは${mxAge}歳の${fmt(mx)}万円。${mx>=GOAL?"3000万円の壁は越えた。":mx>=2000?"3000万円には届かなかったが、十分に高い。":mx>=1000?"1000万円は越えた。":"派手な数字ではないが、働き続けた。"}${P.flags.sick?`働きすぎて${P.flags.sick}回、体か心を壊した。年収ゼロの年が${P.incomes.filter(v=>v===0).length}年ある。`:""}${hard>=6?"記録には、辛い年がやけに多い。":hard>=3?"辛い年もあったが、乗り越えた。":"仕事で潰れそうになった記憶は、あまりない。"}`);
+  p.push(`年収のピークは${mxAge}歳の${fmt(mx)}万円。日本の給与所得者の上位${fmtPct(topPct(mx))}に入る数字だ。${mx>=GOAL?"3000万円の壁は越えた。":mx>=2000?"3000万円には届かなかったが、十分に高い。":mx>=1000?"1000万円は越えた。":"派手な数字ではないが、働き続けた。"}${P.flags.sick?`働きすぎて${P.flags.sick}回、体か心を壊した。年収ゼロの年が${P.incomes.filter(v=>v===0).length}年ある。`:""}${hard>=6?"記録には、辛い年がやけに多い。":hard>=3?"辛い年もあったが、乗り越えた。":"仕事で潰れそうになった記憶は、あまりない。"}`);
   const fam=P.spouse?(P.spouse.type==="rich"?"相手の実家は不動産オーナーで、お金の心配はほとんど消えた。":P.spouse.type==="power"?"共働きで、世帯年収はずっと高かった。":"結婚して、帰る理由ができた。"):"結婚はしなかった。";
   p.push(`${fam}${P.kids?`子どもは${P.kids}人。`:""}${P.divorces?`離婚を${P.divorces}回経験し、そのたびに資産は半分になった。`:""}${P.home?(P.home.type==="tower"?"湾岸のタワマンに住んでいる。":"郊外の戸建てに住んでいる。"):"ずっと賃貸だった。"}${P.crypto>0?"仮想通貨に手を出したのは、良くも悪くも人生の分岐点だった。":P.idx>0?"積立投資は地味に効いた。":""}`);
   p.push(`50歳。年収${fmt(P.income)}万円、総資産${oku(nw)}。${nw<0?"借金はまだ残っている。":nw>=30000?"もう働かなくてもいい。":nw>=10000?"老後の心配は、たぶんない。":"老後のことは、これから考える。"}${bad>=8?"波乱の多い人生だった。":bad>=4?"それなりに波はあった。":"思ったより、平穏な人生だった。"}`);
@@ -1052,7 +1068,7 @@ function finish(){
   const hook=P.job.g==="neet"?"無職からの再出発も、相談できます。":P.fails>=3?`${P.fails}回落ちた選考、本当なら対策できました。`:mx>=GOAL?"3000万円に届くキャリアは、現実でも設計できます。":P.flags.sick?"激務で壊れる前に、働き方を変える転職もあります。":`3000万円まであと${fmt(GOAL-mx)}万円。現実のキャリアは、ここから変えられます。`;
   const cta=(cls)=>`<div class="cta ${cls||""}"><h3>あなたのキャリアは、AIキャリアエージェントに相談。</h3><p>${hook}</p><div class="u">延べ20万人<small>以上が利用</small></div><a class="big" href="https://casematch.jp/" target="_blank" rel="noopener">CaseMatchで相談する →</a></div>`;
   $("endbox").innerHTML=`<div class="ehero"><p class="dim small">50歳</p><div class="xs" style="color:var(--ink2);letter-spacing:.2em">あなたのキャリアは</div><div class="rank">${rk}</div><h2 class="you">あなたは「${title}」</h2><p class="muted" style="max-width:560px;margin:0 auto">${body}</p>
-   <div class="kpi"><div><b class="num ${mx>=GOAL?"green":""}">${fmt(mx)}<small>万円</small></b><span>最高年収${mx>=GOAL?"・3000万円達成":"・あと"+fmt(GOAL-mx)+"万円"}</span></div><div><b class="num" style="${nw<0?"color:var(--rose)":""}">${oku(nw)}</b><span>50歳の総資産</span></div><div><b class="num">${P.moves}<small>回</small></b><span>転職・独立</span></div></div>
+   <div class="kpi"><div><b class="num ${mx>=GOAL?"green":""}">${fmt(mx)}<small>万円</small></b><span>最高年収・日本の上位${fmtPct(topPct(mx))}</span></div><div><b class="num" style="${nw<0?"color:var(--rose)":""}">${oku(nw)}</b><span>50歳の総資産</span></div><div><b class="num">${P.moves}<small>回</small></b><span>転職・独立</span></div></div>
    <div class="share"><button class="sbtn x" onclick="shareX()">Xに投稿する</button><button class="sbtn" onclick="shareCopy(this)">結果リンクをコピー</button><button class="sbtn" id="shareNative" onclick="shareNative()">共有</button></div>
    <div class="scrollhint">↓ 28年を振り返る</div></div>
    <div class="story">${story()}</div>
