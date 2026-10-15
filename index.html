@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>転職シミュレーター — 年収3000万円を目指せるか</title>
+<title>キャリアシミュレーター — 年収3000万円を目指せるか</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
@@ -203,6 +203,29 @@ button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .toast .ok{color:var(--green)}.toast .ng{color:var(--rose)}
 .toast small{display:block;font-family:"Noto Sans JP";font-size:14px;letter-spacing:0;font-weight:400;color:var(--ink2)}
 @keyframes fadeout{to{opacity:0;transform:rotate(-6deg) scale(1.1)}}
+/* トップ */
+.intro2{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:start;padding:40px 0 20px}
+.il h2{font-size:54px;line-height:1.15;margin:0 0 18px;color:var(--ink);font-weight:900}
+.il p{color:var(--ink2);font-size:15.5px;line-height:1.9;margin:0 0 22px;max-width:520px}
+.istats{display:flex;gap:28px;flex-wrap:wrap;margin-bottom:26px}
+.istats b{display:block;font-family:"Zen Old Mincho";font-size:34px;line-height:1;color:var(--ink)}
+.istats b small{font-size:14px;margin-left:2px;font-family:"Noto Sans JP";color:var(--ink2)}
+.istats span{font-size:12px;color:var(--ink3)}
+.ir h3{font-size:17px;margin:0 0 4px}
+.bars{display:grid;gap:9px}
+.bars div{display:grid;grid-template-columns:118px 1fr 44px;gap:10px;align-items:center;font-size:12.5px}
+.bars .b{height:9px;background:#0B1016;border-radius:99px;overflow:hidden;border:1px solid var(--line)}
+.bars .b i{display:block;height:100%;background:var(--teal);border-radius:99px}
+.bars .ssr .b i{background:var(--gold)}.bars .sr .b i{background:var(--purple)}
+.bars .ssr{color:var(--gold2)}.bars .sr{color:var(--purple)}
+.bars .p{text-align:right;color:var(--ink2)}
+/* 共有 */
+.share{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:14px 0 4px}
+.sbtn{padding:10px 18px;border-radius:99px;border:1px solid var(--line2);background:var(--bg2);font-size:13.5px;font-weight:700}
+.sbtn.x{background:#000;border-color:#000;color:#fff}
+.sbtn:hover{border-color:var(--gold)}
+.shared{max-width:720px;margin:10px auto 0;text-align:left;border-color:var(--gold);animation:pop .4s}
+.srow{display:flex;gap:16px;align-items:center}
 /* ガチャ */
 .gacha{text-align:center;max-width:720px;margin:0 auto;padding:28px 20px}
 .gslot{margin:18px auto 10px;max-width:520px;min-height:120px;border:2px solid var(--line2);border-radius:16px;background:#0B1016;display:grid;place-items:center;padding:18px;position:relative;overflow:hidden}
@@ -228,6 +251,7 @@ button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 @media (max-width:980px){
   .career,.board,.grid2{grid-template-columns:1fr}.sticky{position:static}.hero h2{font-size:30px}.hero{padding:30px 8px 20px}.sum{grid-template-columns:1fr 1fr}
   .wrap{padding:12px 12px 90px}.card{padding:14px 14px;border-radius:12px}
+  .intro2{grid-template-columns:1fr;gap:20px;padding:16px 0 10px}.il h2{font-size:32px}.istats{gap:18px}.istats b{font-size:26px}
   .gname{font-size:22px}.gacha{padding:18px 12px}
   .top .step{margin-left:0;width:100%}
   .career .col:nth-child(1){order:2}.career .col:nth-child(2){order:1}.career .col:nth-child(3){order:3}
@@ -255,18 +279,25 @@ button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 <body>
 <div class="wrap">
   <header class="top">
-    <h1>転職シミュレーター</h1>
+    <h1>キャリアシミュレーター</h1>
     <span class="dim small">年収3000万円を目指せるか</span>
     <div class="step" id="steps"><span class="on">1 ガチャ</span><span>2 就活</span><span>3 人生</span><span>4 結果</span></div>
   </header>
 
   <section class="screen on" id="s-intro">
-    <div class="hero">
-      <h2>年収3000万円に、<br>たどり着けるか。</h2>
-      <p>大学と属性はガチャで決まります。難関大は低確率。そこから新卒就活を始めます。入社後は勝手に年月が進み、4〜6年に一度「人生の決断」が来ます。転職・起業・独立・留学・家・投資。決断のときだけ時間が止まり、あなたが選びます。</p>
-      <p>年収3000万円に届くのは、外銀・PE・戦コンのパートナー・起業の成功者・大化けした営業など、ごく一部。大失敗すれば借金、離婚で資産半減もあります。</p>
-      <p class="dim small">企業名は実在のものですが、合格率・年収・出来事はすべてゲーム上の演出で、実際の選考や企業とは無関係です。</p>
-      <br><button class="big" onclick="go('setup')">出身ガチャを引く</button>
+    <div class="intro2">
+      <div class="il">
+        <h2>年収3000万円に、<br>たどり着けるか。</h2>
+        <p>大学も、最初の会社も、選べません。生まれたひとりの新卒として、22歳から50歳までのキャリアを歩きます。転職するか、残るか、起業するか。決断のときだけ、時間が止まります。</p>
+        <div class="istats"><div><b class="num">270<small>社</small></b><span>実在の企業にエントリー</span></div><div><b class="num">4<small>%</small></b><span>東大京大が出る確率</span></div><div><b class="num">28<small>年</small></b><span>22歳から50歳まで</span></div></div>
+        <button class="big" onclick="go('setup')">出身ガチャを引く</button>
+        <p class="xs dim" style="margin-top:14px">企業名は実在のものですが、合格率・年収・出来事はすべてゲーム上の演出で、実際の選考や企業とは無関係です。</p>
+      </div>
+      <div class="ir card">
+        <h3>出身ガチャの排出率</h3>
+        <div class="xs dim" style="margin-bottom:12px">難関大学ほど出にくい。属性（体育会系・理系院生など）も同時に決まります</div>
+        <div class="bars" id="ratebars"></div>
+      </div>
     </div>
   </section>
 
@@ -935,6 +966,7 @@ function finish(){
   const hook=P.job.g==="neet"?"無職からの再出発も、相談できます。":P.fails>=3?`${P.fails}回落ちた選考、本当なら対策できました。`:mx>=GOAL?"3000万円に届くキャリアは、現実でも設計できます。":P.flags.sick?"激務で壊れる前に、働き方を変える転職もあります。":`3000万円まであと${fmt(GOAL-mx)}万円。現実のキャリアは、ここから変えられます。`;
   const cta=(cls)=>`<div class="cta ${cls||""}"><div class="u">延べ利用者 20万人<small>突破</small></div><h3>就職も転職も、AIキャリアエージェントに相談しよう。</h3><p>${hook}CaseMatchのAIキャリアエージェントが、あなたに合う企業と受かり方を一緒に探します。無料です。</p><a class="big" href="https://casematch.jp/" target="_blank" rel="noopener">CaseMatchで無料相談する →</a></div>`;
   $("endbox").innerHTML=`<p class="dim small">50歳・キャリアの決算</p><div class="rank">${rk}</div><div class="asset num ${mx>=GOAL?"ok":""}">${fmt(mx)}<span style="font-size:20px">万円</span></div><div class="xs dim">最高年収${mx>=GOAL?"・3000万円 達成":"・3000万円まであと"+fmt(GOAL-mx)+"万円"}</div><div class="serif num" style="font-size:22px;margin-top:6px;color:${nw<0?"var(--rose)":"var(--ink)"}">${oku(nw)}</div><div class="xs dim">総資産</div><h2>${title}</h2><p class="muted">${body}</p>
+   <div class="share"><button class="sbtn x" onclick="shareX()">Xでシェア</button><button class="sbtn" onclick="shareCopy(this)">結果リンクをコピー</button><button class="sbtn" id="shareNative" onclick="shareNative()">共有</button></div>
    ${cta("top")}
    <div class="sum"><div><b class="num">${fmt(P.income)}</b><span>50歳の年収（万円）</span></div><div><b class="num">${P.moves}回</b><span>転職・独立（不採用${P.fails}回）</span></div><div><b class="num">${fmt(P.savings)}</b><span>貯金（万円）</span></div><div><b class="num">${fmt(P.idx+P.crypto)}</b><span>投資（万円）</span></div><div><b class="num">${P.home?fmt(P.home.val-P.home.loan):"—"}</b><span>不動産（万円）</span></div><div><b class="num">${Math.round(P.happy)}</b><span>幸福度</span></div></div>
    <div class="story">${story()}</div>
@@ -942,8 +974,26 @@ function finish(){
    <div class="path">${P.history.map(x=>`<span><i style="background:${G[x.c.g].c}"></i>${x.age}歳 ${x.c.n}</span>`).join("")}</div>
    <div class="again"><a class="big" href="https://casematch.jp/" target="_blank" rel="noopener">CaseMatchで無料相談する →</a><button class="big ghost" onclick="location.reload()">もう一度、別の人生で</button></div>`;
   go("end");
+  P._share={rk,mx,nw:Math.round(nw),title,uni:P.uni,path:P.history.map(x=>`${x.age}:${x.c.n}`),sick:P.flags.sick||0,fails:P.fails};
+  if(!navigator.share)$("shareNative").style.display="none";
 }
+// ============ 共有 ============
+function shareURL(){const d=P._share;const enc=btoa(unescape(encodeURIComponent(JSON.stringify(d)))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");return location.origin+location.pathname+"#r="+enc}
+function shareText(){const d=P._share;return `【キャリアシミュレーター】${d.uni}卒 → ${d.path.map(x=>x.split(":")[1]).join(" → ")}\n最高年収 ${fmt(d.mx)}万円／総資産 ${oku(d.nw)}／ランク ${d.rk}「${d.title}」\n年収3000万円に、たどり着けるか。`}
+function shareX(){window.open("https://twitter.com/intent/tweet?text="+encodeURIComponent(shareText()+"\n#キャリアシミュレーター")+"&url="+encodeURIComponent(shareURL()),"_blank","noopener")}
+async function shareCopy(b){try{await navigator.clipboard.writeText(shareText()+"\n"+shareURL());b.textContent="コピーしました";setTimeout(()=>b.textContent="結果リンクをコピー",1800)}catch(e){prompt("コピーしてください",shareText()+"\n"+shareURL())}}
+async function shareNative(){try{await navigator.share({title:"キャリアシミュレーター",text:shareText(),url:shareURL()})}catch(e){}}
+function showShared(){
+  const m=location.hash.match(/^#r=([A-Za-z0-9_-]+)/);if(!m)return;
+  try{const d=JSON.parse(decodeURIComponent(escape(atob(m[1].replace(/-/g,"+").replace(/_/g,"/")))));
+    const box=document.createElement("div");box.className="card shared";
+    box.innerHTML=`<div class="xs dim">友だちの結果</div><div class="srow"><div class="rank" style="font-size:54px">${d.rk}</div><div><div class="serif" style="font-size:20px">${d.title}</div><div class="small muted">${d.uni}卒・最高年収 ${fmt(d.mx)}万円・総資産 ${oku(d.nw)}${d.sick?`・休職${d.sick}回`:""}${d.fails?`・不採用${d.fails}回`:""}</div></div></div><div class="path" style="justify-content:flex-start;margin:8px 0 0">${d.path.map(x=>{const [a,n]=x.split(":");return `<span>${a}歳 ${n}</span>`}).join("")}</div><div class="small gold" style="margin-top:10px">あなたは、この人を超えられますか。</div>`;
+    $("s-intro").prepend(box);history.replaceState(null,"",location.pathname);
+  }catch(e){}
+}
+showShared();
 
+(function(){const tot=UNIS.reduce((a,u)=>a+u.w,0);$("ratebars").innerHTML=UNIS.map(u=>`<div class="${u.rar}"><span>${u.n.replace("（Ivy League等）","").replace("・産近甲龍","")}</span><span class="b"><i style="width:${u.w/tot*100*2.2}%"></i></span><span class="p num">${(u.w/tot*100).toFixed(0)}%</span></div>`).join("")})();
 renderSetup();
 </script>
 </body>
