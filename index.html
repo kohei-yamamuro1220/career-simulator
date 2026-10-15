@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>キャリアシミュレーター — 年収3000万円を目指せるか</title>
+<meta name="description" content="大学ガチャから始まる、22歳〜50歳のキャリアシミュレーター。実在270社にエントリーし、転職・起業・休職を経て年収3000万円に届くか。">
+<meta property="og:type" content="website"><meta property="og:title" content="キャリアシミュレーター — 年収3000万円に、たどり着けるか。"><meta property="og:description" content="大学ガチャから始まる、22歳〜50歳のキャリアシミュレーター。実在270社にエントリーし、転職・起業・休職を経て年収3000万円に届くか。"><meta property="og:image" content="https://career-simulator-gules.vercel.app/api/og"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:url" content="https://career-simulator-gules.vercel.app/">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="キャリアシミュレーター — 年収3000万円に、たどり着けるか。"><meta name="twitter:image" content="https://career-simulator-gules.vercel.app/api/og">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
@@ -168,7 +171,7 @@ button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .tbl td small{display:block;color:var(--ink3);font-size:10.5px}
 .tbl .ev2{color:var(--ink2);line-height:1.5}.tbl .ev2 .bad{color:var(--rose)}.tbl .ev2 .gold{color:var(--gold2)}.tbl .ev2 .big{color:var(--purple);font-weight:700}.tbl .ev2 .move{color:var(--teal)}.tbl .ev2 .dim{color:var(--ink3)}
 @media (max-width:980px){.tbl th:nth-child(2),.tbl td:nth-child(2),.tbl th:nth-child(5),.tbl td:nth-child(5){display:none}}
-.cta.top{margin:22px auto 8px;max-width:640px;animation:pop .5s .3s both}
+.cta.top{margin:26px auto 14px;max-width:640px}
 .again{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:8px}
 .again .big{background:linear-gradient(135deg,var(--teal),#2A9D8F);color:#04201C}
 .cta{margin:28px auto 0;max-width:560px;background:linear-gradient(135deg,#17323A,#1B2A44);border:1px solid var(--teal);border-radius:16px;padding:24px 22px}
@@ -219,6 +222,17 @@ button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .bars .ssr .b i{background:var(--gold)}.bars .sr .b i{background:var(--purple)}
 .bars .ssr{color:var(--gold2)}.bars .sr{color:var(--purple)}
 .bars .p{text-align:right;color:var(--ink2)}
+/* 結果ヒーロー */
+.ehero{min-height:calc(100vh - 120px);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px;padding:10px 0 30px}
+.ehero .rank{font-size:150px;margin:4px 0}
+.ehero .you{font-size:38px;margin:4px 0 10px}
+.kpi{display:flex;gap:34px;justify-content:center;flex-wrap:wrap;margin:22px 0 10px}
+.kpi b{display:block;font-family:"Zen Old Mincho";font-size:34px;line-height:1}
+.kpi b small{font-size:14px;margin-left:2px;font-family:"Noto Sans JP";color:var(--ink2)}
+.kpi span{font-size:12px;color:var(--ink3)}
+.scrollhint{margin-top:34px;color:var(--ink3);font-size:13px;animation:bob 1.6s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+@media (max-width:980px){.ehero .rank{font-size:110px}.ehero .you{font-size:26px}.kpi{gap:18px}.kpi b{font-size:26px}}
 /* 共有 */
 .share{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:14px 0 4px}
 .sbtn{padding:10px 18px;border-radius:99px;border:1px solid var(--line2);background:var(--bg2);font-size:13.5px;font-weight:700}
@@ -965,20 +979,22 @@ function finish(){
   // 結果に合わせた広告の一言
   const hook=P.job.g==="neet"?"無職からの再出発も、相談できます。":P.fails>=3?`${P.fails}回落ちた選考、本当なら対策できました。`:mx>=GOAL?"3000万円に届くキャリアは、現実でも設計できます。":P.flags.sick?"激務で壊れる前に、働き方を変える転職もあります。":`3000万円まであと${fmt(GOAL-mx)}万円。現実のキャリアは、ここから変えられます。`;
   const cta=(cls)=>`<div class="cta ${cls||""}"><div class="u">延べ利用者 20万人<small>突破</small></div><h3>就職も転職も、AIキャリアエージェントに相談しよう。</h3><p>${hook}CaseMatchのAIキャリアエージェントが、あなたに合う企業と受かり方を一緒に探します。無料です。</p><a class="big" href="https://casematch.jp/" target="_blank" rel="noopener">CaseMatchで無料相談する →</a></div>`;
-  $("endbox").innerHTML=`<p class="dim small">50歳・キャリアの決算</p><div class="rank">${rk}</div><div class="asset num ${mx>=GOAL?"ok":""}">${fmt(mx)}<span style="font-size:20px">万円</span></div><div class="xs dim">最高年収${mx>=GOAL?"・3000万円 達成":"・3000万円まであと"+fmt(GOAL-mx)+"万円"}</div><div class="serif num" style="font-size:22px;margin-top:6px;color:${nw<0?"var(--rose)":"var(--ink)"}">${oku(nw)}</div><div class="xs dim">総資産</div><h2>${title}</h2><p class="muted">${body}</p>
+  $("endbox").innerHTML=`<div class="ehero"><p class="dim small">50歳・キャリアの決算</p><div class="xs" style="color:var(--ink2);letter-spacing:.2em">あなたのキャリアは</div><div class="rank">${rk}</div><h2 class="you">あなたは「${title}」</h2><p class="muted" style="max-width:560px;margin:0 auto">${body}</p>
+   <div class="kpi"><div><b class="num ${mx>=GOAL?"green":""}">${fmt(mx)}<small>万円</small></b><span>最高年収${mx>=GOAL?"・3000万円達成":"・あと"+fmt(GOAL-mx)+"万円"}</span></div><div><b class="num" style="${nw<0?"color:var(--rose)":""}">${oku(nw)}</b><span>50歳の総資産</span></div><div><b class="num">${P.moves}<small>回</small></b><span>転職・独立</span></div></div>
    <div class="share"><button class="sbtn x" onclick="shareX()">Xでシェア</button><button class="sbtn" onclick="shareCopy(this)">結果リンクをコピー</button><button class="sbtn" id="shareNative" onclick="shareNative()">共有</button></div>
-   ${cta("top")}
-   <div class="sum"><div><b class="num">${fmt(P.income)}</b><span>50歳の年収（万円）</span></div><div><b class="num">${P.moves}回</b><span>転職・独立（不採用${P.fails}回）</span></div><div><b class="num">${fmt(P.savings)}</b><span>貯金（万円）</span></div><div><b class="num">${fmt(P.idx+P.crypto)}</b><span>投資（万円）</span></div><div><b class="num">${P.home?fmt(P.home.val-P.home.loan):"—"}</b><span>不動産（万円）</span></div><div><b class="num">${Math.round(P.happy)}</b><span>幸福度</span></div></div>
+   <div class="scrollhint">↓ 28年を振り返る</div></div>
    <div class="story">${story()}</div>
-   <details class="tbl"><summary>年表で振り返る（22〜50歳）</summary><table><thead><tr><th>歳</th><th>年</th><th>所属</th><th>年収</th><th>資産</th><th>出来事</th></tr></thead><tbody>${yearRows()}</tbody></table></details>
+   <div class="sum"><div><b class="num">${fmt(P.income)}</b><span>50歳の年収（万円）</span></div><div><b class="num">${P.fails}回</b><span>不採用</span></div><div><b class="num">${P.flags.sick||0}回</b><span>休職</span></div><div><b class="num">${fmt(P.savings)}</b><span>貯金（万円）</span></div><div><b class="num">${fmt(P.idx+P.crypto)}</b><span>投資（万円）</span></div><div><b class="num">${P.home?fmt(P.home.val-P.home.loan):"—"}</b><span>不動産（万円）</span></div></div>
    <div class="path">${P.history.map(x=>`<span><i style="background:${G[x.c.g].c}"></i>${x.age}歳 ${x.c.n}</span>`).join("")}</div>
+   ${cta("top")}
+   <details class="tbl"><summary>年表で振り返る（22〜50歳）</summary><table><thead><tr><th>歳</th><th>年</th><th>所属</th><th>年収</th><th>資産</th><th>出来事</th></tr></thead><tbody>${yearRows()}</tbody></table></details>
    <div class="again"><a class="big" href="https://casematch.jp/" target="_blank" rel="noopener">CaseMatchで無料相談する →</a><button class="big ghost" onclick="location.reload()">もう一度、別の人生で</button></div>`;
   go("end");
   P._share={rk,mx,nw:Math.round(nw),title,uni:P.uni,path:P.history.map(x=>`${x.age}:${x.c.n}`),sick:P.flags.sick||0,fails:P.fails};
   if(!navigator.share)$("shareNative").style.display="none";
 }
 // ============ 共有 ============
-function shareURL(){const d=P._share;const enc=btoa(unescape(encodeURIComponent(JSON.stringify(d)))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");return location.origin+location.pathname+"#r="+enc}
+function shareURL(){const d=P._share;const enc=btoa(unescape(encodeURIComponent(JSON.stringify(d)))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");return location.origin+"/api/r?d="+enc}
 function shareText(){const d=P._share;return `【キャリアシミュレーター】${d.uni}卒 → ${d.path.map(x=>x.split(":")[1]).join(" → ")}\n最高年収 ${fmt(d.mx)}万円／総資産 ${oku(d.nw)}／ランク ${d.rk}「${d.title}」\n年収3000万円に、たどり着けるか。`}
 function shareX(){window.open("https://twitter.com/intent/tweet?text="+encodeURIComponent(shareText()+"\n#キャリアシミュレーター")+"&url="+encodeURIComponent(shareURL()),"_blank","noopener")}
 async function shareCopy(b){try{await navigator.clipboard.writeText(shareText()+"\n"+shareURL());b.textContent="コピーしました";setTimeout(()=>b.textContent="結果リンクをコピー",1800)}catch(e){prompt("コピーしてください",shareText()+"\n"+shareURL())}}
