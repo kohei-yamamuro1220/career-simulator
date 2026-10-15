@@ -1064,9 +1064,7 @@ function finish(){
   else if(P.happy>=65){title="ほどよく働き、よく生きた人";body="資産の数字より、毎日の機嫌を大事にしました。"}
   else{title="普通の、長い会社員生活";body="大きな当たりはありませんでしたが、ずっと働き続けました。それ自体が難しいことです。"}
   const hl=[];
-  // 結果に合わせた広告の一言
-  const hook=P.job.g==="neet"?"無職からの再出発も、相談できます。":P.fails>=3?`${P.fails}回落ちた選考、本当なら対策できました。`:mx>=GOAL?"3000万円に届くキャリアは、現実でも設計できます。":P.flags.sick?"激務で壊れる前に、働き方を変える転職もあります。":`3000万円まであと${fmt(GOAL-mx)}万円。現実のキャリアは、ここから変えられます。`;
-  const cta=(cls)=>`<div class="cta ${cls||""}"><h3>あなたのキャリアは、AIキャリアエージェントに相談。</h3><p>${hook}</p><div class="u">延べ20万人<small>以上が利用</small></div><a class="big" href="https://casematch.jp/" target="_blank" rel="noopener">CaseMatchで相談する →</a></div>`;
+  const cta=()=>"";
   $("endbox").innerHTML=`<div class="ehero"><p class="dim small">50歳</p><div class="xs" style="color:var(--ink2);letter-spacing:.2em">あなたのキャリアは</div><div class="rank">${rk}</div><h2 class="you">あなたは「${title}」</h2><p class="muted" style="max-width:560px;margin:0 auto">${body}</p>
    <div class="kpi"><div><b class="num ${mx>=GOAL?"green":""}">${fmt(mx)}<small>万円</small></b><span>最高年収・日本の上位${fmtPct(topPct(mx))}</span></div><div><b class="num" style="${nw<0?"color:var(--rose)":""}">${oku(nw)}</b><span>50歳の総資産</span></div><div><b class="num">${P.moves}<small>回</small></b><span>転職・独立</span></div></div>
    <div class="share"><button class="sbtn x" onclick="shareX()">Xに投稿する</button><button class="sbtn" onclick="shareCopy(this)">結果リンクをコピー</button><button class="sbtn" id="shareNative" onclick="shareNative()">共有</button></div>
@@ -1075,7 +1073,6 @@ function finish(){
    <div class="sum"><div><b class="num">${fmt(P.income)}</b><span>50歳の年収（万円）</span></div><div><b class="num">${P.fails}回</b><span>不採用</span></div><div><b class="num">${P.flags.sick||0}回</b><span>休職</span></div><div><b class="num">${fmt(P.savings)}</b><span>貯金（万円）</span></div><div><b class="num">${fmt(P.idx+P.crypto)}</b><span>投資（万円）</span></div><div><b class="num">${P.home?fmt(P.home.val-P.home.loan):"—"}</b><span>不動産（万円）</span></div></div>
    <div class="path">${P.history.map(x=>`<span><i style="background:${G[x.c.g].c}"></i>${x.age}歳 ${x.c.n}</span>`).join("")}</div>
    <details class="tbl"><summary>年表で振り返る（22〜50歳）</summary><table><thead><tr><th>歳</th><th>年</th><th>所属</th><th>年収</th><th>資産</th><th>出来事</th></tr></thead><tbody>${yearRows()}</tbody></table></details>
-   ${cta("last")}
    <div class="again"><button class="big ghost" onclick="location.reload()">もう一度、別の人生で</button></div>`;
   go("end");
   P._share={rk,mx,nw:Math.round(nw),title,uni:P.uni,path:P.history.map(x=>`${x.age}:${x.c.n}`),sick:P.flags.sick||0,fails:P.fails};
