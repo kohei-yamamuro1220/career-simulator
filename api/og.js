@@ -39,10 +39,13 @@ export default async function handler(req) {
         h('div', { fontSize: 92, color: gold, fontWeight: 700, lineHeight: 1.2, textAlign: 'center' }, '年収3000万円に、\nたどり着けるか。'),
         h('div', { fontSize: 30, color: ink2, marginTop: 24 }, '大学ガチャから始まる、22歳〜50歳のキャリアシミュレーター'));
 
+  const origin = u.origin;
   const tree = h('div', {
       width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
-      padding: '56px 72px', backgroundColor: '#050507', backgroundImage: 'linear-gradient(180deg, #050507 0%, #07080D 60%, #1A1208 100%)', color: ink, fontFamily: 'NotoJP'
+      padding: '56px 72px', backgroundColor: '#050507', color: ink, fontFamily: 'NotoJP', position: 'relative'
     },
+    { type: 'img', props: { src: `${origin}/bg.jpg`, width: 1200, height: 800, style: { position: 'absolute', left: 0, top: -120, width: 1200, height: 800, objectFit: 'cover', opacity: 0.55 } } },
+    h('div', { position: 'absolute', left: 0, top: 0, width: 1200, height: 630, backgroundImage: 'linear-gradient(180deg, rgba(5,5,7,0.75) 0%, rgba(5,5,7,0.55) 60%, rgba(5,5,7,0.8) 100%)' }),
     h('div', { display: 'flex', alignItems: 'center', gap: 14 },
       h('div', { fontSize: 30, color: gold, fontWeight: 700 }, 'キャリアシミュレーター'),
       h('div', { fontSize: 20, color: ink3 }, '年収3000万円を目指せるか')),
