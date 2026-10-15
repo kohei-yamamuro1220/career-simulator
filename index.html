@@ -643,9 +643,9 @@ function probNew(c){
   let p=sig((score(c,P)+(P.edu-60)*0.18-c.d)/8.5)-0.03;
   if(P.edu<c.f)p*=0.3;
   if(c.pr===5&&P.edu<88)p=Math.min(p,0.3);
-  if(UI.round===2)p=p*0.6-0.03; if(P.ronin)p-=0.06*P.ronin;
-  if(c.g==="other")p=Math.max(p,UI.round===2?0.22:0.4);
-  return clamp(p,0.02,UI.round===2?0.55:0.93);
+  if(UI.round===2)p=p*0.5-0.03; if(P.ronin)p-=0.06*P.ronin;
+  if(c.g==="other")p=Math.max(p,UI.round===2?0.18:0.4);
+  return clamp(p,0.02,UI.round===2?0.45:0.93);
 }
 function probMid(c,head){
   const cur=P.job; const prS=cur.pr*20;
