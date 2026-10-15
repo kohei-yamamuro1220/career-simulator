@@ -9,7 +9,7 @@ async function loadFont(text) {
     `https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&text=${encodeURIComponent(text)}`,
     { headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:12.0) Gecko/20100101 Firefox/12.0' } }
   )).text();
-  const m = css.match(/src: url\((.+?)\) format\('(truetype|opentype)'\)/);
+  const m = css.match(/src: url\((.+?)\) format\('(truetype|opentype|woff)'\)/);
   if (!m) return null;
   return await (await fetch(m[1])).arrayBuffer();
 }
@@ -55,5 +55,5 @@ export default async function handler(req) {
   let fonts = [];
   try { const data = await loadFont(chars); if (data) fonts = [{ name: 'NotoJP', data, weight: 700, style: 'normal' }]; } catch (e) {}
 
-  return new ImageResponse(tree, { width: 1200, height: 630, fonts, headers: { 'Cache-Control': 'public, max-age=86400, s-maxage=86400' } });
+  return new ImageResponse(tree, { width: 1200, height: 630, fonts, headers: { 'Cache-Control': 'public, max-age=3600, s-maxage=3600' } });
 }

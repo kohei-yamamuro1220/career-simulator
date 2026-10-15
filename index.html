@@ -302,14 +302,13 @@ button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
     <div class="intro2">
       <div class="il">
         <h2>年収3000万円に、<br>たどり着けるか。</h2>
-        <p>大学も、最初の会社も、選べません。生まれたひとりの新卒として、22歳から50歳までのキャリアを歩きます。転職するか、残るか、起業するか。決断のときだけ、時間が止まります。</p>
+        <p>大学も最初の会社も選べない。ひとりの新卒として、22歳から50歳までを歩く。</p>
         <div class="istats"><div><b class="num">270<small>社</small></b><span>実在の企業にエントリー</span></div><div><b class="num">4<small>%</small></b><span>東大京大が出る確率</span></div><div><b class="num">28<small>年</small></b><span>22歳から50歳まで</span></div></div>
         <button class="big" onclick="go('setup')">出身ガチャを引く</button>
-        <p class="xs dim" style="margin-top:14px">企業名は実在のものですが、合格率・年収・出来事はすべてゲーム上の演出で、実際の選考や企業とは無関係です。</p>
+        <p class="xs dim" style="margin-top:14px">企業名は実在。合格率や年収はゲーム上の値です。</p>
       </div>
       <div class="ir card">
-        <h3>出身ガチャの排出率</h3>
-        <div class="xs dim" style="margin-bottom:12px">難関大学ほど出にくい。属性（体育会系・理系院生など）も同時に決まります</div>
+        <h3 style="margin-bottom:12px">出身ガチャの排出率</h3>
         <div class="bars" id="ratebars"></div>
       </div>
     </div>
@@ -317,9 +316,9 @@ button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 
   <section class="screen" id="s-setup">
     <div class="gacha card">
-      <h2 style="justify-content:center">出身ガチャ <small>大学と属性は選べません。引くだけです</small></h2>
+      <h2 style="justify-content:center">出身ガチャ</h2>
       <div class="gslot" id="gslot"><div class="gname" id="gname">？？？大学</div><div class="grar" id="grar"></div></div>
-      <div class="gdesc" id="gdesc">難関大学ほど出にくい。東大京大は4%、早慶は10%、MARCHは12%。</div>
+      <div class="gdesc" id="gdesc"></div>
       <div class="gattrs" id="gattrs"></div>
       <div class="gbtn"><button class="big" id="gpull">ガチャを回す</button></div>
       <div class="rates xs dim">排出率　東大京大 4%・旧帝一工 5%・海外大 3%・早慶 10%・上智ICU理科大 5%・MARCH 12%・関関同立 8%・日東駒専 18%・その他 35%</div>
@@ -330,7 +329,6 @@ button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
         <div class="stats" id="pstats"></div>
       </div>
       <div class="card">
-        <p class="note" style="margin-top:0">6つのステータスで企業ごとの合格率が決まります。学歴フィルターのある企業は、大学によって合格率が大きく下がります。</p>
         <button class="big" style="width:100%;text-align:center" id="toJob">この人生で就活を始める</button>
         <button class="big ghost" style="width:100%;text-align:center;margin-top:8px" onclick="location.reload()">生まれ直す</button>
       </div>
@@ -342,7 +340,7 @@ button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
     <div class="board">
       <div>
         <div class="card">
-          <h2 id="btitle">志望企業を選ぶ <small>最大5社にエントリー</small></h2>
+          <h2 id="btitle">志望企業を選ぶ <small>最大5社</small></h2>
           <div class="filters" id="filters"></div>
           <div class="cos" id="cos"></div>
         </div>
@@ -587,11 +585,11 @@ function renderBoard(){
   $("filters").innerHTML=groups.map(k=>`<button class="${UI.filter===k?"on":""}" style="${UI.filter===k?"background:"+(k==="all"?"var(--gold);color:#1A1200":G[k].c):""}" onclick="UI.filter='${k}';renderBoard()">${k==="all"?"すべて":G[k].n}</button>`).join("");
   let list=CO.filter(c=>UI.round===1||(c.d<=70&&!UI.applied.includes(CO.indexOf(c))));
   if(UI.filter!=="all")list=list.filter(c=>c.g===UI.filter);
-  $("btitle").innerHTML=UI.round===1?`志望企業を選ぶ <small>最大5社にエントリー。全滅なら二次募集へ</small>`:`二次募集 <small>最難関は締め切り済み。中堅・中小まで広く残っています。最大5社</small>`;
+  $("btitle").innerHTML=UI.round===1?`志望企業を選ぶ <small>最大5社</small>`:`二次募集 <small>最大5社</small>`;
   $("cos").innerHTML=list.map(c=>{const p=probNew(c);const i=CO.indexOf(c);const on=UI.picked.includes(i);const off=!on&&UI.picked.length>=5;
     return `<button class="co ${on?"on":""} ${off?"off":""}" onclick="togglePick(${i})">${P.edu<c.f?'<span class="tag">学歴フィルター</span>':""}<span class="lg" style="background:${G[c.g].c}">${mono(c.n)}</span><span class="n">${c.n}</span><span class="p" style="color:${p>=.5?"var(--green)":p>=.25?"var(--gold)":"var(--rose)"}">${Math.round(p*100)}%<small>合格率</small></span><span class="m">${G[c.g].n}・初任給 ${fmt(c.s[0])}万・激務 ${"●".repeat(c.st)}${"○".repeat(5-c.st)}</span></button>`}).join("")||`<div class="dim small">この業界には二次募集がありません</div>`;
   $("pcount").textContent=UI.picked.length+"/5";
-  $("picked").innerHTML=UI.picked.length?UI.picked.map(i=>`<div class="it"><span>${CO[i].n}</span><b class="num">${Math.round(probNew(CO[i])*100)}%</b></div>`).join(""):`<div class="dim small">企業カードを押して追加。迷ったら「おまかせ」</div>`;
+  $("picked").innerHTML=UI.picked.length?UI.picked.map(i=>`<div class="it"><span>${CO[i].n}</span><b class="num">${Math.round(probNew(CO[i])*100)}%</b></div>`).join(""):`<div class="dim small">まだ選んでいません</div>`;
   const any=1-UI.picked.reduce((a,i)=>a*(1-probNew(CO[i])),1);
   $("anyp").style.width=any*100+"%";$("anyn").textContent=UI.picked.length?Math.round(any*100)+"%":"—";
   $("submit").disabled=!UI.picked.length;$("msubmit").disabled=!UI.picked.length;$("mcount").textContent=UI.picked.length+"/5";
@@ -886,7 +884,7 @@ function openDecision(reason){
   sh(extras).slice(0,cur.g==="neet"?1:2).forEach(x=>opts.push(x));
   if(canStay)opts.push({t:cur.g==="neet"?"今年は何もしない":cur.g==="free"||cur.g==="indie"?"このまま続ける":`${cur.n}に残る`,d:cur.g==="neet"?"スキルは落ち、年齢だけ上がります。":"昇進を待つ。安定しますが、スキルの伸びは鈍ります。",v:"—",vs:"確実",fn:()=>{addLog(cur.g==="neet"?"今年も動けませんでした。":`${cur.n}に残ることにしました。`)}});
   P.nextD=P.age+(cur.g==="neet"?1:ri(5,7));
-  choose(title,`${P.age}歳・${cur.n}（${cur.g==="neet"?"無職":ROLES[P.role]}）・年収${fmt(P.income)}万円・貯金${fmt(P.savings)}万円。次の決断は${cur.g==="neet"?"来年":"4〜6年後"}。`,opts,"合格率はスキル・現職の格・人脈・英語・地頭・年齢・業界と職種の近さから推定。33歳を超えると戦コン・外銀・PEは急に厳しくなります。");
+  choose(title,`${P.age}歳・${cur.n}（${cur.g==="neet"?"無職":ROLES[P.role]}）・年収${fmt(P.income)}万円・貯金${fmt(P.savings)}万円。`,opts);
 }
 function applyMid(c){
   if(Math.random()<c._p){
@@ -978,8 +976,8 @@ function finish(){
   const hl=[];
   // 結果に合わせた広告の一言
   const hook=P.job.g==="neet"?"無職からの再出発も、相談できます。":P.fails>=3?`${P.fails}回落ちた選考、本当なら対策できました。`:mx>=GOAL?"3000万円に届くキャリアは、現実でも設計できます。":P.flags.sick?"激務で壊れる前に、働き方を変える転職もあります。":`3000万円まであと${fmt(GOAL-mx)}万円。現実のキャリアは、ここから変えられます。`;
-  const cta=(cls)=>`<div class="cta ${cls||""}"><div class="u">延べ利用者 20万人<small>突破</small></div><h3>就職も転職も、AIキャリアエージェントに相談しよう。</h3><p>${hook}CaseMatchのAIキャリアエージェントが、あなたに合う企業と受かり方を一緒に探します。無料です。</p><a class="big" href="https://casematch.jp/" target="_blank" rel="noopener">CaseMatchで無料相談する →</a></div>`;
-  $("endbox").innerHTML=`<div class="ehero"><p class="dim small">50歳・キャリアの決算</p><div class="xs" style="color:var(--ink2);letter-spacing:.2em">あなたのキャリアは</div><div class="rank">${rk}</div><h2 class="you">あなたは「${title}」</h2><p class="muted" style="max-width:560px;margin:0 auto">${body}</p>
+  const cta=(cls)=>`<div class="cta ${cls||""}"><div class="u">延べ利用者 20万人<small>突破</small></div><h3>就職も転職も、AIキャリアエージェントに相談しよう。</h3><p>${hook}相談は無料です。</p><a class="big" href="https://casematch.jp/" target="_blank" rel="noopener">CaseMatchで無料相談する →</a></div>`;
+  $("endbox").innerHTML=`<div class="ehero"><p class="dim small">50歳</p><div class="xs" style="color:var(--ink2);letter-spacing:.2em">あなたのキャリアは</div><div class="rank">${rk}</div><h2 class="you">あなたは「${title}」</h2><p class="muted" style="max-width:560px;margin:0 auto">${body}</p>
    <div class="kpi"><div><b class="num ${mx>=GOAL?"green":""}">${fmt(mx)}<small>万円</small></b><span>最高年収${mx>=GOAL?"・3000万円達成":"・あと"+fmt(GOAL-mx)+"万円"}</span></div><div><b class="num" style="${nw<0?"color:var(--rose)":""}">${oku(nw)}</b><span>50歳の総資産</span></div><div><b class="num">${P.moves}<small>回</small></b><span>転職・独立</span></div></div>
    <div class="share"><button class="sbtn x" onclick="shareX()">Xでシェア</button><button class="sbtn" onclick="shareCopy(this)">結果リンクをコピー</button><button class="sbtn" id="shareNative" onclick="shareNative()">共有</button></div>
    <div class="scrollhint">↓ 28年を振り返る</div></div>
@@ -1003,7 +1001,7 @@ function showShared(){
   const m=location.hash.match(/^#r=([A-Za-z0-9_-]+)/);if(!m)return;
   try{const d=JSON.parse(decodeURIComponent(escape(atob(m[1].replace(/-/g,"+").replace(/_/g,"/")))));
     const box=document.createElement("div");box.className="card shared";
-    box.innerHTML=`<div class="xs dim">友だちの結果</div><div class="srow"><div class="rank" style="font-size:54px">${d.rk}</div><div><div class="serif" style="font-size:20px">${d.title}</div><div class="small muted">${d.uni}卒・最高年収 ${fmt(d.mx)}万円・総資産 ${oku(d.nw)}${d.sick?`・休職${d.sick}回`:""}${d.fails?`・不採用${d.fails}回`:""}</div></div></div><div class="path" style="justify-content:flex-start;margin:8px 0 0">${d.path.map(x=>{const [a,n]=x.split(":");return `<span>${a}歳 ${n}</span>`}).join("")}</div><div class="small gold" style="margin-top:10px">あなたは、この人を超えられますか。</div>`;
+    box.innerHTML=`<div class="xs dim">友だちの結果</div><div class="srow"><div class="rank" style="font-size:54px">${d.rk}</div><div><div class="serif" style="font-size:20px">${d.title}</div><div class="small muted">${d.uni}卒・最高年収 ${fmt(d.mx)}万円・総資産 ${oku(d.nw)}${d.sick?`・休職${d.sick}回`:""}${d.fails?`・不採用${d.fails}回`:""}</div></div></div><div class="path" style="justify-content:flex-start;margin:8px 0 0">${d.path.map(x=>{const [a,n]=x.split(":");return `<span>${a}歳 ${n}</span>`}).join("")}</div><div class="small gold" style="margin-top:10px">この人を超えられるか。</div>`;
     $("s-intro").prepend(box);history.replaceState(null,"",location.pathname);
   }catch(e){}
 }
