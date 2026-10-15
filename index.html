@@ -296,10 +296,12 @@ button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
   --gold:#C9A86A; --gold2:#E8D5A3; --teal:#C9A86A; --blue:#8E7CC3; --green:#9CC9A0; --rose:#D9788A; --purple:#B59BD9;
 }
 html{background:#050507}body{background:transparent}
-.sky{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;background:#050507 url(/bg.webp) center 70%/cover no-repeat}
-.sky::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,7,.88) 0%,rgba(5,5,7,.74) 45%,rgba(5,5,7,.45) 100%)}
+.sky{--tx:26%;--ty:52%;position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;background:#050507 url(/bg.webp) var(--tx) 48%/cover no-repeat;filter:saturate(.85)}
+/* タワーの周りだけ残して、ほかは黒に落とす */
+.sky::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,7,.8) 0%,rgba(5,5,7,.55) 30%,rgba(5,5,7,0) 55%),radial-gradient(ellipse 30% 75% at var(--tx) var(--ty),rgba(5,5,7,.05) 0%,rgba(5,5,7,.45) 40%,rgba(5,5,7,.9) 75%,rgba(5,5,7,.97) 100%)}
+/* タワーの赤いグロー */
+.sky::after{content:"";position:absolute;inset:0;mix-blend-mode:screen;background:radial-gradient(circle at var(--tx) 50%,rgba(255,80,40,.32) 0%,rgba(255,60,30,.14) 16%,rgba(255,60,30,0) 38%)}
 .city{display:none}
-.sky::after{content:"";position:absolute;inset:0;background:radial-gradient(900px 500px at 50% 0%,rgba(5,5,7,.5),transparent 70%)}
 h1,h2,h3,.serif{letter-spacing:.06em}
 .top h1,.il h2,.modal h2,.end h2,.gname,.jobhead .n,.card h2{background:linear-gradient(180deg,#F4E6C3 0%,#D9BC7C 45%,#A98747 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .card h2{font-weight:500}
@@ -335,7 +337,8 @@ h1,h2,h3,.serif{letter-spacing:.06em}
 .rsum.ok b{color:#E8D5A3}
 .story{border-left-color:var(--gold)}
 .tbl summary{color:var(--gold2)}
-@media (max-width:980px){.sky{background-position:62% 80%}}
+@media (min-width:981px){.sky{transform:scaleX(-1)}}
+@media (max-width:980px){.sky{background-position:var(--tx) 40%;--ty:48%}.sky::before{background:linear-gradient(180deg,rgba(5,5,7,.88) 0%,rgba(5,5,7,.7) 28%,rgba(5,5,7,.15) 50%,rgba(5,5,7,0) 62%),radial-gradient(ellipse 48% 70% at var(--tx) var(--ty),rgba(5,5,7,.05) 0%,rgba(5,5,7,.45) 45%,rgba(5,5,7,.9) 80%,rgba(5,5,7,.97) 100%)}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
