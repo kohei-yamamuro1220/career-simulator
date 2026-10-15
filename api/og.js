@@ -23,7 +23,7 @@ export default async function handler(req) {
   const oku = v => Math.abs(v) >= 10000 ? `${(v / 10000).toFixed(1)}億円` : `${fmt(v)}万円`;
   const isResult = !!rk;
 
-  const gold = '#E3B84D', ink = '#EEF2F7', ink2 = '#AAB7C7', ink3 = '#6E7D91';
+  const gold = '#D9BC7C', ink = '#F2EDE4', ink2 = '#C9C2B4', ink3 = '#857D6E';
   const rankColor = rk === 'SS' || rk === 'S' ? gold : rk === 'A' ? '#4CD48A' : rk === 'E' ? '#FF6B81' : ink;
 
   const body = isResult
@@ -41,7 +41,7 @@ export default async function handler(req) {
 
   const tree = h('div', {
       width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
-      padding: '56px 72px', backgroundColor: '#0C1117', backgroundImage: 'linear-gradient(135deg, #1A2A3F 0%, #0C1117 55%, #2A2238 100%)', color: ink, fontFamily: 'NotoJP'
+      padding: '56px 72px', backgroundColor: '#050507', backgroundImage: 'linear-gradient(180deg, #050507 0%, #07080D 60%, #1A1208 100%)', color: ink, fontFamily: 'NotoJP'
     },
     h('div', { display: 'flex', alignItems: 'center', gap: 14 },
       h('div', { fontSize: 30, color: gold, fontWeight: 700 }, 'キャリアシミュレーター'),
